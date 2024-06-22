@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
               alignment: Alignment.topRight,
               child: Padding(
                 padding: const EdgeInsets.only(
-                    top: 25, right: 25), // Optional padding
+                    top: 40, right: 25), // Optional padding
                 child: SwitchTheme(
                   currentTheme: currentTheme,
                   toggleTheme: toggleTheme,
@@ -96,12 +96,17 @@ class _MyAppState extends State<MyApp> {
                       text: const TextSpan(
                           text: "Take care\n",
                           style: TextStyle(
+                              fontFamily: 'Fira_Sans',
                               fontWeight: FontWeight.w500,
-                              fontSize: fontSize_1),
+                              fontSize: fontSize_1,
+                              fontStyle: FontStyle.normal),
                           children: <TextSpan>[
                             TextSpan(
                                 text: 'of your vision',
-                                style: TextStyle(fontWeight: FontWeight.w200)),
+                                style: TextStyle(
+                                    fontFamily: 'Fira_Sans',
+                                    fontWeight: FontWeight.w200,
+                                    fontStyle: FontStyle.italic)),
                           ]),
                     ),
                   ),
