@@ -32,11 +32,11 @@ class AppTheme {
 }
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   _MyAppState createState() => _MyAppState();
