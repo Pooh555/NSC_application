@@ -88,9 +88,10 @@ class _MyAppState extends State<MyApp> {
                   child: SizedBox(height: 0),
                 ),
                 Builder(
-                  // Wrap GestureDetector with Builder
+                  // Wrap GestureDetector with Builder(To prevent exception error)
                   builder: (context) => GestureDetector(
                     onTap: () {
+                      // Navigate to Profilepage
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -98,13 +99,15 @@ class _MyAppState extends State<MyApp> {
                         ),
                       );
                     },
+                    // User's profile picture
                     child: const CircleAvatar(
-                      radius: 45.0,
-                      backgroundImage:
+                      radius: 45.0, // Icon size
+                      backgroundImage: // User's profile image path
                           ExactAssetImage('assets/images/profile.jpg'),
                     ),
                   ),
                 ),
+                // SwitchTheme button position
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -117,7 +120,9 @@ class _MyAppState extends State<MyApp> {
                 ),
               ],
             ),
+            // The rest of the Homepage
             Expanded(
+              // Use ListView for scrollable page
               child: ListView(
                 children: [
                   Padding(
@@ -125,6 +130,7 @@ class _MyAppState extends State<MyApp> {
                         top: 0), // Control ListView position
                     child: Builder(
                       builder: (context) {
+                        // Text "Take care of your vision"
                         return RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
@@ -162,6 +168,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+// SwitchTheme button
 class SwitchTheme extends StatelessWidget {
   const SwitchTheme({
     super.key,
