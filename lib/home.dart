@@ -75,40 +75,68 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: Column(
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 40, right: 25), // Optional padding
-                child: SwitchTheme(
-                  currentTheme: currentTheme,
-                  toggleTheme: toggleTheme,
+            // Row widget for Profile widget and SwitchTheme widget
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 160, left: 20),
+                  child: SizedBox(height: 0),
                 ),
-              ),
+                GestureDetector(
+                  onTap: () {
+                    print("Nice");
+                  },
+                  child: const CircleAvatar(
+                    radius: 45.0,
+                    backgroundImage:
+                        ExactAssetImage('assets/images/profile.jpg'),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 20, left: 220), // Optional padding
+                    child: SwitchTheme(
+                      currentTheme: currentTheme,
+                      toggleTheme: toggleTheme,
+                    ),
+                  ),
+                ),
+              ],
             ),
             Expanded(
               child: ListView(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                          text: "Take care\n",
-                          style: TextStyle(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: Builder(
+                      builder: (context) {
+                        return RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "Take care\n",
+                            style: TextStyle(
                               fontFamily: 'Fira_Sans',
                               fontWeight: FontWeight.w400,
                               fontSize: fontSize_1,
-                              fontStyle: FontStyle.normal),
-                          children: <TextSpan>[
-                            TextSpan(
+                              fontStyle: FontStyle.normal,
+                              color: currentTheme.textColor_1,
+                            ),
+                            children: const <TextSpan>[
+                              TextSpan(
                                 text: 'of your vision',
                                 style: TextStyle(
-                                    fontFamily: 'Fira_Sans',
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: fontSize_1,
-                                    fontStyle: FontStyle.italic)),
-                          ]),
+                                  fontFamily: 'Fira_Sans',
+                                  fontWeight: FontWeight.w200,
+                                  fontSize: fontSize_1,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
