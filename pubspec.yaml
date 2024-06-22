@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  path_provider: ^2.0.11
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -79,7 +79,9 @@ flutter:
        fonts:
          - asset: fonts/Fira_Sans/FiraSans-Light.ttf
            style: normal
-         - asset: fonts/Fira_Sans/FiraSans-Italic.ttf
+#         - asset: fonts/Fira_Sans/FiraSans-LightItalic.ttf
+#           style: italic
+         - asset: fonts/Fira_Sans/FiraSans-ExtraLightItalic.ttf
            style: italic
   #   - family: Trajan Pro
   #     fonts:

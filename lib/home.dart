@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile.dart';
 
 const double fontSize_1 = 50;
 
@@ -48,12 +49,14 @@ class _MyAppState extends State<MyApp> {
   // Initialize theme
   late AppTheme currentTheme;
 
+  // Initialize currentTheme based on global "theme" variable
   @override
   void initState() {
     super.initState();
     currentTheme = AppTheme(theme);
   }
 
+  // Toggle the selected theme
   void toggleTheme() {
     setState(() {
       theme = (theme == "light") ? "dark" : "light";
@@ -64,12 +67,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'home',
+      title: 'home', // Homepage title
       theme: ThemeData(
-        scaffoldBackgroundColor: currentTheme.color_1,
+        scaffoldBackgroundColor:
+            currentTheme.color_1, // Homepage's background color
         appBarTheme: AppBarTheme(
-          backgroundColor: currentTheme.color_1,
-          foregroundColor: currentTheme.textColor_1,
+          backgroundColor: currentTheme.color_1, // AppBar's background color
+          foregroundColor:
+              currentTheme.textColor_1, // AppBar's foreground color
         ),
       ),
       home: Scaffold(
@@ -82,21 +87,28 @@ class _MyAppState extends State<MyApp> {
                   padding: EdgeInsets.only(top: 160, left: 20),
                   child: SizedBox(height: 0),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    print("Nice");
-                  },
-                  child: const CircleAvatar(
-                    radius: 45.0,
-                    backgroundImage:
-                        ExactAssetImage('assets/images/profile.jpg'),
+                Builder(
+                  // Wrap GestureDetector with Builder
+                  builder: (context) => GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ),
+                      );
+                    },
+                    child: const CircleAvatar(
+                      radius: 45.0,
+                      backgroundImage:
+                          ExactAssetImage('assets/images/profile.jpg'),
+                    ),
                   ),
                 ),
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 20, left: 220), // Optional padding
+                    padding: const EdgeInsets.only(top: 20, left: 220),
                     child: SwitchTheme(
                       currentTheme: currentTheme,
                       toggleTheme: toggleTheme,
@@ -109,7 +121,8 @@ class _MyAppState extends State<MyApp> {
               child: ListView(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 0),
+                    padding: const EdgeInsets.only(
+                        top: 0), // Control ListView position
                     child: Builder(
                       builder: (context) {
                         return RichText(
@@ -118,7 +131,7 @@ class _MyAppState extends State<MyApp> {
                             text: "Take care\n",
                             style: TextStyle(
                               fontFamily: 'Fira_Sans',
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w900,
                               fontSize: fontSize_1,
                               fontStyle: FontStyle.normal,
                               color: currentTheme.textColor_1,
@@ -128,7 +141,7 @@ class _MyAppState extends State<MyApp> {
                                 text: 'of your vision',
                                 style: TextStyle(
                                   fontFamily: 'Fira_Sans',
-                                  fontWeight: FontWeight.w200,
+                                  fontWeight: FontWeight.w100,
                                   fontSize: fontSize_1,
                                   fontStyle: FontStyle.italic,
                                 ),
@@ -150,8 +163,11 @@ class _MyAppState extends State<MyApp> {
 }
 
 class SwitchTheme extends StatelessWidget {
-  const SwitchTheme(
-      {super.key, required this.currentTheme, required this.toggleTheme});
+  const SwitchTheme({
+    super.key,
+    required this.currentTheme,
+    required this.toggleTheme,
+  });
 
   final AppTheme currentTheme;
   final VoidCallback toggleTheme;

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: const Text('Profile Page'),
       ),
-      body: Center(
-        child: TextButton(
-          onPressed: () {},
-          child: const Text('Next'),
+      body: const Center(
+        child: Text(
+          'This is the profile page',
+          style: TextStyle(fontSize: 24),
         ),
       ),
     );
