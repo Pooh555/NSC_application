@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile.dart';
 
 const double fontSize_1 = 50;
 
@@ -48,12 +49,14 @@ class _MyAppState extends State<MyApp> {
   // Initialize theme
   late AppTheme currentTheme;
 
+  // Initialize currentTheme based on global "theme" variable
   @override
   void initState() {
     super.initState();
     currentTheme = AppTheme(theme);
   }
 
+  // Toggle the selected theme
   void toggleTheme() {
     setState(() {
       theme = (theme == "light") ? "dark" : "light";
@@ -64,45 +67,95 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'home',
+      title: 'home', // Homepage title
       theme: ThemeData(
-        scaffoldBackgroundColor: currentTheme.color_1,
+        scaffoldBackgroundColor:
+            currentTheme.color_1, // Homepage's background color
         appBarTheme: AppBarTheme(
-          backgroundColor: currentTheme.color_1,
-          foregroundColor: currentTheme.textColor_1,
+          backgroundColor: currentTheme.color_1, // AppBar's background color
+          foregroundColor:
+              currentTheme.textColor_1, // AppBar's foreground color
         ),
       ),
       home: Scaffold(
         body: Column(
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 25, right: 25), // Optional padding
-                child: SwitchTheme(
-                  currentTheme: currentTheme,
-                  toggleTheme: toggleTheme,
+            // Row widget for Profile widget and SwitchTheme widget
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 160, left: 20),
+                  child: SizedBox(height: 0),
                 ),
-              ),
+                Builder(
+                  // Wrap GestureDetector with Builder(To prevent exception error)
+                  builder: (context) => GestureDetector(
+                    onTap: () {
+                      // Navigate to Profilepage
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ),
+                      );
+                    },
+                    // User's profile picture
+                    child: const CircleAvatar(
+                      radius: 45.0, // Icon size
+                      backgroundImage: // User's profile image path
+                          ExactAssetImage('assets/images/profile.jpg'),
+                    ),
+                  ),
+                ),
+                // SwitchTheme button position
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20, left: 220),
+                    child: SwitchTheme(
+                      currentTheme: currentTheme,
+                      toggleTheme: toggleTheme,
+                    ),
+                  ),
+                ),
+              ],
             ),
+            // The rest of the Homepage
             Expanded(
+              // Use ListView for scrollable page
               child: ListView(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                          text: "Take care\n",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: fontSize_1),
-                          children: <TextSpan>[
-                            TextSpan(
+                    padding: const EdgeInsets.only(
+                        top: 0), // Control ListView position
+                    child: Builder(
+                      builder: (context) {
+                        // Text "Take care of your vision"
+                        return RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "Take care\n",
+                            style: TextStyle(
+                              fontFamily: 'Fira_Sans',
+                              fontWeight: FontWeight.w900,
+                              fontSize: fontSize_1,
+                              fontStyle: FontStyle.normal,
+                              color: currentTheme.textColor_1,
+                            ),
+                            children: const <TextSpan>[
+                              TextSpan(
                                 text: 'of your vision',
-                                style: TextStyle(fontWeight: FontWeight.w200)),
-                          ]),
+                                style: TextStyle(
+                                  fontFamily: 'Fira_Sans',
+                                  fontWeight: FontWeight.w100,
+                                  fontSize: fontSize_1,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -115,9 +168,13 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+// SwitchTheme button
 class SwitchTheme extends StatelessWidget {
-  const SwitchTheme(
-      {super.key, required this.currentTheme, required this.toggleTheme});
+  const SwitchTheme({
+    super.key,
+    required this.currentTheme,
+    required this.toggleTheme,
+  });
 
   final AppTheme currentTheme;
   final VoidCallback toggleTheme;
