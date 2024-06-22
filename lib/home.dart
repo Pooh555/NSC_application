@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const double fontSize_1 = 50;
+
 // Initialize theme
 String theme = "dark";
 
@@ -87,6 +89,25 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             ),
+            ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 75),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(
+                        text: "Take care\n",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: fontSize_1),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'of your vision',
+                              style: TextStyle(fontWeight: FontWeight.w200)),
+                        ]),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
