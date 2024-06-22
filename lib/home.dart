@@ -66,17 +66,28 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: currentTheme.color_1,
         appBarTheme: AppBarTheme(
-          backgroundColor: currentTheme.color_2,
+          backgroundColor: currentTheme.color_1,
           foregroundColor: currentTheme.textColor_1,
         ),
       ),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Switch Sample')),
-        body: Center(
-          child: SwitchTheme(
-            currentTheme: currentTheme,
-            toggleTheme: toggleTheme,
-          ),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(15.0), // here the desired height
+          child: AppBar(),
+        ),
+        body: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0), // Optional padding
+                child: SwitchTheme(
+                  currentTheme: currentTheme,
+                  toggleTheme: toggleTheme,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
