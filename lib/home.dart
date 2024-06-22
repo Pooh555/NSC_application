@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
+// Initiaize Theme class (dark theme is the default theme)
+class Theme {
+  final color_1 = const Color.fromARGB(255, 43, 43, 43);
+  final color_2 = const Color.fromARGB(255, 138, 138, 138);
+  final color_3 = const Color.fromRGBO(253, 253, 253, 1);
+}
+
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  // Initialize theme
+  var currentTheme = Theme();
 
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'home',
+      theme: ThemeData(scaffoldBackgroundColor: currentTheme.color_1),
+      home: const MyHomePage(title: 'home'),
     );
   }
 }
@@ -35,6 +42,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    /*
+    return ListView(padding: const EdgeInsets.only(top: 34), children: <Widget>[
+      Container(
+        height: 50,
+        color: Colors.amber[600],
+        child: const Center(child: Text("test")),
+      )
+    ]);
+    */
+
     return const Scaffold();
   }
 }
