@@ -97,7 +97,7 @@ class _MyAppState extends State<MyApp> {
                           text: "Take care\n",
                           style: TextStyle(
                               fontFamily: 'Fira_Sans',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w400,
                               fontSize: fontSize_1,
                               fontStyle: FontStyle.normal),
                           children: <TextSpan>[
@@ -106,6 +106,7 @@ class _MyAppState extends State<MyApp> {
                                 style: TextStyle(
                                     fontFamily: 'Fira_Sans',
                                     fontWeight: FontWeight.w200,
+                                    fontSize: fontSize_1,
                                     fontStyle: FontStyle.italic)),
                           ]),
                     ),
