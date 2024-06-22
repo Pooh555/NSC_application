@@ -5,7 +5,7 @@ const double fontSize_1 = 50;
 // Initialize theme
 String theme = "dark";
 
-// Initiaize Theme class (dark theme is the default theme)
+// Initialize Theme class (dark theme is the default theme)
 class AppTheme {
   String theme = "dark"; // Set default theme as dark
 
@@ -73,41 +73,41 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       home: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(15.0), // here the desired height
-          child: AppBar(),
-        ),
-        body: Stack(
+        body: Column(
           children: [
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.all(16.0), // Optional padding
+                padding: const EdgeInsets.only(
+                    top: 25, right: 25), // Optional padding
                 child: SwitchTheme(
                   currentTheme: currentTheme,
                   toggleTheme: toggleTheme,
                 ),
               ),
             ),
-            ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 75),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: const TextSpan(
-                        text: "Take care\n",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: fontSize_1),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'of your vision',
-                              style: TextStyle(fontWeight: FontWeight.w200)),
-                        ]),
+            Expanded(
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(
+                          text: "Take care\n",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: fontSize_1),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'of your vision',
+                                style: TextStyle(fontWeight: FontWeight.w200)),
+                          ]),
+                    ),
                   ),
-                ),
-              ],
-            )
+                ],
+              ),
+            ),
           ],
         ),
       ),
