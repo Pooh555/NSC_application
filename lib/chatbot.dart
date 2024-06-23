@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 import 'package:nsc/home.dart';
+import 'chatbotusagewarning.dart';
 
 AppTheme currentTheme = AppTheme(theme);
 
@@ -39,7 +40,7 @@ class ChatBotPageState extends State<ChatBotPage> {
 
   // Function to scroll to the bottom of the chat history
   void _scrollDown() {
-    WidgetsBinding.instance!.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (_) => _scrollController.animateTo(
         _scrollController.position.minScrollExtent,
         duration: const Duration(milliseconds: 750),
@@ -61,7 +62,7 @@ class ChatBotPageState extends State<ChatBotPage> {
     _chat = _model.startChat();
 
     // Start timer to hide warning after 5 seconds
-    _timer = Timer(Duration(seconds: 5), () {
+    _timer = Timer(const Duration(seconds: 5), () {
       setState(() {
         _showWarning = false;
       });
@@ -275,7 +276,13 @@ class ChatBotPageState extends State<ChatBotPage> {
           child: FloatingActionButton(
             backgroundColor: currentTheme.color_3,
             onPressed: () {
-              // Handle tap on warning message button
+              // Navigate to ChatBotWarningPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChatBotWarningPage(theme: theme),
+                ),
+              );
             },
             child: Center(
               child: RichText(
