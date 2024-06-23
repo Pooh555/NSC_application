@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
@@ -32,16 +31,18 @@ const double fontSize_4 = 13;
 class AppTheme {
   String theme = "dark"; // Set default theme as dark
 
-  dynamic color_1; // Primary/Background color
-  dynamic color_2; // Secondary color
-  dynamic color_3; // Tertiary color
-  dynamic textColor_1; // Primary text color
+  late Color color_1; // Primary/Background color
+  late Color color_2; // Secondary color
+  late Color color_3; // Tertiary color
+  late Color textColor_1; // Primary text color
   static Color textColor_2 =
       const Color.fromARGB(255, 255, 255, 255); // Secondary text color (fixed)
   static Color textColor_3 =
       const Color.fromARGB(255, 117, 117, 117); // Tertiary text color (fixed)
   static Color textShadowColor_1 =
       const Color.fromARGB(255, 0, 0, 0); // Primary text shadow color
+  late Color msgSent; // Color of message sent
+  late Color msgRecieve; // Color of message recieved
 
   // Theme object constructor
   AppTheme(String theme) {
@@ -51,6 +52,8 @@ class AppTheme {
       color_2 = const Color.fromARGB(255, 197, 243, 255);
       color_3 = const Color.fromARGB(255, 232, 250, 255);
       textColor_1 = const Color.fromARGB(255, 0, 0, 0);
+      msgSent = const Color.fromARGB(255, 123, 173, 214);
+      msgRecieve = const Color.fromARGB(255, 154, 232, 233);
     }
     // Dark theme
     if (theme == "dark") {
@@ -58,12 +61,13 @@ class AppTheme {
       color_2 = const Color.fromARGB(255, 138, 138, 138);
       color_3 = const Color.fromRGBO(253, 253, 253, 1);
       textColor_1 = const Color.fromARGB(255, 255, 255, 255);
+      msgSent = const Color.fromARGB(255, 145, 145, 145);
+      msgRecieve = const Color.fromARGB(255, 206, 206, 206);
     }
   }
 }
 
 void main() {
-  Gemini.init(apiKey: 'AIzaSyA0jLrpwuZ44RkIV_l7HT8Z4j_gdySVv14');
   runApp(const MyApp());
 }
 
@@ -246,7 +250,9 @@ class _MyAppState extends State<MyApp> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const ChatBotPage(),
+              builder: (context) => ChatBotPage(
+                theme: theme,
+              ),
             ),
           );
         },
@@ -273,7 +279,7 @@ class _MyAppState extends State<MyApp> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ChatBotPage(),
+                  builder: (context) => ChatBotPage(theme: theme),
                 ),
               );
             },
