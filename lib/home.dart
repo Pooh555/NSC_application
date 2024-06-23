@@ -1,9 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
@@ -13,6 +10,7 @@ import 'profile.dart';
 
 const double fontSize_1 = 50;
 const double fontSize_2 = 40;
+const double fontSize_3 = 35;
 
 // List of images for ScanEye widget
 final List<String> imagePaths = [
@@ -34,6 +32,10 @@ class AppTheme {
   dynamic color_2; // Secondary color
   dynamic color_3; // Tertiary color
   dynamic textColor_1; // Primary text color
+  static Color textColor_2 =
+      const Color.fromARGB(255, 255, 255, 255); // Secondary text color
+  static Color textShadowColor_1 =
+      Color.fromARGB(255, 0, 0, 0); // Primary text shadow color
 
   // Theme object constructor
   AppTheme(String theme) {
@@ -228,16 +230,16 @@ class _MyAppState extends State<MyApp> {
                                 child: RichText(
                                   textAlign: TextAlign.center,
                                   text: TextSpan(
-                                    text: "Scan your eye",
+                                    text: "Scan Your Eye",
                                     style: TextStyle(
                                       fontFamily: 'Fira_Sans',
                                       fontWeight: FontWeight.w800,
                                       fontSize: fontSize_2,
                                       fontStyle: FontStyle.normal,
-                                      color: currentTheme.textColor_1,
+                                      color: AppTheme.textColor_2,
                                       shadows: [
                                         Shadow(
-                                          color: currentTheme.textColor_1
+                                          color: AppTheme.textShadowColor_1
                                               .withOpacity(0.5),
                                           blurRadius: 10.0,
                                           offset: const Offset(3, 3),
@@ -282,6 +284,35 @@ class _MyAppState extends State<MyApp> {
                                   height: 250,
                                   width: 178,
                                   fit: BoxFit.cover,
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 5.0, left: 15.0),
+                                      child: RichText(
+                                        textAlign: TextAlign.left,
+                                        text: TextSpan(
+                                          text: "Know\nThe\nDisease",
+                                          style: TextStyle(
+                                            fontFamily: 'Fira_Sans',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: fontSize_3,
+                                            fontStyle: FontStyle.normal,
+                                            color: AppTheme.textColor_2,
+                                            shadows: [
+                                              Shadow(
+                                                color: AppTheme
+                                                    .textShadowColor_1
+                                                    .withOpacity(0.5),
+                                                blurRadius: 10.0,
+                                                offset: const Offset(3, 3),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -311,6 +342,35 @@ class _MyAppState extends State<MyApp> {
                                   height: 250,
                                   width: 178,
                                   fit: BoxFit.cover,
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 5.0, left: 15.0),
+                                      child: RichText(
+                                        textAlign: TextAlign.left,
+                                        text: TextSpan(
+                                          text: "Meet\nThe\nDoctor",
+                                          style: TextStyle(
+                                            fontFamily: 'Fira_Sans',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: fontSize_3,
+                                            fontStyle: FontStyle.normal,
+                                            color: AppTheme.textColor_2,
+                                            shadows: [
+                                              Shadow(
+                                                color: AppTheme
+                                                    .textShadowColor_1
+                                                    .withOpacity(0.5),
+                                                blurRadius: 10.0,
+                                                offset: const Offset(3, 3),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -348,6 +408,35 @@ class _MyAppState extends State<MyApp> {
                                   height: 250,
                                   width: 178,
                                   fit: BoxFit.cover,
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 5.0, left: 15.0),
+                                      child: RichText(
+                                        textAlign: TextAlign.left,
+                                        text: TextSpan(
+                                          text: "Contact\nHospital",
+                                          style: TextStyle(
+                                            fontFamily: 'Fira_Sans',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: fontSize_3,
+                                            fontStyle: FontStyle.normal,
+                                            color: AppTheme.textColor_2,
+                                            shadows: [
+                                              Shadow(
+                                                color: AppTheme
+                                                    .textShadowColor_1
+                                                    .withOpacity(0.5),
+                                                blurRadius: 10.0,
+                                                offset: const Offset(3, 3),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -377,6 +466,35 @@ class _MyAppState extends State<MyApp> {
                                   height: 250,
                                   width: 178,
                                   fit: BoxFit.cover,
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 5.0, left: 15.0),
+                                      child: RichText(
+                                        textAlign: TextAlign.left,
+                                        text: TextSpan(
+                                          text: "Contact\nand\nFeedback",
+                                          style: TextStyle(
+                                            fontFamily: 'Fira_Sans',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: fontSize_3,
+                                            fontStyle: FontStyle.normal,
+                                            color: AppTheme.textColor_2,
+                                            shadows: [
+                                              Shadow(
+                                                color: AppTheme
+                                                    .textShadowColor_1
+                                                    .withOpacity(0.5),
+                                                blurRadius: 10.0,
+                                                offset: const Offset(3, 3),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
