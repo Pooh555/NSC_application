@@ -274,44 +274,13 @@ class _MyAppState extends State<MyApp> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 5.0),
-                              child: Material(
-                                color: currentTheme.color_2,
-                                borderRadius: BorderRadius.circular(15),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Ink.image(
-                                  image: const ExactAssetImage(
-                                      'assets/images/image_2.jpg'),
-                                  height: 250,
-                                  width: 178,
-                                  fit: BoxFit.cover,
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 5.0, left: 15.0),
-                                      child: RichText(
-                                        textAlign: TextAlign.left,
-                                        text: TextSpan(
-                                          text: "Know\nThe\nDisease",
-                                          style: TextStyle(
-                                            fontFamily: 'Fira_Sans',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: fontSize_3,
-                                            fontStyle: FontStyle.normal,
-                                            color: AppTheme.textColor_2,
-                                            shadows: [
-                                              Shadow(
-                                                color: AppTheme
-                                                    .textShadowColor_1
-                                                    .withOpacity(0.5),
-                                                blurRadius: 10.0,
-                                                offset: const Offset(3, 3),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                              child: buildInkWellWithImageAndText(
+                                'assets/images/image_2.jpg',
+                                "Know\nThe\nDisease",
+                                () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const DoctorPage(),
                                   ),
                                 ),
                               ),
@@ -332,44 +301,13 @@ class _MyAppState extends State<MyApp> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 20.0),
-                              child: Material(
-                                color: currentTheme.color_2,
-                                borderRadius: BorderRadius.circular(15),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Ink.image(
-                                  image: const ExactAssetImage(
-                                      'assets/images/image_3.jpg'),
-                                  height: 250,
-                                  width: 178,
-                                  fit: BoxFit.cover,
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 5.0, left: 15.0),
-                                      child: RichText(
-                                        textAlign: TextAlign.left,
-                                        text: TextSpan(
-                                          text: "Meet\nThe\nDoctor",
-                                          style: TextStyle(
-                                            fontFamily: 'Fira_Sans',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: fontSize_3,
-                                            fontStyle: FontStyle.normal,
-                                            color: AppTheme.textColor_2,
-                                            shadows: [
-                                              Shadow(
-                                                color: AppTheme
-                                                    .textShadowColor_1
-                                                    .withOpacity(0.5),
-                                                blurRadius: 10.0,
-                                                offset: const Offset(3, 3),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                              child: buildInkWellWithImageAndText(
+                                'assets/images/image_3.jpg',
+                                "Meet\nThe\nDoctor",
+                                () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const DoctorPage(),
                                   ),
                                 ),
                               ),
@@ -398,44 +336,13 @@ class _MyAppState extends State<MyApp> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 5.0),
-                              child: Material(
-                                color: currentTheme.color_2,
-                                borderRadius: BorderRadius.circular(15),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Ink.image(
-                                  image: const ExactAssetImage(
-                                      'assets/images/image_4.jpg'),
-                                  height: 250,
-                                  width: 178,
-                                  fit: BoxFit.cover,
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 5.0, left: 15.0),
-                                      child: RichText(
-                                        textAlign: TextAlign.left,
-                                        text: TextSpan(
-                                          text: "Contact\nHospital",
-                                          style: TextStyle(
-                                            fontFamily: 'Fira_Sans',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: fontSize_3,
-                                            fontStyle: FontStyle.normal,
-                                            color: AppTheme.textColor_2,
-                                            shadows: [
-                                              Shadow(
-                                                color: AppTheme
-                                                    .textShadowColor_1
-                                                    .withOpacity(0.5),
-                                                blurRadius: 10.0,
-                                                offset: const Offset(3, 3),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                              child: buildInkWellWithImageAndText(
+                                'assets/images/image_4.jpg',
+                                "Contact\nHospital",
+                                () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const DoctorPage(),
                                   ),
                                 ),
                               ),
@@ -469,27 +376,15 @@ class _MyAppState extends State<MyApp> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 5.0, left: 15.0),
-                                      child: RichText(
-                                        textAlign: TextAlign.left,
-                                        text: TextSpan(
-                                          text: "Contact\nand\nFeedback",
-                                          style: TextStyle(
-                                            fontFamily: 'Fira_Sans',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: fontSize_3,
-                                            fontStyle: FontStyle.normal,
-                                            color: AppTheme.textColor_2,
-                                            shadows: [
-                                              Shadow(
-                                                color: AppTheme
-                                                    .textShadowColor_1
-                                                    .withOpacity(0.5),
-                                                blurRadius: 10.0,
-                                                offset: const Offset(3, 3),
-                                              ),
-                                            ],
+                                      padding: const EdgeInsets.only(left: 0.0),
+                                      child: buildInkWellWithImageAndText(
+                                        'assets/images/image_5.jpg',
+                                        "Contact\nand\nFeedback",
+                                        () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const DoctorPage(),
                                           ),
                                         ),
                                       ),
@@ -507,6 +402,35 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildInkWellWithImageAndText(
+      String imagePath, String title, VoidCallback onTap) {
+    return InkWell(
+      splashColor: currentTheme.color_1,
+      onTap: onTap,
+      child: Material(
+        color: currentTheme.color_2,
+        borderRadius: BorderRadius.circular(15),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Ink.image(
+          image: ExactAssetImage(imagePath),
+          height: 250,
+          width: 178,
+          fit: BoxFit.cover,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5.0, left: 15.0),
+              child: RichText(
+                textAlign: TextAlign.left,
+                text: buildTextWithShadow(title),
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -534,4 +458,24 @@ class SwitchTheme extends StatelessWidget {
       },
     );
   }
+}
+
+TextSpan buildTextWithShadow(String text) {
+  return TextSpan(
+    text: text,
+    style: TextStyle(
+      fontFamily: 'Fira_Sans',
+      fontWeight: FontWeight.w600,
+      fontSize: fontSize_3,
+      fontStyle: FontStyle.normal,
+      color: AppTheme.textColor_2,
+      shadows: [
+        Shadow(
+          color: AppTheme.textShadowColor_1.withOpacity(0.5),
+          blurRadius: 10.0,
+          offset: const Offset(3, 3),
+        ),
+      ],
+    ),
+  );
 }
