@@ -63,7 +63,6 @@ class AppTheme {
 }
 
 void main() {
-  Gemini.init(apiKey: 'AIzaSyA0jLrpwuZ44RkIV_l7HT8Z4j_gdySVv14');
   runApp(const MyApp());
 }
 
