@@ -260,60 +260,18 @@ class _MyAppState extends State<MyApp> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Builder(
-                          builder: (context) => InkWell(
-                            splashColor: currentTheme.color_1,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const DiseasesPage(), // Replace with your target page
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 5.0),
-                              child: buildInkWellWithImageAndText(
-                                'assets/images/image_2.jpg',
-                                "Know\nThe\nDisease",
-                                () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const DiseasesPage(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Builder(
-                          builder: (context) => InkWell(
-                            splashColor: currentTheme.color_1,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const DoctorPage(), // Replace with your target page
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
-                              child: buildInkWellWithImageAndText(
-                                'assets/images/image_3.jpg',
-                                "Meet\nThe\nDoctor",
-                                () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const DoctorPage(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Widget "Contact Hospital"
+                        buildBuildWithPageNavigation(
+                            0.0,
+                            "assets/images/image_2.jpg",
+                            "Know\nThe\nDisease",
+                            const DiseasesPage()),
+                        // Widget "Contact And Feedback"
+                        buildBuildWithPageNavigation(
+                            20.0,
+                            "assets/images/image_3.jpg",
+                            "Meet\nThe\nDoctor",
+                            const DoctorPage()),
                       ],
                     ),
                   ),
@@ -322,79 +280,18 @@ class _MyAppState extends State<MyApp> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Builder(
-                          builder: (context) => InkWell(
-                            splashColor: currentTheme.color_1,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const HospitalPage(), // Replace with your target page
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 5.0),
-                              child: buildInkWellWithImageAndText(
-                                'assets/images/image_4.jpg',
-                                "Contact\nHospital",
-                                () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const HospitalPage(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Builder(
-                          builder: (context) => InkWell(
-                            splashColor: currentTheme.color_1,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const FeedbackPage(), // Replace with your target page
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
-                              child: Material(
-                                color: currentTheme.color_2,
-                                borderRadius: BorderRadius.circular(15),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Ink.image(
-                                  image: const ExactAssetImage(
-                                      'assets/images/image_5.jpg'),
-                                  height: 250,
-                                  width: 178,
-                                  fit: BoxFit.cover,
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 0.0),
-                                      child: buildInkWellWithImageAndText(
-                                        'assets/images/image_5.jpg',
-                                        "Contact\nand\nFeedback",
-                                        () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const FeedbackPage(),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Widget "Contact Hospital"
+                        buildBuildWithPageNavigation(
+                            0.0,
+                            "assets/images/image_4.jpg",
+                            "Contact\nHospital",
+                            const HospitalPage()),
+                        // Widget "Contact And Feedback"
+                        buildBuildWithPageNavigation(
+                            20.0,
+                            "assets/images/image_5.jpg",
+                            "Contact\nAnd\nFeedback",
+                            const FeedbackPage()),
                       ],
                     ),
                   ),
@@ -429,6 +326,37 @@ class _MyAppState extends State<MyApp> {
               child: RichText(
                 textAlign: TextAlign.left,
                 text: buildTextWithShadow(title),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Build each widgets
+  Widget buildBuildWithPageNavigation(
+      double leftDistance, String imagePath, String displayText, pageRoute) {
+    return Builder(
+      builder: (context) => InkWell(
+        splashColor: currentTheme.color_1,
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => pageRoute, // Replace with your target page
+            ),
+          );
+        },
+        child: Padding(
+          padding: EdgeInsets.only(left: leftDistance),
+          child: buildInkWellWithImageAndText(
+            imagePath,
+            displayText,
+            () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => pageRoute,
               ),
             ),
           ),
