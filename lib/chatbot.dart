@@ -1,9 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import 'package:nsc/home.dart';
+
+AppTheme currentTheme = AppTheme(theme);
+
 // Define a StatefulWidget for the ChatBotPage
 class ChatBotPage extends StatefulWidget {
-  const ChatBotPage({super.key});
+  const ChatBotPage({super.key, required String theme});
 
   @override
   State<ChatBotPage> createState() => ChatBotPageState();
@@ -27,9 +33,13 @@ class ChatBotPageState extends State<ChatBotPage> {
   static const _apiKey =
       'AIzaSyA0jLrpwuZ44RkIV_l7HT8Z4j_gdySVv14'; // My API key (private)
 
+  // State variables for warning message visibility and timer
+  bool _showWarning = true;
+  late Timer _timer;
+
   // Function to scroll to the bottom of the chat history
   void _scrollDown() {
-    WidgetsBinding.instance.addPostFrameCallback(
+    WidgetsBinding.instance!.addPostFrameCallback(
       (_) => _scrollController.animateTo(
         _scrollController.position.minScrollExtent,
         duration: const Duration(milliseconds: 750),
@@ -49,6 +59,20 @@ class ChatBotPageState extends State<ChatBotPage> {
     );
     // Start a new chat session using the initialized model
     _chat = _model.startChat();
+
+    // Start timer to hide warning after 5 seconds
+    _timer = Timer(Duration(seconds: 5), () {
+      setState(() {
+        _showWarning = false;
+      });
+    });
+  }
+
+  // Dispose method to cancel timer
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel timer to avoid memory leaks
+    super.dispose();
   }
 
   // Build method to create the UI for the ChatBotPage
@@ -91,8 +115,8 @@ class ChatBotPageState extends State<ChatBotPage> {
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(top: BorderSide(color: Colors.grey.shade200))),
+                  color: currentTheme.color_3,
+                  border: Border(top: BorderSide(color: currentTheme.color_3))),
               child: Row(
                 children: [
                   Expanded(
@@ -104,19 +128,19 @@ class ChatBotPageState extends State<ChatBotPage> {
                         focusNode: _textFieldFocus,
                         decoration: InputDecoration(
                             hintText: 'Ask me anything...',
-                            hintStyle: const TextStyle(color: Colors.grey),
+                            hintStyle: TextStyle(color: AppTheme.textColor_3),
                             filled: true,
                             fillColor: Colors.grey.shade200,
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 15),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(10))),
+                                borderRadius: BorderRadius.circular(10.0))),
                       ),
                     ),
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 15,
                   ),
                   // Send button to send chat message
                   GestureDetector(
@@ -137,25 +161,33 @@ class ChatBotPageState extends State<ChatBotPage> {
                           BoxDecoration(shape: BoxShape.circle, boxShadow: [
                         BoxShadow(
                             offset: const Offset(1, 1),
-                            blurRadius: 3,
-                            spreadRadius: 3,
-                            color: Colors.black.withOpacity(0.05))
+                            blurRadius: 0,
+                            spreadRadius: 5,
+                            color: currentTheme.color_2)
                       ]),
                       child: _loading
-                          ? const Padding(
-                              padding: EdgeInsets.all(15.0),
+                          ? const Center(
                               child: CircularProgressIndicator.adaptive(
                                 backgroundColor: Colors.white,
                               ),
                             )
-                          : const Icon(
+                          : Icon(
                               Icons.send_rounded,
-                              color: Colors.white,
+                              color: currentTheme.color_3,
                             ),
                     ),
                   )
                 ],
               ),
+            ),
+          ),
+          // Positioned widget for warning message
+          Positioned(
+            top: 5,
+            left: 18,
+            child: Visibility(
+              visible: _showWarning,
+              child: buildWarningChatUsage(375.0, 75.0),
             ),
           ),
         ],
@@ -232,6 +264,35 @@ class ChatBotPageState extends State<ChatBotPage> {
       },
     );
   }
+
+  Widget buildWarningChatUsage(double width, double height) {
+    return Builder(
+      builder: (context) => SizedBox(
+        width: width,
+        height: height,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: FloatingActionButton(
+            backgroundColor: currentTheme.color_3,
+            onPressed: () {
+              // Handle tap on warning message button
+            },
+            child: Center(
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: buildTextWithShadow(
+                    'Our chatbot may display inaccurate info, including\nabout people, so double-check its responses.\n Click here for more information.',
+                    useFontFamily,
+                    fontSize_4,
+                    AppTheme.textColor_3,
+                    0.2),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 // Widget class for displaying chat message tile
@@ -250,7 +311,7 @@ class MessageTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(12.0),
           decoration: BoxDecoration(
-            color: sendByMe ? Colors.blueAccent : Colors.grey.shade200,
+            color: sendByMe ? currentTheme.msgSent : currentTheme.msgRecieve,
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Text(
