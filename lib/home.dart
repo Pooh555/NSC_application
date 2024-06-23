@@ -159,26 +159,34 @@ class _MyAppState extends State<MyApp> {
                       },
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Builder(
-                      builder: (context) => InkWell(
-                        splashColor: currentTheme.color_1,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const ScanPage(), // Replace with your target page
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Builder(
+                        builder: (context) => InkWell(
+                          splashColor: currentTheme.color_1,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ScanPage(), // Replace with your target page
+                              ),
+                            );
+                          },
+                          child: Material(
+                            color: currentTheme.color_2,
+                            borderRadius: BorderRadius.circular(10),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: Ink.image(
+                              image: const ExactAssetImage(
+                                  'assets/images/profile.jpg'),
+                              height: 200,
+                              width: 375,
+                              fit: BoxFit.cover,
                             ),
-                          );
-                        },
-                        child: Ink.image(
-                          image: const ExactAssetImage(
-                              'assets/images/profile.jpg'),
-                          height: 100,
-                          width: 350,
-                          fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
