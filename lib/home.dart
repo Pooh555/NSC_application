@@ -158,6 +158,20 @@ class _MyAppState extends State<MyApp> {
                       },
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: InkWell(
+                      splashColor: currentTheme.color_1,
+                      onTap: () {},
+                      child: Ink.image(
+                        image:
+                            const ExactAssetImage('assets/images/profile.jpg'),
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
