@@ -222,6 +222,43 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 18),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Builder(
+                          builder: (context) => InkWell(
+                            splashColor: currentTheme.color_1,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ScanPage(), // Replace with your target page
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: Material(
+                                color: currentTheme.color_2,
+                                borderRadius: BorderRadius.circular(15),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Ink.image(
+                                  image: const ExactAssetImage(
+                                      'assets/images/image_1.jpg'),
+                                  height: 500,
+                                  width: 180,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
