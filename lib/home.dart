@@ -151,60 +151,7 @@ class _MyAppState extends State<MyApp> {
                   Container(
                     child: buildWelcomeText(useFontFamily),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Builder(
-                        builder: (context) => InkWell(
-                          splashColor: currentTheme.color_1,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const ScanPage(), // Replace with your target page
-                              ),
-                            );
-                          },
-                          child: Material(
-                            color: currentTheme.color_2,
-                            borderRadius: BorderRadius.circular(15),
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            child: Ink.image(
-                              image: AssetImage(imagePaths[_currentIndex]),
-                              height: 200,
-                              width: 375,
-                              fit: BoxFit.cover,
-                              child: Center(
-                                child: RichText(
-                                  textAlign: TextAlign.center,
-                                  text: TextSpan(
-                                    text: "Scan Your Eye",
-                                    style: TextStyle(
-                                      fontFamily: useFontFamily,
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: fontSize_2,
-                                      fontStyle: FontStyle.normal,
-                                      color: AppTheme.textColor_2,
-                                      shadows: [
-                                        Shadow(
-                                          color: AppTheme.textShadowColor_1
-                                              .withOpacity(0.5),
-                                          blurRadius: 10.0,
-                                          offset: const Offset(3, 3),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  buildMainWidget(),
                   Padding(
                       padding: const EdgeInsets.only(top: 18),
                       child: buildRowWidget(
@@ -231,6 +178,32 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  // Build each widgets
+  Widget buildBuildWithPageNavigation(
+      double leftDistance, String imagePath, String displayText, pageRoute) {
+    return Builder(
+      builder: (context) => InkWell(
+        splashColor: currentTheme.color_1,
+        onTap: () {
+          goToPage(pageRoute);
+        },
+        child: Padding(
+          padding: EdgeInsets.only(left: leftDistance),
+          child: buildInkWellWithImageAndText(
+            imagePath,
+            displayText,
+            () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => pageRoute,
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -266,32 +239,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  // Build each widgets
-  Widget buildBuildWithPageNavigation(
-      double leftDistance, String imagePath, String displayText, pageRoute) {
-    return Builder(
-      builder: (context) => InkWell(
-        splashColor: currentTheme.color_1,
-        onTap: () {
-          goToPage(pageRoute);
-        },
-        child: Padding(
-          padding: EdgeInsets.only(left: leftDistance),
-          child: buildInkWellWithImageAndText(
-            imagePath,
-            displayText,
-            () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => pageRoute,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget buildMainWidget() {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
@@ -301,7 +248,13 @@ class _MyAppState extends State<MyApp> {
           builder: (context) => InkWell(
             splashColor: currentTheme.color_1,
             onTap: () {
-              goToPage(const ScanPage());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const ScanPage(), // Replace with your target page
+                ),
+              );
             },
             child: Material(
               color: currentTheme.color_2,
