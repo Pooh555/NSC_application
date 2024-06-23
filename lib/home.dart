@@ -1,8 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:nsc/scan.dart';
 import 'profile.dart';
 
 const double fontSize_1 = 50;
+
+// List of images for ScanEye widget
+final List<String> imagePaths = [
+  'assets/images/image_1.jpg',
+  'assets/images/image_2.jpg',
+  'assets/images/image_3.jpg',
+  'assets/images/image_4.jpg',
+  'assets/images/image_5.jpg',
+];
 
 // Initialize theme
 String theme = "dark";
@@ -55,6 +66,27 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     currentTheme = AppTheme(theme);
+    _startTimer(); // Start initial timer
+  }
+
+  int _currentIndex = 0; // Index of the current image
+
+  // Timer to change image every 1 seconds
+  late Timer _timer;
+
+  void _startTimer() {
+    _timer = Timer.periodic(
+      const Duration(seconds: 3),
+      (_) => setState(() {
+        _currentIndex = (_currentIndex + 1) % imagePaths.length;
+      }),
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel timer when the widget is disposed
+    super.dispose();
   }
 
   // Toggle the selected theme
@@ -180,8 +212,7 @@ class _MyAppState extends State<MyApp> {
                             borderRadius: BorderRadius.circular(15),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             child: Ink.image(
-                              image: const ExactAssetImage(
-                                  'assets/images/profile.jpg'),
+                              image: AssetImage(imagePaths[_currentIndex]),
                               height: 200,
                               width: 375,
                               fit: BoxFit.cover,
