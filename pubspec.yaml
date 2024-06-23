@@ -88,6 +88,8 @@ flutter:
 #           style: italic
          - asset: fonts/Fira_Sans/FiraSans-ExtraLightItalic.ttf
            style: italic
+         - asset: fonts/Fira_Sans/FiraSans-Regular.ttf
+           weight: 800
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

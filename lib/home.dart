@@ -1,11 +1,15 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/scan.dart';
 import 'profile.dart';
 
 const double fontSize_1 = 50;
+const double fontSize_2 = 40;
 
 // List of images for ScanEye widget
 final List<String> imagePaths = [
@@ -171,7 +175,7 @@ class _MyAppState extends State<MyApp> {
                             text: "Take care\n",
                             style: TextStyle(
                               fontFamily: 'Fira_Sans',
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.w600,
                               fontSize: fontSize_1,
                               fontStyle: FontStyle.normal,
                               color: currentTheme.textColor_1,
@@ -217,6 +221,29 @@ class _MyAppState extends State<MyApp> {
                               height: 200,
                               width: 375,
                               fit: BoxFit.cover,
+                              child: Center(
+                                child: RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    text: "Scan your eye",
+                                    style: TextStyle(
+                                      fontFamily: 'Fira_Sans',
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: fontSize_2,
+                                      fontStyle: FontStyle.normal,
+                                      color: currentTheme.textColor_1,
+                                      shadows: [
+                                        Shadow(
+                                          color: currentTheme.textColor_1
+                                              .withOpacity(0.5),
+                                          blurRadius: 10.0,
+                                          offset: const Offset(3, 3),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -249,7 +276,7 @@ class _MyAppState extends State<MyApp> {
                                 child: Ink.image(
                                   image: const ExactAssetImage(
                                       'assets/images/image_2.jpg'),
-                                  height: 300,
+                                  height: 250,
                                   width: 178,
                                   fit: BoxFit.cover,
                                 ),
@@ -278,7 +305,7 @@ class _MyAppState extends State<MyApp> {
                                 child: Ink.image(
                                   image: const ExactAssetImage(
                                       'assets/images/image_3.jpg'),
-                                  height: 300,
+                                  height: 250,
                                   width: 178,
                                   fit: BoxFit.cover,
                                 ),
