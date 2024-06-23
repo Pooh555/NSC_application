@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
@@ -25,6 +25,7 @@ String useFontFamily = 'Fira_Sans';
 const double fontSize_1 = 50;
 const double fontSize_2 = 40;
 const double fontSize_3 = 35;
+const double fontSize_4 = 13;
 
 // Initialize Theme class (dark theme is the default theme)
 class AppTheme {
@@ -35,7 +36,9 @@ class AppTheme {
   dynamic color_3; // Tertiary color
   dynamic textColor_1; // Primary text color
   static Color textColor_2 =
-      const Color.fromARGB(255, 255, 255, 255); // Secondary text color
+      const Color.fromARGB(255, 255, 255, 255); // Secondary text color (fixed)
+  static Color textColor_3 =
+      const Color.fromARGB(255, 117, 117, 117); // Tertiary text color (fixed)
   static Color textShadowColor_1 =
       const Color.fromARGB(255, 0, 0, 0); // Primary text shadow color
 
@@ -83,7 +86,7 @@ class _MyAppState extends State<MyApp> {
 
   int _currentIndex = 0; // Index of the current image
 
-  // Timer to change image every 1 seconds
+  // Timer to change image every 3 seconds
   late Timer _timer;
 
   void _startTimer() {
@@ -124,66 +127,71 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       home: Scaffold(
-        body: Column(
+        body: Stack(
           children: [
-            // Row widget for Profile widget and SwitchTheme widget
-            Row(
+            Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 160, left: 20),
+                // Row widget for Profile widget and SwitchTheme widget
+                Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 160, left: 20),
+                    ),
+                    buildProfileWidget('assets/images/profile.jpg', 45.0),
+                    // SwitchTheme button position
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20, left: 220),
+                        child: buildSwitchThemeButton(),
+                      ),
+                    ),
+                  ],
                 ),
-                buildProfileWidget('assets/images/profile.jpg', 45.0),
-                // SwitchTheme button position
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 220),
-                    child: buildSwitchThemeButton(),
+                // The rest of the Homepage
+                Expanded(
+                  // Use ListView for scrollable page
+                  child: ListView(
+                    children: [
+                      Container(
+                        child: buildWelcomeText(useFontFamily),
+                      ),
+                      buildMainWidget(),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 18),
+                          child: buildRowWidget(
+                              0.0,
+                              'assets/images/image_2.jpg',
+                              'Know\nThe\nDisease',
+                              const DiseasesPage(),
+                              20.0,
+                              'assets/images/image_3.jpg',
+                              'Contact\nThe\nDoctor',
+                              const DoctorPage())),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 18),
+                          child: buildRowWidget(
+                              0.0,
+                              'assets/images/image_4.jpg',
+                              'Contact\nHospital',
+                              const HospitalPage(),
+                              20.0,
+                              'assets/images/image_5.jpg',
+                              'Contact\nAnd\nFeedback',
+                              const FeedbackPage())),
+                    ],
                   ),
                 ),
               ],
             ),
-            // The rest of the Homepage
-            Expanded(
-              // Use ListView for scrollable page
-              child: ListView(
-                children: [
-                  Container(
-                    child: buildWelcomeText(useFontFamily),
-                  ),
-                  buildMainWidget(),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 18),
-                      child: buildRowWidget(
-                          0.0,
-                          'assets/images/image_2.jpg',
-                          'Know\nThe\nDisease',
-                          const DiseasesPage(),
-                          20.0,
-                          'assets/images/image_3.jpg',
-                          'Contact\nThe\nDoctor',
-                          const DoctorPage())),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 18),
-                      child: buildRowWidget(
-                          0.0,
-                          'assets/images/image_4.jpg',
-                          'Contact\nHospital',
-                          const HospitalPage(),
-                          20.0,
-                          'assets/images/image_5.jpg',
-                          'Contact\nAnd\nFeedback',
-                          const FeedbackPage())),
-                ],
-              ),
-            ),
+            buildChatBotWidget(),
           ],
         ),
       ),
     );
   }
 
-  // Build each widgets
+  // Build each widget
   Widget buildBuildWithPageNavigation(
       double leftDistance, String imagePath, String displayText, pageRoute) {
     return Builder(
@@ -201,6 +209,78 @@ class _MyAppState extends State<MyApp> {
               context,
               MaterialPageRoute(
                 builder: (context) => pageRoute,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildChatBotWidget() {
+    return Stack(
+      children: [
+        Positioned(
+          bottom: 30,
+          right: 20, // Adjusted from 15 to 20
+          child: buildChatBotWidget_2(60.0, 300.0),
+        ),
+        Positioned(
+          bottom: 10,
+          right: 20, // Adjusted from 10 to 20
+          child: buildChatBotWidget_1(50.0, 'assets/images/chatbot.jpg'),
+        ),
+      ],
+    );
+  }
+
+  // Build a ChatBot widget that user can interact with
+  Widget buildChatBotWidget_1(double radius, String chatbotPath) {
+    return Builder(
+      // Wrap GestureDetector with Builder (to prevent exception error)
+      builder: (context) => GestureDetector(
+        onTap: () {
+          // Navigate to ProfilePage
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ProfilePage(),
+            ),
+          );
+        },
+        // User's profile picture
+        child: CircleAvatar(
+          radius: radius, // Icon size
+          backgroundImage: ExactAssetImage(chatbotPath), // Profile image path
+        ),
+      ),
+    );
+  }
+
+  Widget buildChatBotWidget_2(double height, double width) {
+    return Builder(
+      builder: (context) => SizedBox(
+        width: width,
+        height: height,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: FloatingActionButton(
+            backgroundColor: currentTheme.color_3,
+            onPressed: () {
+              // Navigate to ChatBotPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ChatBotPage(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 85),
+              child: RichText(
+                textAlign: TextAlign.left,
+                text: buildTextWithShadow('Ask our chatbot anything...',
+                    useFontFamily, fontSize_4, AppTheme.textColor_3, 0.2),
               ),
             ),
           ),
@@ -230,7 +310,8 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.only(top: 5.0, left: 15.0),
               child: RichText(
                 textAlign: TextAlign.left,
-                text: buildTextWithShadow(title, useFontFamily, fontSize_3),
+                text: buildTextWithShadow(title, useFontFamily, fontSize_3,
+                    AppTheme.textColor_2, 0.5),
               ),
             ),
           ),
@@ -268,8 +349,8 @@ class _MyAppState extends State<MyApp> {
                 child: Center(
                   child: RichText(
                     textAlign: TextAlign.center,
-                    text: buildTextWithShadow(
-                        'Scan Your Eye', useFontFamily, fontSize_2),
+                    text: buildTextWithShadow('Scan Your Eye', useFontFamily,
+                        fontSize_2, AppTheme.textColor_2, 0.5),
                   ),
                 ),
               ),
@@ -283,10 +364,10 @@ class _MyAppState extends State<MyApp> {
   // Build profile widget
   Widget buildProfileWidget(String profilePath, double radius) {
     return Builder(
-      // Wrap GestureDetector with Builder(To prevent exception error)
+      // Wrap GestureDetector with Builder (to prevent exception error)
       builder: (context) => GestureDetector(
         onTap: () {
-          // Navigate to Profilepage
+          // Navigate to ProfilePage
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -297,8 +378,7 @@ class _MyAppState extends State<MyApp> {
         // User's profile picture
         child: CircleAvatar(
           radius: radius, // Icon size
-          backgroundImage: // User's profile image path
-              ExactAssetImage(profilePath),
+          backgroundImage: ExactAssetImage(profilePath), // Profile image path
         ),
       ),
     );
@@ -375,7 +455,8 @@ class _MyAppState extends State<MyApp> {
 }
 
 // Build text with shadow
-TextSpan buildTextWithShadow(String text, String fontFamily, double fontSize) {
+TextSpan buildTextWithShadow(String text, String fontFamily, double fontSize,
+    Color textColor, double shadowOpacity) {
   return TextSpan(
     text: text,
     style: TextStyle(
@@ -383,10 +464,10 @@ TextSpan buildTextWithShadow(String text, String fontFamily, double fontSize) {
       fontWeight: FontWeight.w600,
       fontSize: fontSize,
       fontStyle: FontStyle.normal,
-      color: AppTheme.textColor_2,
+      color: textColor,
       shadows: [
         Shadow(
-          color: AppTheme.textShadowColor_1.withOpacity(0.5),
+          color: AppTheme.textShadowColor_1.withOpacity(shadowOpacity),
           blurRadius: 10.0,
           offset: const Offset(3, 3),
         ),
