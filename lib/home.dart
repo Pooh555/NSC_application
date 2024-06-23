@@ -226,7 +226,7 @@ class _MyAppState extends State<MyApp> {
                   Padding(
                     padding: const EdgeInsets.only(top: 18),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Builder(
                           builder: (context) => InkWell(
@@ -241,16 +241,45 @@ class _MyAppState extends State<MyApp> {
                               );
                             },
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 18.0),
+                              padding: const EdgeInsets.only(left: 5.0),
                               child: Material(
                                 color: currentTheme.color_2,
                                 borderRadius: BorderRadius.circular(15),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 child: Ink.image(
                                   image: const ExactAssetImage(
-                                      'assets/images/image_1.jpg'),
-                                  height: 500,
-                                  width: 180,
+                                      'assets/images/image_2.jpg'),
+                                  height: 300,
+                                  width: 178,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Builder(
+                          builder: (context) => InkWell(
+                            splashColor: currentTheme.color_1,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const DiseasesPage(), // Replace with your target page
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: Material(
+                                color: currentTheme.color_2,
+                                borderRadius: BorderRadius.circular(15),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Ink.image(
+                                  image: const ExactAssetImage(
+                                      'assets/images/image_3.jpg'),
+                                  height: 300,
+                                  width: 178,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -259,7 +288,7 @@ class _MyAppState extends State<MyApp> {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
