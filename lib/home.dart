@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
@@ -128,37 +129,14 @@ class _MyAppState extends State<MyApp> {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(top: 160, left: 20),
-                  child: SizedBox(height: 0),
                 ),
-                Builder(
-                  // Wrap GestureDetector with Builder(To prevent exception error)
-                  builder: (context) => GestureDetector(
-                    onTap: () {
-                      // Navigate to Profilepage
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProfilePage(),
-                        ),
-                      );
-                    },
-                    // User's profile picture
-                    child: const CircleAvatar(
-                      radius: 45.0, // Icon size
-                      backgroundImage: // User's profile image path
-                          ExactAssetImage('assets/images/profile.jpg'),
-                    ),
-                  ),
-                ),
+                profileWidget('assets/images/profile.jpg', 45.0),
                 // SwitchTheme button position
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20, left: 220),
-                    child: SwitchTheme(
-                      currentTheme: currentTheme,
-                      toggleTheme: toggleTheme,
-                    ),
+                    child: switchThemeButton(),
                   ),
                 ),
               ],
@@ -357,6 +335,36 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget profileWidget(String profilePath, double radius) {
+    return Builder(
+      // Wrap GestureDetector with Builder(To prevent exception error)
+      builder: (context) => GestureDetector(
+        onTap: () {
+          // Navigate to Profilepage
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ProfilePage(),
+            ),
+          );
+        },
+        // User's profile picture
+        child: CircleAvatar(
+          radius: radius, // Icon size
+          backgroundImage: // User's profile image path
+              ExactAssetImage(profilePath),
+        ),
+      ),
+    );
+  }
+
+  Widget switchThemeButton() {
+    return SwitchTheme(
+      currentTheme: currentTheme,
+      toggleTheme: toggleTheme,
     );
   }
 
