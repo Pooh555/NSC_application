@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+// Define a StatefulWidget for the ChatBotPage
 class ChatBotPage extends StatefulWidget {
   const ChatBotPage({super.key});
 
@@ -8,54 +9,65 @@ class ChatBotPage extends StatefulWidget {
   State<ChatBotPage> createState() => ChatBotPageState();
 }
 
+// Define the State class for ChatBotPage
 class ChatBotPageState extends State<ChatBotPage> {
-  List<Content> history = [];
-  late final GenerativeModel _model;
-  late final ChatSession _chat;
-  final ScrollController _scrollController = ScrollController();
-  final TextEditingController _textController = TextEditingController();
-  final FocusNode _textFieldFocus = FocusNode();
-  bool _loading = false;
-  static const _apiKey =
-      'AIzaSyA0jLrpwuZ44RkIV_l7HT8Z4j_gdySVv14'; // https://ai.google.dev/ (Get API key from this link)
+  // Declare necessary variables
+  List<Content> history = []; // List to store chat history
+  late final GenerativeModel _model; // Instance of GenerativeModel
+  late final ChatSession _chat; // Instance of ChatSession
+  final ScrollController _scrollController =
+      ScrollController(); // Controller for scrolling
+  final TextEditingController _textController =
+      TextEditingController(); // Controller for text input field
+  final FocusNode _textFieldFocus =
+      FocusNode(); // Focus node for text input field
+  bool _loading = false; // Flag to indicate if chat is loading
 
+  // API key for accessing Google Generative AI
+  static const _apiKey =
+      'AIzaSyA0jLrpwuZ44RkIV_l7HT8Z4j_gdySVv14'; // My API key (private)
+
+  // Function to scroll to the bottom of the chat history
   void _scrollDown() {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => _scrollController.animateTo(
         _scrollController.position.minScrollExtent,
-        duration: const Duration(
-          milliseconds: 750,
-        ),
+        duration: const Duration(milliseconds: 750),
         curve: Curves.easeOutCirc,
       ),
     );
   }
 
+  // Initialization method for the state
   @override
   void initState() {
     super.initState();
+    // Initialize GenerativeModel with specified model and API key
     _model = GenerativeModel(
-      model: 'gemini-pro',
+      model: 'gemini-pro', // model name
       apiKey: _apiKey,
     );
+    // Start a new chat session using the initialized model
     _chat = _model.startChat();
   }
 
+  // Build method to create the UI for the ChatBotPage
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Medical Friend'),
+        title: const Text('Your Medical Friend'), // App bar title
       ),
       body: Stack(
         children: [
+          // Widget to display chat history in a scrollable list
           ListView.separated(
             padding: const EdgeInsets.fromLTRB(15, 0, 15, 90),
             itemCount: history.reversed.length,
             controller: _scrollController,
             reverse: true,
             itemBuilder: (context, index) {
+              // Build each chat message tile based on history
               var content = history.reversed.toList()[index];
               var text = content.parts
                   .whereType<TextPart>()
@@ -72,6 +84,7 @@ class ChatBotPageState extends State<ChatBotPage> {
               );
             },
           ),
+          // Widget for the input area at the bottom of the screen
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -105,12 +118,15 @@ class ChatBotPageState extends State<ChatBotPage> {
                   const SizedBox(
                     width: 10,
                   ),
+                  // Send button to send chat message
                   GestureDetector(
                     onTap: () {
+                      // Update UI state to add user message to history
                       setState(() {
                         history.add(
                             Content('user', [TextPart(_textController.text)]));
                       });
+                      // Call method to send user message and handle response
                       _sendChatMessage(_textController.text, history.length);
                     },
                     child: Container(
@@ -147,40 +163,43 @@ class ChatBotPageState extends State<ChatBotPage> {
     );
   }
 
+  // Function to send user message and process response
   Future<void> _sendChatMessage(String message, int historyIndex) async {
+    // Update UI state to indicate loading state
     setState(() {
       _loading = true;
-      _textController.clear();
-      _textFieldFocus.unfocus();
-      _scrollDown();
+      _textController.clear(); // Clear text input field
+      _textFieldFocus.unfocus(); // Unfocus text input field
+      _scrollDown(); // Scroll to bottom of chat history
     });
 
-    List<Part> parts = [];
+    List<Part> parts = []; // List to store parts of chat response
 
     try {
+      // Send user message to chat session and await response
       var response = _chat.sendMessageStream(
         Content.text(message),
       );
       await for (var item in response) {
         var text = item.text;
         if (text == null) {
-          _showError('No response from API.');
+          _showError('No response from API.'); // Show error if no response
           return;
         } else {
+          // Update UI state to add model response to chat history
           setState(() {
             _loading = false;
-            parts.add(TextPart(text));
+            parts.add(TextPart(text)); // Add text part to response parts
             if ((history.length - 1) == historyIndex) {
-              history.removeAt(historyIndex);
+              history.removeAt(historyIndex); // Remove old history entry
             }
-            history.insert(historyIndex, Content('model', parts));
+            history.insert(historyIndex,
+                Content('model', parts)); // Insert updated history entry
           });
         }
       }
-    } catch (e, t) {
-      print(e);
-      print(t);
-      _showError(e.toString());
+    } catch (e) {
+      _showError(e.toString()); // Show error if exception occurs
       setState(() {
         _loading = false;
       });
@@ -191,6 +210,7 @@ class ChatBotPageState extends State<ChatBotPage> {
     }
   }
 
+  // Function to show error dialog
   void _showError(String message) {
     showDialog(
       context: context,
@@ -203,7 +223,7 @@ class ChatBotPageState extends State<ChatBotPage> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(); // Dismiss dialog
               },
               child: const Text('OK'),
             )
@@ -214,11 +234,12 @@ class ChatBotPageState extends State<ChatBotPage> {
   }
 }
 
+// Widget class for displaying chat message tile
 class MessageTile extends StatelessWidget {
-  final bool sendByMe;
-  final String message;
+  final bool sendByMe; // Flag to indicate if message is sent by user
+  final String message; // Content of the message
 
-  const MessageTile({required this.sendByMe, required this.message});
+  const MessageTile({super.key, required this.sendByMe, required this.message});
 
   @override
   Widget build(BuildContext context) {

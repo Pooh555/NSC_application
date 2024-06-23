@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
