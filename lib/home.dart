@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
 
   int _currentIndex = 0; // Index of the current image
 
-  // Timer to change image every 1 seconds
+  // Timer to change image every 3 seconds
   late Timer _timer;
 
   void _startTimer() {
@@ -124,58 +124,67 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       home: Scaffold(
-        body: Column(
+        body: Stack(
           children: [
-            // Row widget for Profile widget and SwitchTheme widget
-            Row(
+            Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 160, left: 20),
+                // Row widget for Profile widget and SwitchTheme widget
+                Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 160, left: 20),
+                    ),
+                    buildProfileWidget('assets/images/profile.jpg', 45.0),
+                    // SwitchTheme button position
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20, left: 220),
+                        child: buildSwitchThemeButton(),
+                      ),
+                    ),
+                  ],
                 ),
-                buildProfileWidget('assets/images/profile.jpg', 45.0),
-                // SwitchTheme button position
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 220),
-                    child: buildSwitchThemeButton(),
+                // The rest of the Homepage
+                Expanded(
+                  // Use ListView for scrollable page
+                  child: ListView(
+                    children: [
+                      Container(
+                        child: buildWelcomeText(useFontFamily),
+                      ),
+                      buildMainWidget(),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 18),
+                          child: buildRowWidget(
+                              0.0,
+                              'assets/images/image_2.jpg',
+                              'Know\nThe\nDisease',
+                              const DiseasesPage(),
+                              20.0,
+                              'assets/images/image_3.jpg',
+                              'Contact\nThe\nDoctor',
+                              const DoctorPage())),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 18),
+                          child: buildRowWidget(
+                              0.0,
+                              'assets/images/image_4.jpg',
+                              'Contact\nHospital',
+                              const HospitalPage(),
+                              20.0,
+                              'assets/images/image_5.jpg',
+                              'Contact\nAnd\nFeedback',
+                              const FeedbackPage())),
+                    ],
                   ),
                 ),
               ],
             ),
-            // The rest of the Homepage
-            Expanded(
-              // Use ListView for scrollable page
-              child: ListView(
-                children: [
-                  Container(
-                    child: buildWelcomeText(useFontFamily),
-                  ),
-                  buildMainWidget(),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 18),
-                      child: buildRowWidget(
-                          0.0,
-                          'assets/images/image_2.jpg',
-                          'Know\nThe\nDisease',
-                          const DiseasesPage(),
-                          20.0,
-                          'assets/images/image_3.jpg',
-                          'Contact\nThe\nDoctor',
-                          const DoctorPage())),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 18),
-                      child: buildRowWidget(
-                          0.0,
-                          'assets/images/image_4.jpg',
-                          'Contact\nHospital',
-                          const HospitalPage(),
-                          20.0,
-                          'assets/images/image_5.jpg',
-                          'Contact\nAnd\nFeedback',
-                          const FeedbackPage())),
-                ],
-              ),
+            Positioned(
+              bottom: 10,
+              right: 10,
+              child: buildChatBotWidget_1(100.0, 'assets/images/chatbot.jpg'),
             ),
           ],
         ),
@@ -183,7 +192,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  // Build each widgets
+  // Build each widget
   Widget buildBuildWithPageNavigation(
       double leftDistance, String imagePath, String displayText, pageRoute) {
     return Builder(
@@ -202,6 +211,36 @@ class _MyAppState extends State<MyApp> {
               MaterialPageRoute(
                 builder: (context) => pageRoute,
               ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Build a ChatBot widget that user can interact with
+  Widget buildChatBotWidget_1(double size, String chatbotPath) {
+    return Builder(
+      builder: (context) => SizedBox(
+        width: size,
+        height: size,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(size / 2),
+          child: FloatingActionButton(
+            backgroundColor: currentTheme.color_2,
+            onPressed: () {
+              // Navigate to ChatBotPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ChatBotPage(),
+                ),
+              );
+            },
+            // Chatbot icon
+            child: Ink.image(
+              image: ExactAssetImage(chatbotPath), // Chatbot image path
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -283,10 +322,10 @@ class _MyAppState extends State<MyApp> {
   // Build profile widget
   Widget buildProfileWidget(String profilePath, double radius) {
     return Builder(
-      // Wrap GestureDetector with Builder(To prevent exception error)
+      // Wrap GestureDetector with Builder (to prevent exception error)
       builder: (context) => GestureDetector(
         onTap: () {
-          // Navigate to Profilepage
+          // Navigate to ProfilePage
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -297,8 +336,7 @@ class _MyAppState extends State<MyApp> {
         // User's profile picture
         child: CircleAvatar(
           radius: radius, // Icon size
-          backgroundImage: // User's profile image path
-              ExactAssetImage(profilePath),
+          backgroundImage: ExactAssetImage(profilePath), // Profile image path
         ),
       ),
     );
