@@ -36,7 +36,7 @@ class AppTheme {
   static Color textColor_2 =
       const Color.fromARGB(255, 255, 255, 255); // Secondary text color
   static Color textShadowColor_1 =
-      Color.fromARGB(255, 0, 0, 0); // Primary text shadow color
+      const Color.fromARGB(255, 0, 0, 0); // Primary text shadow color
 
   // Theme object constructor
   AppTheme(String theme) {
@@ -130,13 +130,13 @@ class _MyAppState extends State<MyApp> {
                 const Padding(
                   padding: EdgeInsets.only(top: 160, left: 20),
                 ),
-                profileWidget('assets/images/profile.jpg', 45.0),
+                buildProfileWidget('assets/images/profile.jpg', 45.0),
                 // SwitchTheme button position
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20, left: 220),
-                    child: switchThemeButton(),
+                    child: buildSwitchThemeButton(),
                   ),
                 ),
               ],
@@ -234,45 +234,27 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 18),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Widget "Contact Hospital"
-                        buildBuildWithPageNavigation(
-                            0.0,
-                            "assets/images/image_2.jpg",
-                            "Know\nThe\nDisease",
-                            const DiseasesPage()),
-                        // Widget "Contact And Feedback"
-                        buildBuildWithPageNavigation(
-                            20.0,
-                            "assets/images/image_3.jpg",
-                            "Meet\nThe\nDoctor",
-                            const DoctorPage()),
-                      ],
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 18),
+                      child: buildRowWidget(
+                          0.0,
+                          'assets/images/image_2.jpg',
+                          'Know\nThe\nDisease',
+                          const DiseasesPage(),
+                          20.0,
+                          'assets/images/image_3.jpg',
+                          'Contact\nThe\nDoctor',
+                          const DoctorPage())),
                   Padding(
-                    padding: const EdgeInsets.only(top: 18),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Widget "Contact Hospital"
-                        buildBuildWithPageNavigation(
-                            0.0,
-                            "assets/images/image_4.jpg",
-                            "Contact\nHospital",
-                            const HospitalPage()),
-                        // Widget "Contact And Feedback"
-                        buildBuildWithPageNavigation(
-                            20.0,
-                            "assets/images/image_5.jpg",
-                            "Contact\nAnd\nFeedback",
-                            const FeedbackPage()),
-                      ],
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(top: 18),
+                      child: buildRowWidget(
+                          0.0,
+                          'assets/images/image_4.jpg',
+                          'Contact\nHospital',
+                          const HospitalPage(),
+                          20.0,
+                          'assets/images/image_5.jpg',
+                          'Contact\nAnd\nFeedback',
+                          const FeedbackPage())),
                 ],
               ),
             ),
@@ -338,7 +320,8 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Widget profileWidget(String profilePath, double radius) {
+  // Build profile widget
+  Widget buildProfileWidget(String profilePath, double radius) {
     return Builder(
       // Wrap GestureDetector with Builder(To prevent exception error)
       builder: (context) => GestureDetector(
@@ -361,13 +344,37 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Widget switchThemeButton() {
+  Widget buildRowWidget(
+      double leftDistance_1,
+      String imagePath_1,
+      String displayText_1,
+      pageRoute_1,
+      double leftDistance_2,
+      String imagePath_2,
+      String displayText_2,
+      pageRoute_2) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // Widget "Contact Hospital"
+        buildBuildWithPageNavigation(
+            leftDistance_1, imagePath_1, displayText_1, pageRoute_1),
+        // Widget "Contact And Feedback"
+        buildBuildWithPageNavigation(
+            leftDistance_2, imagePath_2, displayText_2, pageRoute_2),
+      ],
+    );
+  }
+
+  // Build SwitchTheme button
+  Widget buildSwitchThemeButton() {
     return SwitchTheme(
       currentTheme: currentTheme,
       toggleTheme: toggleTheme,
     );
   }
 
+  // Page navigation function
   Future goToPage(pageRoute) {
     return Navigator.push(
       context,
