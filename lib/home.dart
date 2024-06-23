@@ -257,7 +257,7 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.only(top: 5.0, left: 15.0),
               child: RichText(
                 textAlign: TextAlign.left,
-                text: buildTextWithShadow(title, useFontFamily),
+                text: buildTextWithShadow(title, useFontFamily, fontSize_3),
               ),
             ),
           ),
@@ -284,6 +284,41 @@ class _MyAppState extends State<MyApp> {
               context,
               MaterialPageRoute(
                 builder: (context) => pageRoute,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildMainWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Builder(
+          builder: (context) => InkWell(
+            splashColor: currentTheme.color_1,
+            onTap: () {
+              goToPage(const ScanPage());
+            },
+            child: Material(
+              color: currentTheme.color_2,
+              borderRadius: BorderRadius.circular(15),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Ink.image(
+                image: AssetImage(imagePaths[_currentIndex]),
+                height: 200,
+                width: 375,
+                fit: BoxFit.cover,
+                child: Center(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: buildTextWithShadow(
+                        'Scan Your Eye', useFontFamily, fontSize_2),
+                  ),
+                ),
               ),
             ),
           ),
@@ -339,6 +374,14 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  // Build SwitchTheme button
+  Widget buildSwitchThemeButton() {
+    return SwitchTheme(
+      currentTheme: currentTheme,
+      toggleTheme: toggleTheme,
+    );
+  }
+
   // Build welcome text
   Widget buildWelcomeText(String fontFamily) {
     return RichText(
@@ -367,14 +410,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  // Build SwitchTheme button
-  Widget buildSwitchThemeButton() {
-    return SwitchTheme(
-      currentTheme: currentTheme,
-      toggleTheme: toggleTheme,
-    );
-  }
-
   // Page navigation function
   Future goToPage(pageRoute) {
     return Navigator.push(
@@ -387,13 +422,13 @@ class _MyAppState extends State<MyApp> {
 }
 
 // Build text with shadow
-TextSpan buildTextWithShadow(String text, String fontFamily) {
+TextSpan buildTextWithShadow(String text, String fontFamily, double fontSize) {
   return TextSpan(
     text: text,
     style: TextStyle(
       fontFamily: fontFamily,
       fontWeight: FontWeight.w600,
-      fontSize: fontSize_3,
+      fontSize: fontSize,
       fontStyle: FontStyle.normal,
       color: AppTheme.textColor_2,
       shadows: [
