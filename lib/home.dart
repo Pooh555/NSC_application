@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nsc/diseases.dart';
@@ -149,35 +150,7 @@ class _MyAppState extends State<MyApp> {
                   Padding(
                     padding: const EdgeInsets.only(
                         top: 0), // Control ListView position
-                    child: Builder(
-                      builder: (context) {
-                        // Text "Take care of your vision"
-                        return RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            text: "Take care\n",
-                            style: TextStyle(
-                              fontFamily: 'Fira_Sans',
-                              fontWeight: FontWeight.w600,
-                              fontSize: fontSize_1,
-                              fontStyle: FontStyle.normal,
-                              color: currentTheme.textColor_1,
-                            ),
-                            children: const <TextSpan>[
-                              TextSpan(
-                                text: 'of your vision',
-                                style: TextStyle(
-                                  fontFamily: 'Fira_Sans',
-                                  fontWeight: FontWeight.w100,
-                                  fontSize: fontSize_1,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                    child: buildWelcomeText(),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
@@ -363,6 +336,33 @@ class _MyAppState extends State<MyApp> {
         buildBuildWithPageNavigation(
             leftDistance_2, imagePath_2, displayText_2, pageRoute_2),
       ],
+    );
+  }
+
+  Widget buildWelcomeText() {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        text: "Take care\n",
+        style: TextStyle(
+          fontFamily: 'Fira_Sans',
+          fontWeight: FontWeight.w600,
+          fontSize: fontSize_1,
+          fontStyle: FontStyle.normal,
+          color: currentTheme.textColor_1,
+        ),
+        children: const <TextSpan>[
+          TextSpan(
+            text: 'of your vision',
+            style: TextStyle(
+              fontFamily: 'Fira_Sans',
+              fontWeight: FontWeight.w100,
+              fontSize: fontSize_1,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
