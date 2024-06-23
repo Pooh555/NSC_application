@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
@@ -62,6 +63,7 @@ class AppTheme {
 }
 
 void main() {
+  Gemini.init(apiKey: 'AIzaSyA0jLrpwuZ44RkIV_l7HT8Z4j_gdySVv14');
   runApp(const MyApp());
 }
 
@@ -244,7 +246,7 @@ class _MyAppState extends State<MyApp> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const ProfilePage(),
+              builder: (context) => const ChatBotPage(),
             ),
           );
         },
