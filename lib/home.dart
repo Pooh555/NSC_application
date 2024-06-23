@@ -325,7 +325,7 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.only(top: 5.0, left: 15.0),
               child: RichText(
                 textAlign: TextAlign.left,
-                text: buildTextWithShadow(title),
+                text: buildTextWithShadow(title, 'Fira_Sans'),
               ),
             ),
           ),
@@ -341,12 +341,7 @@ class _MyAppState extends State<MyApp> {
       builder: (context) => InkWell(
         splashColor: currentTheme.color_1,
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => pageRoute, // Replace with your target page
-            ),
-          );
+          goToPage(pageRoute);
         },
         child: Padding(
           padding: EdgeInsets.only(left: leftDistance),
@@ -364,14 +359,23 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+
+  Future goToPage(pageRoute) {
+    return Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => pageRoute, // Target page
+      ),
+    );
+  }
 }
 
 // Build text with shadow
-TextSpan buildTextWithShadow(String text) {
+TextSpan buildTextWithShadow(String text, String fontFamily) {
   return TextSpan(
     text: text,
     style: TextStyle(
-      fontFamily: 'Fira_Sans',
+      fontFamily: fontFamily,
       fontWeight: FontWeight.w600,
       fontSize: fontSize_3,
       fontStyle: FontStyle.normal,
