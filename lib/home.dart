@@ -280,7 +280,7 @@ class _MyAppState extends State<MyApp> {
                                 () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const DoctorPage(),
+                                    builder: (context) => const DiseasesPage(),
                                   ),
                                 ),
                               ),
@@ -342,7 +342,7 @@ class _MyAppState extends State<MyApp> {
                                 () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const DoctorPage(),
+                                    builder: (context) => const HospitalPage(),
                                   ),
                                 ),
                               ),
@@ -384,7 +384,7 @@ class _MyAppState extends State<MyApp> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                const DoctorPage(),
+                                                const FeedbackPage(),
                                           ),
                                         ),
                                       ),
@@ -407,6 +407,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  // Make widget with image inside
   Widget buildInkWellWithImageAndText(
       String imagePath, String title, VoidCallback onTap) {
     return InkWell(
@@ -437,6 +438,27 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+// Build text with shadow
+TextSpan buildTextWithShadow(String text) {
+  return TextSpan(
+    text: text,
+    style: TextStyle(
+      fontFamily: 'Fira_Sans',
+      fontWeight: FontWeight.w600,
+      fontSize: fontSize_3,
+      fontStyle: FontStyle.normal,
+      color: AppTheme.textColor_2,
+      shadows: [
+        Shadow(
+          color: AppTheme.textShadowColor_1.withOpacity(0.5),
+          blurRadius: 10.0,
+          offset: const Offset(3, 3),
+        ),
+      ],
+    ),
+  );
+}
+
 // SwitchTheme button
 class SwitchTheme extends StatelessWidget {
   const SwitchTheme({
@@ -458,24 +480,4 @@ class SwitchTheme extends StatelessWidget {
       },
     );
   }
-}
-
-TextSpan buildTextWithShadow(String text) {
-  return TextSpan(
-    text: text,
-    style: TextStyle(
-      fontFamily: 'Fira_Sans',
-      fontWeight: FontWeight.w600,
-      fontSize: fontSize_3,
-      fontStyle: FontStyle.normal,
-      color: AppTheme.textColor_2,
-      shadows: [
-        Shadow(
-          color: AppTheme.textShadowColor_1.withOpacity(0.5),
-          blurRadius: 10.0,
-          offset: const Offset(3, 3),
-        ),
-      ],
-    ),
-  );
 }
