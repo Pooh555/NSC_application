@@ -1,18 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
 import 'package:nsc/hospital.dart';
 import 'package:nsc/scan.dart';
 import 'profile.dart';
-
-const double fontSize_1 = 50;
-const double fontSize_2 = 40;
-const double fontSize_3 = 35;
 
 // List of images for ScanEye widget
 final List<String> imagePaths = [
@@ -24,7 +18,13 @@ final List<String> imagePaths = [
 ];
 
 // Initialize theme
-String theme = "dark";
+String theme = 'dark';
+String useFontFamily = 'Fira_Sans';
+
+// Declare font sizes
+const double fontSize_1 = 50;
+const double fontSize_2 = 40;
+const double fontSize_3 = 35;
 
 // Initialize Theme class (dark theme is the default theme)
 class AppTheme {
@@ -117,9 +117,10 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor:
             currentTheme.color_1, // Homepage's background color
         appBarTheme: AppBarTheme(
-          backgroundColor: currentTheme.color_1, // AppBar's background color
+          backgroundColor: currentTheme.color_2, // AppBar's background color
           foregroundColor:
               currentTheme.textColor_1, // AppBar's foreground color
+          toolbarHeight: 50,
         ),
       ),
       home: Scaffold(
@@ -147,10 +148,8 @@ class _MyAppState extends State<MyApp> {
               // Use ListView for scrollable page
               child: ListView(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 0), // Control ListView position
-                    child: buildWelcomeText(),
+                  Container(
+                    child: buildWelcomeText(useFontFamily),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
@@ -183,7 +182,7 @@ class _MyAppState extends State<MyApp> {
                                   text: TextSpan(
                                     text: "Scan Your Eye",
                                     style: TextStyle(
-                                      fontFamily: 'Fira_Sans',
+                                      fontFamily: useFontFamily,
                                       fontWeight: FontWeight.w800,
                                       fontSize: fontSize_2,
                                       fontStyle: FontStyle.normal,
@@ -258,7 +257,7 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.only(top: 5.0, left: 15.0),
               child: RichText(
                 textAlign: TextAlign.left,
-                text: buildTextWithShadow(title, 'Fira_Sans'),
+                text: buildTextWithShadow(title, useFontFamily),
               ),
             ),
           ),
@@ -317,6 +316,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  // Build row widget made out of 2 subwidgets
   Widget buildRowWidget(
       double leftDistance_1,
       String imagePath_1,
@@ -339,23 +339,24 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Widget buildWelcomeText() {
+  // Build welcome text
+  Widget buildWelcomeText(String fontFamily) {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
         text: "Take care\n",
         style: TextStyle(
-          fontFamily: 'Fira_Sans',
+          fontFamily: fontFamily,
           fontWeight: FontWeight.w600,
           fontSize: fontSize_1,
           fontStyle: FontStyle.normal,
           color: currentTheme.textColor_1,
         ),
-        children: const <TextSpan>[
+        children: <TextSpan>[
           TextSpan(
             text: 'of your vision',
             style: TextStyle(
-              fontFamily: 'Fira_Sans',
+              fontFamily: fontFamily,
               fontWeight: FontWeight.w100,
               fontSize: fontSize_1,
               fontStyle: FontStyle.italic,
