@@ -177,7 +177,7 @@ class _MyAppState extends State<MyApp> {
                           },
                           child: Material(
                             color: currentTheme.color_2,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(15),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             child: Ink.image(
                               image: const ExactAssetImage(
