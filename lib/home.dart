@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:nsc/diseases.dart';
 import 'package:nsc/scan.dart';
 import 'profile.dart';
 
@@ -235,7 +236,7 @@ class _MyAppState extends State<MyApp> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      const ScanPage(), // Replace with your target page
+                                      const DiseasesPage(), // Replace with your target page
                                 ),
                               );
                             },
