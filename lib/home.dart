@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nsc/diseases.dart';
+import 'package:nsc/doctor.dart';
+import 'package:nsc/feedback.dart';
+import 'package:nsc/hospital.dart';
 import 'package:nsc/scan.dart';
 import 'profile.dart';
 
@@ -292,7 +295,7 @@ class _MyAppState extends State<MyApp> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      const DiseasesPage(), // Replace with your target page
+                                      const DoctorPage(), // Replace with your target page
                                 ),
                               );
                             },
@@ -305,6 +308,72 @@ class _MyAppState extends State<MyApp> {
                                 child: Ink.image(
                                   image: const ExactAssetImage(
                                       'assets/images/image_3.jpg'),
+                                  height: 250,
+                                  width: 178,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 18),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Builder(
+                          builder: (context) => InkWell(
+                            splashColor: currentTheme.color_1,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const HospitalPage(), // Replace with your target page
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5.0),
+                              child: Material(
+                                color: currentTheme.color_2,
+                                borderRadius: BorderRadius.circular(15),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Ink.image(
+                                  image: const ExactAssetImage(
+                                      'assets/images/image_4.jpg'),
+                                  height: 250,
+                                  width: 178,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Builder(
+                          builder: (context) => InkWell(
+                            splashColor: currentTheme.color_1,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FeedbackPage(), // Replace with your target page
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: Material(
+                                color: currentTheme.color_2,
+                                borderRadius: BorderRadius.circular(15),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Ink.image(
+                                  image: const ExactAssetImage(
+                                      'assets/images/image_5.jpg'),
                                   height: 250,
                                   width: 178,
                                   fit: BoxFit.cover,
