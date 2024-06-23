@@ -46,7 +46,7 @@ class ChatBotPageState extends State<ChatBotPage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gemini AI'),
+        title: const Text('Your Medical Friend'),
       ),
       body: Stack(
         children: [
