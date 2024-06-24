@@ -90,11 +90,12 @@ class ScanOptionPageState extends State<ScanOptionPage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 85),
                       child: buildBuildWithPageNavigation(
-                          90.0,
-                          0.0,
-                          'assets/images/image_1.jpg',
-                          'Take a picture\nof your eye.',
-                          ChatBotPage(theme: theme)),
+                        90.0,
+                        0.0,
+                        'assets/images/image_1.jpg',
+                        'Take a picture\nof your eye.',
+                        ScanPage(camera: widget.camera),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 85),
