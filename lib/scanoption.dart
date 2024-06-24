@@ -76,24 +76,7 @@ class ScanOptionPageState extends State<ScanOptionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Select your option')),
-      body: Stack(
-        children: <Widget>[
-          FutureBuilder<void>(
-            future: _initializeControllerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                // If the Future is complete, display the preview.
-                return CameraPreview(_controller);
-              } else {
-                // Otherwise, display a loading indicator.
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        ],
-      ),
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 45.0),
+      body: Center(
         child: SizedBox(
           width: 100.0, // Adjust the width as needed
           height: 100.0, // Adjust the height as needed
