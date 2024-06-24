@@ -50,7 +50,6 @@ class ScanOptionPage extends StatefulWidget {
 
 class ScanOptionPageState extends State<ScanOptionPage> {
   late CameraController _controller;
-  late Future<void> _initializeControllerFuture;
 
   @override
   void initState() {
@@ -59,7 +58,6 @@ class ScanOptionPageState extends State<ScanOptionPage> {
       widget.camera,
       ResolutionPreset.medium,
     );
-    _initializeControllerFuture = _controller.initialize();
   }
 
   @override
@@ -69,12 +67,12 @@ class ScanOptionPageState extends State<ScanOptionPage> {
   }
 
   Future<void> _pickImageFromGallery() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       Navigator.push(
-        context,
+        mounted as BuildContext,
         MaterialPageRoute(
           builder: (context) => DisplayPictureScreen(imagePath: image.path),
         ),
