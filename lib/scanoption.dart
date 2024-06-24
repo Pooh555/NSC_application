@@ -76,7 +76,71 @@ class ScanOptionPageState extends State<ScanOptionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Select your option')),
-      body: Center(
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 260,
+                ),
+                SizedBox(
+                  width: 100.0, // Adjust the width as needed
+                  height: 100.0, // Adjust the height as needed
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ScanPage(
+                            camera: widget.camera,
+                          ), // Replace with your target page
+                        ),
+                      );
+                    },
+                    shape: const CircleBorder(),
+                    child: const Center(
+                      child: Icon(
+                        Icons.photo_camera_outlined,
+                        size: 60,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: 100.0, // Adjust the width as needed
+                  height: 100.0, // Adjust the height as needed
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ScanPage(
+                            camera: widget.camera,
+                          ), // Replace with your target page
+                        ),
+                      );
+                    },
+                    shape: const CircleBorder(),
+                    child: const Center(
+                      child: Icon(
+                        Icons.photo_camera_outlined,
+                        size: 60,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+
+      /*Align(
+        alignment: Alignment.center,
         child: SizedBox(
           width: 100.0, // Adjust the width as needed
           height: 100.0, // Adjust the height as needed
@@ -101,25 +165,9 @@ class ScanOptionPageState extends State<ScanOptionPage> {
           ),
         ),
       ),
+      */
       floatingActionButtonLocation: FloatingActionButtonLocation
           .centerFloat, // Adjust the location as needed
-    );
-  }
-
-  Widget buildOptionWidget() {
-    return Stack(
-      children: [
-        Positioned(
-          child: FloatingActionButton(
-            onPressed: () {},
-          ),
-        ),
-        Positioned(
-          child: FloatingActionButton(
-            onPressed: () {},
-          ),
-        ),
-      ],
     );
   }
 }
