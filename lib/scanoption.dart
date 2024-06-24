@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:nsc/chatbot.dart';
+import 'package:nsc/home.dart';
 import 'package:nsc/scan.dart';
 
 Future<void> main() async {
@@ -75,43 +77,129 @@ class ScanOptionPageState extends State<ScanOptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Select your option')),
-      body: Stack(
-        children: [
+        appBar: AppBar(title: const Text('Select your option')),
+        body: Stack(children: [
           Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 260,
-                ),
-                SizedBox(
-                  width: 100.0, // Adjust the width as needed
-                  height: 100.0, // Adjust the height as needed
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ScanPage(
-                            camera: widget.camera,
-                          ), // Replace with your target page
-                        ),
-                      );
-                    },
-                    shape: const CircleBorder(),
-                    child: const Center(
-                      child: Icon(
-                        Icons.photo_camera_outlined,
-                        size: 60,
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 260,
+              ),
+              SizedBox(
+                width: 100.0, // Adjust the width as needed
+                height: 100.0, // Adjust the height as needed
+                child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ScanPage(
+                          camera: widget.camera,
+                        ), // Replace with your target page
                       ),
+                    );
+                  },
+                  shape: const CircleBorder(),
+                  child: const Center(
+                    child: Icon(
+                      Icons.photo_camera_outlined,
+                      size: 60,
                     ),
                   ),
                 ),
-              ],
+              ),
+              Expanded(
+                // Use ListView for scrollable page
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18),
+                      child: buildBuildWithPageNavigation(
+                          10,
+                          'assets/images/image_1.jpg',
+                          'OK',
+                          ChatBotPage(theme: theme)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18),
+                      child: buildBuildWithPageNavigation(
+                          10,
+                          'assets/images/image_1.jpg',
+                          'OK',
+                          ChatBotPage(theme: theme)),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ))
+        ]));
+  }
+
+  // Make widget with image inside
+  Widget buildInkWellWithImageAndText(
+      String imagePath, String title, VoidCallback onTap) {
+    return InkWell(
+      splashColor: currentTheme.color_1,
+      onTap: onTap,
+      child: Material(
+        color: currentTheme.color_2,
+        borderRadius: BorderRadius.circular(15),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Ink.image(
+          image: ExactAssetImage(imagePath),
+          height: 250,
+          width: 178,
+          fit: BoxFit.cover,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5.0, left: 15.0),
+              child: RichText(
+                textAlign: TextAlign.left,
+                text: buildTextWithShadow(title, useFontFamily, fontSize_3,
+                    AppTheme.textColor_2, 0.5),
+              ),
             ),
-          )
-        ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Build each widget
+  Widget buildBuildWithPageNavigation(
+      double leftDistance, String imagePath, String displayText, pageRoute) {
+    return Builder(
+      builder: (context) => InkWell(
+        splashColor: currentTheme.color_1,
+        onTap: () {
+          goToPage(pageRoute);
+        },
+        child: Padding(
+          padding: EdgeInsets.only(left: leftDistance),
+          child: buildInkWellWithImageAndText(
+            imagePath,
+            displayText,
+            () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => pageRoute,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Page navigation function
+  Future goToPage(pageRoute) {
+    return Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => pageRoute, // Target page
       ),
     );
   }
@@ -129,4 +217,26 @@ class DisplayPictureScreen extends StatelessWidget {
       body: Image.file(File(imagePath)),
     );
   }
+}
+
+// Build text with shadow
+TextSpan buildTextWithShadow(String text, String fontFamily, double fontSize,
+    Color textColor, double shadowOpacity) {
+  return TextSpan(
+    text: text,
+    style: TextStyle(
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.w600,
+      fontSize: fontSize,
+      fontStyle: FontStyle.normal,
+      color: textColor,
+      shadows: [
+        Shadow(
+          color: AppTheme.textShadowColor_1.withOpacity(shadowOpacity),
+          blurRadius: 10.0,
+          offset: const Offset(3, 3),
+        ),
+      ],
+    ),
+  );
 }
