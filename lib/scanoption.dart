@@ -94,7 +94,7 @@ class ScanOptionPageState extends State<ScanOptionPage> {
                   child: ListView(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 85),
+                        padding: const EdgeInsets.only(top: 95),
                         child: buildBuildWithPageNavigation(
                           90.0,
                           0.0,
@@ -104,7 +104,7 @@ class ScanOptionPageState extends State<ScanOptionPage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 85),
+                        padding: const EdgeInsets.only(top: 95),
                         child: buildBuildWithPageNavigation(
                           90,
                           0.0,
