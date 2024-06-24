@@ -83,50 +83,25 @@ class ScanOptionPageState extends State<ScanOptionPage> {
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 260,
-              ),
-              SizedBox(
-                width: 100.0, // Adjust the width as needed
-                height: 100.0, // Adjust the height as needed
-                child: FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ScanPage(
-                          camera: widget.camera,
-                        ), // Replace with your target page
-                      ),
-                    );
-                  },
-                  shape: const CircleBorder(),
-                  child: const Center(
-                    child: Icon(
-                      Icons.photo_camera_outlined,
-                      size: 60,
-                    ),
-                  ),
-                ),
-              ),
               Expanded(
                 // Use ListView for scrollable page
                 child: ListView(
                   children: [
+                    const SizedBox(height: 100),
                     Padding(
                       padding: const EdgeInsets.only(top: 18),
                       child: buildBuildWithPageNavigation(
                           10,
                           'assets/images/image_1.jpg',
-                          'OK',
+                          'Take a picture\nof your eye.',
                           ChatBotPage(theme: theme)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 18),
                       child: buildBuildWithPageNavigation(
                           10,
-                          'assets/images/image_1.jpg',
-                          'OK',
+                          'assets/images/image_5.jpg',
+                          'Upload a picture\nof your eye.',
                           ChatBotPage(theme: theme)),
                     ),
                   ],
@@ -153,12 +128,12 @@ class ScanOptionPageState extends State<ScanOptionPage> {
           width: 178,
           fit: BoxFit.cover,
           child: Align(
-            alignment: Alignment.topLeft,
+            alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.only(top: 5.0, left: 15.0),
               child: RichText(
-                textAlign: TextAlign.left,
-                text: buildTextWithShadow(title, useFontFamily, fontSize_3,
+                textAlign: TextAlign.center,
+                text: buildTextWithShadow(title, useFontFamily, fontSize_2,
                     AppTheme.textColor_2, 0.5),
               ),
             ),
