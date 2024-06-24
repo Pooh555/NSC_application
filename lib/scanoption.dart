@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/home.dart';
 import 'package:nsc/scan.dart';
@@ -55,68 +56,77 @@ class ScanOptionPageState extends State<ScanOptionPage> {
   @override
   void initState() {
     super.initState();
-    // To display the current output from the Camera,
-    // create a CameraController.
     _controller = CameraController(
-      // Get a specific camera from the list of available cameras.
       widget.camera,
-      // Define the resolution to use.
       ResolutionPreset.medium,
     );
-
-    // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
   }
 
   @override
   void dispose() {
-    // Dispose of the controller when the widget is disposed.
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickImageFromGallery() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DisplayPictureScreen(imagePath: image.path),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Select your option')),
-        body: Stack(children: [
+      appBar: AppBar(title: const Text('Select your option')),
+      body: Stack(
+        children: [
           Center(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                // Use ListView for scrollable page
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 85),
-                      child: buildBuildWithPageNavigation(
-                        90.0,
-                        0.0,
-                        'assets/images/image_1.jpg',
-                        'Take a picture\nof your eye.',
-                        ScanPage(camera: widget.camera),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 85),
+                        child: buildBuildWithPageNavigation(
+                          90.0,
+                          0.0,
+                          'assets/images/image_1.jpg',
+                          'Take a picture\nof your eye.',
+                          ScanPage(camera: widget.camera),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 85),
-                      child: buildBuildWithPageNavigation(
-                        90,
-                        0.0,
-                        'assets/images/image_5.jpg',
-                        'Upload a picture\nof your eye.',
-                        const UploadImagePage(),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 85),
+                        child: buildBuildWithPageNavigation(
+                          90,
+                          0.0,
+                          'assets/images/image_5.jpg',
+                          'Upload a picture\nof your eye.',
+                          null,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ))
-        ]));
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 
-  // Make widget with image inside
   Widget buildInkWellWithImageAndText(
       String imagePath, String title, VoidCallback onTap) {
     return InkWell(
@@ -147,14 +157,17 @@ class ScanOptionPageState extends State<ScanOptionPage> {
     );
   }
 
-  // Build each widget
   Widget buildBuildWithPageNavigation(double distance, double bottomeDistance,
       String imagePath, String displayText, pageRoute) {
     return Builder(
       builder: (context) => InkWell(
         splashColor: currentTheme.color_1,
         onTap: () {
-          goToPage(pageRoute);
+          if (pageRoute != null) {
+            goToPage(pageRoute);
+          } else {
+            _pickImageFromGallery();
+          }
         },
         child: Padding(
           padding: EdgeInsets.only(
@@ -162,24 +175,25 @@ class ScanOptionPageState extends State<ScanOptionPage> {
           child: buildInkWellWithImageAndText(
             imagePath,
             displayText,
-            () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => pageRoute,
-              ),
-            ),
+            pageRoute != null
+                ? () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => pageRoute,
+                      ),
+                    )
+                : _pickImageFromGallery,
           ),
         ),
       ),
     );
   }
 
-  // Page navigation function
   Future goToPage(pageRoute) {
     return Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => pageRoute, // Target page
+        builder: (context) => pageRoute,
       ),
     );
   }
