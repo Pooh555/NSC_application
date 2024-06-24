@@ -6,7 +6,6 @@ import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
 import 'package:nsc/hospital.dart';
-import 'package:nsc/scan.dart';
 import 'package:nsc/scanoption.dart';
 import 'profile.dart';
 

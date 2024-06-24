@@ -87,19 +87,20 @@ class ScanOptionPageState extends State<ScanOptionPage> {
                 // Use ListView for scrollable page
                 child: ListView(
                   children: [
-                    const SizedBox(height: 100),
                     Padding(
-                      padding: const EdgeInsets.only(top: 18),
+                      padding: const EdgeInsets.only(top: 85),
                       child: buildBuildWithPageNavigation(
-                          10,
+                          90.0,
+                          0.0,
                           'assets/images/image_1.jpg',
                           'Take a picture\nof your eye.',
                           ChatBotPage(theme: theme)),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 18),
+                      padding: const EdgeInsets.only(top: 85),
                       child: buildBuildWithPageNavigation(
-                          10,
+                          90,
+                          0.0,
                           'assets/images/image_5.jpg',
                           'Upload a picture\nof your eye.',
                           ChatBotPage(theme: theme)),
@@ -144,8 +145,8 @@ class ScanOptionPageState extends State<ScanOptionPage> {
   }
 
   // Build each widget
-  Widget buildBuildWithPageNavigation(
-      double leftDistance, String imagePath, String displayText, pageRoute) {
+  Widget buildBuildWithPageNavigation(double distance, double bottomeDistance,
+      String imagePath, String displayText, pageRoute) {
     return Builder(
       builder: (context) => InkWell(
         splashColor: currentTheme.color_1,
@@ -153,7 +154,8 @@ class ScanOptionPageState extends State<ScanOptionPage> {
           goToPage(pageRoute);
         },
         child: Padding(
-          padding: EdgeInsets.only(left: leftDistance),
+          padding: EdgeInsets.only(
+              left: distance, right: distance, bottom: bottomeDistance),
           child: buildInkWellWithImageAndText(
             imagePath,
             displayText,
