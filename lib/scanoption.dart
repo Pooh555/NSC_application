@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/home.dart';
 import 'package:nsc/scan.dart';
-import 'package:nsc/uploadimage.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
