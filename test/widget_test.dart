@@ -7,24 +7,29 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:camera/camera.dart'; // Import the camera package
 
 import 'package:nsc/home.dart';
 
 void main() {
+  // Mocking the CameraDescription
+  const mockCamera = CameraDescription(
+    name: 'mockCamera',
+    lensDirection: CameraLensDirection.back,
+    sensorOrientation: 0,
+  );
+
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(camera: mockCamera)); // Pass the mock camera
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that our initial UI is as expected.
+    expect(find.text('Take a picture'),
+        findsOneWidget); // Example text widget to find
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // You can also test other initial UI states as per your actual implementation.
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Example of interacting with UI elements (not the actual increment test as in your code)
+    // Tap on a button or perform other interactions and verify UI changes accordingly.
   });
 }
