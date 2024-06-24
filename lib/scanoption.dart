@@ -80,6 +80,7 @@ class ScanOptionPageState extends State<ScanOptionPage> {
         children: [
           Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
                   height: 260,
@@ -107,67 +108,11 @@ class ScanOptionPageState extends State<ScanOptionPage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: 100.0, // Adjust the width as needed
-                  height: 100.0, // Adjust the height as needed
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ScanPage(
-                            camera: widget.camera,
-                          ), // Replace with your target page
-                        ),
-                      );
-                    },
-                    shape: const CircleBorder(),
-                    child: const Center(
-                      child: Icon(
-                        Icons.photo_album_outlined,
-                        size: 60,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           )
         ],
       ),
-
-      /*Align(
-        alignment: Alignment.center,
-        child: SizedBox(
-          width: 100.0, // Adjust the width as needed
-          height: 100.0, // Adjust the height as needed
-          child: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ScanPage(
-                    camera: widget.camera,
-                  ), // Replace with your target page
-                ),
-              );
-            },
-            shape: const CircleBorder(),
-            child: const Center(
-              child: Icon(
-                Icons.photo_camera_outlined,
-                size: 60,
-              ),
-            ),
-          ),
-        ),
-      ),
-      */
-      floatingActionButtonLocation: FloatingActionButtonLocation
-          .centerFloat, // Adjust the location as needed
     );
   }
 }
