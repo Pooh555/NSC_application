@@ -74,54 +74,74 @@ class ScanPageState extends State<ScanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Take a picture')),
-      // You must wait until the controller is initialized before displaying the
-      // camera preview. Use a FutureBuilder to display a loading spinner until the
-      // controller has finished initializing.
-      body: FutureBuilder<void>(
-        future: _initializeControllerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            // If the Future is complete, display the preview.
-            return CameraPreview(_controller);
-          } else {
-            // Otherwise, display a loading indicator.
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+      appBar: AppBar(title: const Text('Scan Your Eye')),
+      body: Stack(
+        children: <Widget>[
+          FutureBuilder<void>(
+            future: _initializeControllerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                // If the Future is complete, display the preview.
+                return CameraPreview(_controller);
+              } else {
+                // Otherwise, display a loading indicator.
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        // Provide an onPressed callback.
-        onPressed: () async {
-          // Take the Picture in a try / catch block. If anything goes wrong,
-          // catch the error.
-          try {
-            // Ensure that the camera is initialized.
-            await _initializeControllerFuture;
-
-            // Attempt to take a picture and get the file `image`
-            // where it was saved.
-            final image = await _controller.takePicture();
-
-            if (!context.mounted) return;
-
-            // If the picture was taken, display it on a new screen.
-            await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(
-                  // Pass the automatically generated path to
-                  // the DisplayPictureScreen widget.
-                  imagePath: image.path,
-                ),
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 45.0),
+        child: SizedBox(
+          width: 100.0, // Adjust the width as needed
+          height: 100.0, // Adjust the height as needed
+          child: FloatingActionButton(
+            onPressed: () async {
+              try {
+                await _initializeControllerFuture;
+                final image = await _controller.takePicture();
+                if (!context.mounted) return;
+                await Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => DisplayPictureScreen(
+                      imagePath: image.path,
+                    ),
+                  ),
+                );
+              } catch (e) {
+                // print(e);
+              }
+            },
+            shape: const CircleBorder(),
+            child: const Center(
+              child: Icon(
+                Icons.photo_camera_outlined,
+                size: 60,
               ),
-            );
-          } catch (e) {
-            // If an error occurs, log the error to the console.
-            print(e);
-          }
-        },
-        child: const Icon(Icons.camera_alt),
+            ),
+          ),
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation
+          .centerFloat, // Adjust the location as needed
+    );
+  }
+
+  Widget buildOptionWidget() {
+    return Stack(
+      children: [
+        Positioned(
+          child: FloatingActionButton(
+            onPressed: () {},
+          ),
+        ),
+        Positioned(
+          child: FloatingActionButton(
+            onPressed: () {},
+          ),
+        ),
+      ],
     );
   }
 }
@@ -135,9 +155,6 @@ class DisplayPictureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
       body: Image.file(File(imagePath)),
     );
   }
