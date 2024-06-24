@@ -7,6 +7,7 @@ import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
 import 'package:nsc/hospital.dart';
 import 'package:nsc/scan.dart';
+import 'package:nsc/scanoption.dart';
 import 'profile.dart';
 
 // List of images for ScanEye widget
@@ -353,7 +354,7 @@ class _MyAppState extends State<MyApp> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ScanPage(
+                  builder: (context) => ScanOptionPage(
                     camera: widget.camera,
                   ), // Replace with your target page
                 ),
