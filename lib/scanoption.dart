@@ -127,7 +127,7 @@ class ScanOptionPageState extends State<ScanOptionPage> {
                     shape: const CircleBorder(),
                     child: const Center(
                       child: Icon(
-                        Icons.photo_camera_outlined,
+                        Icons.photo_album_outlined,
                         size: 60,
                       ),
                     ),
