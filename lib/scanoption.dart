@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/home.dart';
 import 'package:nsc/scan.dart';
+import 'package:nsc/uploadimage.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
@@ -104,7 +105,7 @@ class ScanOptionPageState extends State<ScanOptionPage> {
                         0.0,
                         'assets/images/image_5.jpg',
                         'Upload a picture\nof your eye.',
-                        ChatBotPage(theme: theme),
+                        const UploadImagePage(),
                       ),
                     ),
                   ],
@@ -196,26 +197,4 @@ class DisplayPictureScreen extends StatelessWidget {
       body: Image.file(File(imagePath)),
     );
   }
-}
-
-// Build text with shadow
-TextSpan buildTextWithShadow(String text, String fontFamily, double fontSize,
-    Color textColor, double shadowOpacity) {
-  return TextSpan(
-    text: text,
-    style: TextStyle(
-      fontFamily: fontFamily,
-      fontWeight: FontWeight.w600,
-      fontSize: fontSize,
-      fontStyle: FontStyle.normal,
-      color: textColor,
-      shadows: [
-        Shadow(
-          color: AppTheme.textShadowColor_1.withOpacity(shadowOpacity),
-          blurRadius: 10.0,
-          offset: const Offset(3, 3),
-        ),
-      ],
-    ),
-  );
 }
