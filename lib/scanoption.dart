@@ -58,7 +58,7 @@ class ScanOptionPageState extends State<ScanOptionPage> {
       widget.camera,
       ResolutionPreset.medium,
     );
-    _controller.initialize().then((_) => {}, onError: (error) => print(error));
+    // _controller.initialize().then((_) => {}, onError: (error) => print(error));
   }
 
   @override
