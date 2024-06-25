@@ -150,11 +150,15 @@ class _MyAppState extends State<MyApp> {
           children: [
             Column(
               children: [
+                const SizedBox(
+                  height: 50,
+                ),
                 // Row widget for Profile widget and SwitchTheme widget
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 160, left: 20),
+                    const Align(
+                      alignment: Alignment.topLeft,
                     ),
                     buildProfileWidget('assets/images/profile.jpg', 45.0),
                     // SwitchTheme button position
