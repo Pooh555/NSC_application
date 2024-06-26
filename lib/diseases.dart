@@ -12,37 +12,15 @@ class DiseasesPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Select your option')),
       body: Stack(
         children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
                   child: ListView(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 95),
-                        child: buildBuildWithPageNavigation(
-                          'assets/images/image_1.jpg',
-                          'Take a picture\nof your eye.',
-                          ChatBotPage(
-                            theme: theme,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 95),
-                        child: buildBuildWithPageNavigation(
-                          'assets/images/image_5.jpg',
-                          'Upload a picture\nof your eye.',
-                          null,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          )
+                children: [],
+              ))
+            ],
+          ),
         ],
       ),
     );
