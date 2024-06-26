@@ -182,6 +182,10 @@ class _MyAppState extends State<MyApp> {
                         child: buildWelcomeText(useFontFamily),
                       ),
                       buildMainWidget(),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      buildScanWidget(),
                       Padding(
                           padding: const EdgeInsets.only(top: 18),
                           child: buildRowWidget(
@@ -347,7 +351,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Widget buildMainWidget() {
+  Widget buildScanWidget() {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Align(
@@ -369,8 +373,49 @@ class _MyAppState extends State<MyApp> {
               color: currentTheme.color_2,
               borderRadius: BorderRadius.circular(15),
               clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Ink.image(
+                image: AssetImage(imagePaths[_currentIndex]),
+                height: 200,
+                width: 375,
+                fit: BoxFit.cover,
+                child: Center(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: buildTextWithShadow('Scan Your Eye', useFontFamily,
+                        fontSize_2, AppTheme.textColor_2, 0.5),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildMainWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Builder(
+          builder: (context) => InkWell(
+            splashColor: currentTheme.color_1,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ScanOptionPage(
+                    camera: widget.camera,
+                  ), // Replace with your target page
+                ),
+              );
+            },
+            child: Material(
+              color: currentTheme.color_2,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
               child: CarouselSlider(
-                options: CarouselOptions(height: 400.0),
+                options: CarouselOptions(height: 300.0),
                 items: imagePaths.map((path) {
                   return Builder(
                     builder: (BuildContext context) {
