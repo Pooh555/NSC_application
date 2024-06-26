@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:camera/camera.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
@@ -367,18 +369,23 @@ class _MyAppState extends State<MyApp> {
               color: currentTheme.color_2,
               borderRadius: BorderRadius.circular(15),
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Ink.image(
-                image: AssetImage(imagePaths[_currentIndex]),
-                height: 200,
-                width: 375,
-                fit: BoxFit.cover,
-                child: Center(
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: buildTextWithShadow('Scan Your Eye', useFontFamily,
-                        fontSize_2, AppTheme.textColor_2, 0.5),
-                  ),
-                ),
+              child: CarouselSlider(
+                options: CarouselOptions(height: 400.0),
+                items: imagePaths.map((path) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(color: currentTheme.color_2),
+                        child: Image.asset(
+                          path,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  );
+                }).toList(),
               ),
             ),
           ),
