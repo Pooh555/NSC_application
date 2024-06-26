@@ -6,10 +6,12 @@ import 'package:nsc/home.dart';
 class DiseasesPage extends StatelessWidget {
   const DiseasesPage({super.key});
 
+  static const double widgetGap = 32;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Select your option')),
+      appBar: AppBar(title: const Text('What the hell is this?')),
       body: Stack(
         children: [
           Column(
@@ -17,7 +19,53 @@ class DiseasesPage extends StatelessWidget {
             children: [
               Expanded(
                   child: ListView(
-                children: [],
+                children: [
+                  const SizedBox(
+                    height: widgetGap,
+                  ),
+                  Container(
+                    child: buildBuildWithPageNavigation(
+                        'assets/images/image_1.jpg',
+                        'nivrrrr',
+                        const CataractPage()),
+                  ),
+                  const SizedBox(
+                    height: widgetGap,
+                  ),
+                  Container(
+                    child: buildBuildWithPageNavigation(
+                        'assets/images/image_2.jpg',
+                        'nivrrrr',
+                        const CataractPage()),
+                  ),
+                  const SizedBox(
+                    height: widgetGap,
+                  ),
+                  Container(
+                    child: buildBuildWithPageNavigation(
+                        'assets/images/image_3.jpg',
+                        'nivrrrr',
+                        const CataractPage()),
+                  ),
+                  const SizedBox(
+                    height: widgetGap,
+                  ),
+                  Container(
+                    child: buildBuildWithPageNavigation(
+                        'assets/images/image_4.jpg',
+                        'nivrrrr',
+                        const CataractPage()),
+                  ),
+                  const SizedBox(
+                    height: widgetGap,
+                  ),
+                  Container(
+                    child: buildBuildWithPageNavigation(
+                        'assets/images/image_5.jpg',
+                        'nivrrrr',
+                        const CataractPage()),
+                  ),
+                ],
               ))
             ],
           ),
@@ -37,8 +85,8 @@ class DiseasesPage extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Ink.image(
           image: ExactAssetImage(imagePath),
-          height: 250,
-          width: 178,
+          height: 200,
+          width: 350,
           fit: BoxFit.cover,
           child: Align(
             alignment: Alignment.center,
