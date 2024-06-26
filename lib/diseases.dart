@@ -26,7 +26,7 @@ class DiseasesPage extends StatelessWidget {
                   Container(
                     child: buildBuildWithPageNavigation(
                         'assets/images/image_1.jpg',
-                        'nivrrrr',
+                        'Cataract',
                         const CataractPage()),
                   ),
                   const SizedBox(
@@ -35,7 +35,7 @@ class DiseasesPage extends StatelessWidget {
                   Container(
                     child: buildBuildWithPageNavigation(
                         'assets/images/image_2.jpg',
-                        'nivrrrr',
+                        'Conjunctivitis',
                         const CataractPage()),
                   ),
                   const SizedBox(
@@ -44,7 +44,7 @@ class DiseasesPage extends StatelessWidget {
                   Container(
                     child: buildBuildWithPageNavigation(
                         'assets/images/image_3.jpg',
-                        'nivrrrr',
+                        'glaucoma',
                         const CataractPage()),
                   ),
                   const SizedBox(
@@ -53,7 +53,7 @@ class DiseasesPage extends StatelessWidget {
                   Container(
                     child: buildBuildWithPageNavigation(
                         'assets/images/image_4.jpg',
-                        'nivrrrr',
+                        'Pooh555',
                         const CataractPage()),
                   ),
                   const SizedBox(
@@ -62,7 +62,7 @@ class DiseasesPage extends StatelessWidget {
                   Container(
                     child: buildBuildWithPageNavigation(
                         'assets/images/image_5.jpg',
-                        'nivrrrr',
+                        'TPB_99',
                         const CataractPage()),
                   ),
                 ],
