@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/disease_pages/cataract.dart';
 import 'package:nsc/home.dart';
-import 'package:path/path.dart';
 
 class DiseasesPage extends StatelessWidget {
   const DiseasesPage({super.key});
@@ -10,43 +9,41 @@ class DiseasesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Diseases Page'),
-      ),
-      body: Align(
-        child: ListView(
-          children: [
-            buildBuildWithPageNavigation(
-              '/assets/images/image_1.jpg',
-              'MOTHERFUCKER',
-              const CataractPage(),
+      appBar: AppBar(title: const Text('Select your option')),
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 95),
+                        child: buildBuildWithPageNavigation(
+                          'assets/images/image_1.jpg',
+                          'Take a picture\nof your eye.',
+                          ChatBotPage(
+                            theme: theme,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 95),
+                        child: buildBuildWithPageNavigation(
+                          'assets/images/image_5.jpg',
+                          'Upload a picture\nof your eye.',
+                          null,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildBuildWithPageNavigation(
-      String imagePath, String displayText, pageRoute) {
-    return Builder(
-      builder: (context) => InkWell(
-        splashColor: currentTheme.color_1,
-        onTap: () {
-          goToPage(pageRoute);
-        },
-        child: Center(
-          child: buildInkWellWithImageAndText(
-            imagePath,
-            displayText,
-            () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => pageRoute,
-              ),
-            ),
-          ),
-        ),
+          )
+        ],
       ),
     );
   }
@@ -66,12 +63,12 @@ class DiseasesPage extends StatelessWidget {
           width: 178,
           fit: BoxFit.cover,
           child: Align(
-            alignment: Alignment.topLeft,
+            alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.only(top: 5.0, left: 15.0),
               child: RichText(
-                textAlign: TextAlign.left,
-                text: buildTextWithShadow(title, useFontFamily, fontSize_3,
+                textAlign: TextAlign.center,
+                text: buildTextWithShadow(title, useFontFamily, fontSize_2,
                     AppTheme.textColor_2, 0.5),
               ),
             ),
@@ -81,11 +78,23 @@ class DiseasesPage extends StatelessWidget {
     );
   }
 
-  Future goToPage(pageRoute) {
-    return Navigator.push(
-      context as BuildContext,
-      MaterialPageRoute(
-        builder: (context) => pageRoute, // Target page
+  Widget buildBuildWithPageNavigation(
+      String imagePath, String displayText, pageRoute) {
+    return Builder(
+      builder: (context) => InkWell(
+        splashColor: currentTheme.color_1,
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    pageRoute)), // Navigation inside build method
+        child: Center(
+          child: buildInkWellWithImageAndText(
+            imagePath,
+            displayText,
+            () => {}, // Empty callback as navigation happens on tap
+          ),
+        ),
       ),
     );
   }
