@@ -432,14 +432,20 @@ class _MyAppState extends State<MyApp> {
               alignment: Alignment.center,
               children: [
                 Image.asset(
-                  imagePaths[_currentIndex],
+                  imagePaths[index], // Use 'index' instead of '_currentIndex'
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),
                 RichText(
                   textAlign: TextAlign.center,
-                  text: buildTextWithShadow(imageTitles[_currentIndex],
-                      useFontFamily, fontSize_2, AppTheme.textColor_2, 0.5),
+                  text: buildTextWithShadow(
+                    imageTitles[
+                        index], // Use 'index' instead of '_currentIndex'
+                    useFontFamily,
+                    fontSize_2,
+                    AppTheme.textColor_2,
+                    0.5,
+                  ),
                 ),
               ],
             ),
