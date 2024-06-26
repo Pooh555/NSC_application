@@ -8,6 +8,7 @@ import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
 import 'package:nsc/hospital.dart';
+import 'package:nsc/scan.dart';
 import 'package:nsc/scanoption.dart';
 import 'profile.dart';
 
@@ -393,47 +394,71 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  // List of titles for each image
+  final List<String> imageTitles = [
+    'Scan Your Eye',
+    'Know The Disease',
+    'Contact The Doctor',
+    'Contact Hospital',
+    'Contact And Feedback',
+  ];
+
+// List of page routes for each image
+  late final List<Widget> imageRoutes = [
+    ScanOptionPage(camera: widget.camera),
+    const DiseasesPage(),
+    const DoctorPage(),
+    const HospitalPage(),
+    const FeedbackPage(),
+  ];
+
   Widget buildMainWidget() {
     return Padding(
-      padding: const EdgeInsets.only(top: 15),
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: Builder(
-          builder: (context) => InkWell(
-            splashColor: currentTheme.color_1,
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: CarouselSlider.builder(
+        itemCount: imagePaths.length,
+        itemBuilder: (context, index, realIndex) {
+          return GestureDetector(
             onTap: () {
+              // Navigate to the corresponding page when the image is tapped
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ScanOptionPage(
-                    camera: widget.camera,
-                  ), // Replace with your target page
+                  builder: (context) => imageRoutes[index],
                 ),
               );
             },
-            child: Material(
-              color: currentTheme.color_2,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: CarouselSlider(
-                options: CarouselOptions(height: 300.0),
-                items: imagePaths.map((path) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(color: currentTheme.color_2),
-                        child: Image.asset(
-                          path,
-                          fit: BoxFit.cover,
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset(
+                  imagePaths[_currentIndex],
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
+                Text(
+                  imageTitles[_currentIndex],
+                  style: TextStyle(
+                    fontSize: 35.0,
+                    color: currentTheme.textColor_1,
+                    fontWeight: FontWeight.bold,
+                    backgroundColor: Colors.black54,
+                  ),
+                ),
+              ],
             ),
-          ),
+          );
+        },
+        options: CarouselOptions(
+          height: 200.0,
+          viewportFraction: 1.0,
+          autoPlay: true,
+          autoPlayInterval: const Duration(seconds: 3),
+          onPageChanged: (index, reason) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
         ),
       ),
     );
