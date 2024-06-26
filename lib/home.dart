@@ -436,21 +436,17 @@ class _MyAppState extends State<MyApp> {
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),
-                Text(
-                  imageTitles[_currentIndex],
-                  style: TextStyle(
-                    fontSize: 35.0,
-                    color: currentTheme.textColor_1,
-                    fontWeight: FontWeight.bold,
-                    backgroundColor: Colors.black54,
-                  ),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: buildTextWithShadow(imageTitles[_currentIndex],
+                      useFontFamily, fontSize_2, AppTheme.textColor_2, 0.5),
                 ),
               ],
             ),
           );
         },
         options: CarouselOptions(
-          height: 200.0,
+          height: 275.0,
           viewportFraction: 1.0,
           autoPlay: true,
           autoPlayInterval: const Duration(seconds: 3),
