@@ -374,7 +374,7 @@ class _MyAppState extends State<MyApp> {
               borderRadius: BorderRadius.circular(15),
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Ink.image(
-                image: AssetImage(imagePaths[_currentIndex]),
+                image: const AssetImage("assets/images/image_1.jpg"),
                 height: 200,
                 width: 375,
                 fit: BoxFit.cover,

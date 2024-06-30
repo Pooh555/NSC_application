@@ -141,8 +141,7 @@ class ScanOptionPageState extends State<ScanOptionPage> {
           fit: BoxFit.cover,
           child: Align(
             alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 5.0, left: 15.0),
+            child: Center(
               child: RichText(
                 textAlign: TextAlign.center,
                 text: buildTextWithShadow(title, useFontFamily, fontSize_2,
