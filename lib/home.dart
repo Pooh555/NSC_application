@@ -454,7 +454,7 @@ class _MyAppState extends State<MyApp> {
           height: 275.0,
           viewportFraction: 1.0,
           autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 3),
+          autoPlayInterval: const Duration(seconds: 4),
           onPageChanged: (index, reason) {
             setState(() {
               _currentIndex = index;
