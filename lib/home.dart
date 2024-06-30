@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:camera/camera.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
@@ -180,6 +182,10 @@ class _MyAppState extends State<MyApp> {
                         child: buildWelcomeText(useFontFamily),
                       ),
                       buildMainWidget(),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      buildScanWidget(),
                       Padding(
                           padding: const EdgeInsets.only(top: 18),
                           child: buildRowWidget(
@@ -345,7 +351,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Widget buildMainWidget() {
+  Widget buildScanWidget() {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Align(
@@ -368,7 +374,7 @@ class _MyAppState extends State<MyApp> {
               borderRadius: BorderRadius.circular(15),
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Ink.image(
-                image: AssetImage(imagePaths[_currentIndex]),
+                image: const AssetImage("assets/images/image_1.jpg"),
                 height: 200,
                 width: 375,
                 fit: BoxFit.cover,
@@ -382,6 +388,78 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  // List of titles for each image
+  final List<String> imageTitles = [
+    'Scan Your Eye',
+    'Know The Disease',
+    'Contact The Doctor',
+    'Contact Hospital',
+    'Contact And Feedback',
+  ];
+
+// List of page routes for each image
+  late final List<Widget> imageRoutes = [
+    ScanOptionPage(camera: widget.camera),
+    const DiseasesPage(),
+    const DoctorPage(),
+    const HospitalPage(),
+    const FeedbackPage(),
+  ];
+
+  Widget buildMainWidget() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: CarouselSlider.builder(
+        itemCount: imagePaths.length,
+        itemBuilder: (context, index, realIndex) {
+          return GestureDetector(
+            onTap: () {
+              // Navigate to the corresponding page when the image is tapped
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => imageRoutes[index],
+                ),
+              );
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset(
+                  imagePaths[index], // Use 'index' instead of '_currentIndex'
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: buildTextWithShadow(
+                    imageTitles[
+                        index], // Use 'index' instead of '_currentIndex'
+                    useFontFamily,
+                    fontSize_2,
+                    AppTheme.textColor_2,
+                    0.5,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+        options: CarouselOptions(
+          height: 275.0,
+          viewportFraction: 1.0,
+          autoPlay: true,
+          autoPlayInterval: const Duration(seconds: 4),
+          onPageChanged: (index, reason) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
         ),
       ),
     );
