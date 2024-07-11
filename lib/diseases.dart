@@ -50,21 +50,6 @@ class DiseasesPage extends StatelessWidget {
                   const SizedBox(
                     height: widgetGap,
                   ),
-                  Container(
-                    child: buildBuildWithPageNavigation(
-                        'assets/images/image_4.jpg',
-                        'Pooh555',
-                        const CataractPage()),
-                  ),
-                  const SizedBox(
-                    height: widgetGap,
-                  ),
-                  Container(
-                    child: buildBuildWithPageNavigation(
-                        'assets/images/image_5.jpg',
-                        'TPB_99',
-                        const CataractPage()),
-                  ),
                 ],
               ))
             ],
