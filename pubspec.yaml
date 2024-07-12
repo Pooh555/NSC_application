@@ -75,6 +75,9 @@ flutter:
      - assets/images/image_4.jpg
      - assets/images/image_5.jpg
      - assets/images/chatbot.jpg
+     - assets/images/cataract.jpg
+     - assets/images/conjunctivitis.jpg
+     - assets/images/glaucoma.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
