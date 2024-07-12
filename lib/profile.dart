@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nsc/chatbot.dart';
+import 'package:nsc/home.dart';
+
+AppTheme currentTheme = AppTheme(theme);
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key});
@@ -14,15 +16,15 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Log out page'),
-      ),
+      appBar: AppBar(title: const Text('Log out page'), actions: [
+        IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
+      ]),
       body: Column(
         children: [
           const SizedBox(height: 300),
           Center(
             child: Text(
-              "LOGGED IN AS: ${user.email!}\nClick the button to log out.",
+              "LOGGED IN AS: ${user.email!}\nClick the button here to log out\nor click the botton at the \ntop right corner of your screen",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
