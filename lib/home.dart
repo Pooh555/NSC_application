@@ -70,30 +70,16 @@ class AppTheme {
   }
 }
 
-Future<void> main() async {
-  // Ensure that plugin services are initialized so that `availableCameras()`
-  // can be called before `runApp()`
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Obtain a list of the available cameras on the device.
-  final cameras = await availableCameras();
-
-  // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras.first;
-
-  runApp(MyApp(camera: firstCamera));
-}
-
-class MyApp extends StatefulWidget {
+class HomePage extends StatefulWidget {
   final CameraDescription camera;
 
-  const MyApp({super.key, required this.camera});
+  const HomePage({super.key, required this.camera});
 
   @override
-  _MyAppState createState() => _MyAppState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyHomePageState extends State<HomePage> {
   // Initialize theme
   late AppTheme currentTheme;
 

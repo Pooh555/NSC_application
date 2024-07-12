@@ -21,7 +21,7 @@ void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester
-        .pumpWidget(const MyApp(camera: mockCamera)); // Pass the mock camera
+        .pumpWidget(const HomePage(camera: mockCamera)); // Pass the mock camera
 
     // Verify that our initial UI is as expected.
     expect(find.text('Take a picture'),
