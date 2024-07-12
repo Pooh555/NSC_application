@@ -29,35 +29,32 @@ class FeedbackPageState extends State<FeedbackPage> {
       appBar: AppBar(
         title: const Text('Hospital Page'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Text(
-              'Please give us any advice via this link https://forms.gle/EkZFwbob37mirj698',
-              textAlign: TextAlign.center,
+      body: ListView(
+        children: [
+          Text(
+            'Please give us any advice via this link https://forms.gle/EkZFwbob37mirj698',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+              color: currentTheme.textColor_1,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          const SizedBox(height: 30),
+          MaterialButton(
+            onPressed: _launchURLInBrowser,
+            child: Text(
+              'คลิ๊กที่นี่เพื่อเปิดลิงค์ ("Click here to open URL")',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 16.5,
                 color: currentTheme.textColor_1,
                 fontWeight: FontWeight.normal,
               ),
             ),
-            const SizedBox(height: 30),
-            MaterialButton(
-              onPressed: _launchURLInBrowser,
-              child: Text(
-                'คลิ๊กที่นี่เพื่อเปิดลิงค์ ("Click here to open URL")',
-                style: TextStyle(
-                  fontSize: 16.5,
-                  color: currentTheme.textColor_1,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            Image.asset('assets/images/feedbackQR.jpg'),
-          ],
-        ),
+          ),
+          const SizedBox(height: 30),
+          Image.asset('assets/images/feedbackQR.jpg'),
+        ],
       ),
     );
   }

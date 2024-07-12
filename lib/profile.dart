@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(title: const Text('Log out page'), actions: [
         IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
       ]),
-      body: Column(
+      body: ListView(
         children: [
           const SizedBox(height: 300),
           Center(
