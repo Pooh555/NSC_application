@@ -42,6 +42,7 @@ dependencies:
   image_field: ^0.0.10
   image_picker: ^1.1.2
   carousel_slider: ^4.2.1
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,8 @@ flutter:
      - assets/images/cataract.jpg
      - assets/images/conjunctivitis.jpg
      - assets/images/glaucoma.jpg
+     - assets/images/feedbackQR.jpg
+     - assets/text/cataract.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

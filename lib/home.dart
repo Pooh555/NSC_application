@@ -207,7 +207,9 @@ class _MyAppState extends State<MyApp> {
                               20.0,
                               'assets/images/image_5.jpg',
                               'Contact\nAnd\nFeedback',
-                              const FeedbackPage())),
+                              const FeedbackPage(
+                                title: 'This is a feedback page',
+                              ))),
                     ],
                   ),
                 ),
@@ -408,7 +410,9 @@ class _MyAppState extends State<MyApp> {
     const DiseasesPage(),
     const DoctorPage(),
     const HospitalPage(),
-    const FeedbackPage(),
+    const FeedbackPage(
+      title: 'This is a feedback page',
+    ),
   ];
 
   Widget buildMainWidget() {
