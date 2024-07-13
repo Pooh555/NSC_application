@@ -396,7 +396,7 @@ class _MyHomePageState extends State<HomePage> {
 
 // List of page routes for each image
   late final List<Widget> imageRoutes = [
-    ScanOptionPage(camera: widget.camera),
+    const ScanRoute(title: "Scan Your Eye"),
     const DiseasesPage(),
     const DoctorPage(),
     const HospitalPage(),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nsc/chatbot.dart';
+import 'package:nsc/home.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+AppTheme currentTheme = AppTheme(theme);
 
 _launchURLInBrowser() async {
   final url = Uri.parse('https://forms.gle/EkZFwbob37mirj698');

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nsc/home.dart';
 import 'package:http/http.dart' as http;
+
 import 'dart:convert';
 import 'dart:io';
+
+AppTheme currentTheme = AppTheme(theme);
 
 class ScanRoute extends StatefulWidget {
   const ScanRoute({super.key, required this.title});
@@ -106,15 +110,14 @@ class ScanRouteState extends State<ScanRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
+        iconTheme: IconThemeData(
+          color: currentTheme.textColor_1,
         ),
-        backgroundColor: const Color.fromARGB(255, 39, 39, 39),
         title: Text(
           widget.title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 30,
-            color: Color.fromARGB(255, 255, 255, 255),
+            color: currentTheme.textColor_1,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -136,10 +139,10 @@ class ScanRouteState extends State<ScanRoute> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 selectedImage == null
-                    ? const Text(
+                    ? Text(
                         "Please select or take a photo to upload",
                         style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: currentTheme.textColor_1,
                         ),
                       )
                     : Image.file(selectedImage!),
@@ -183,8 +186,8 @@ class ScanRouteState extends State<ScanRoute> {
                 Text(
                   message,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.red,
+                  style: TextStyle(
+                    color: currentTheme.textColor_1,
                     fontSize: 20,
                   ),
                 ),
