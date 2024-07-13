@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nsc/disease_pages/cataract.dart';
 import 'package:nsc/disease_pages/conjunctivitis.dart';
+import 'package:nsc/disease_pages/glaucoma.dart';
 import 'package:nsc/home.dart';
 
 class DiseasesPage extends StatelessWidget {
@@ -48,7 +49,7 @@ class DiseasesPage extends StatelessWidget {
                           context,
                           'assets/images/glaucoma.jpg',
                           'Glaucoma',
-                          const CataractPage()),
+                          const GlaucomaPage()),
                     ),
                     const SizedBox(
                       height: widgetGap,

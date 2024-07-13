@@ -89,6 +89,9 @@ flutter:
      - assets/images/conjunctivitis_1.jpg
      - assets/images/conjunctivitis_2.jpg
      - assets/images/conjunctivitis_3.jpg
+     - assets/images/glaucoma_1.jpg
+     - assets/images/glaucoma_2.jpg
+     - assets/images/glaucoma_3.jpg
      - assets/images/glaucoma.jpg
      - assets/images/feedbackQR.jpg
      - assets/images/apple.png

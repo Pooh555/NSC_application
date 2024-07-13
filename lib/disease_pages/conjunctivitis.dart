@@ -29,7 +29,7 @@ class ConjunctivitisPageState extends State<ConjunctivitisPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Conjunctivitis Page'),
+        title: const Text('Conjunctivitis'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),

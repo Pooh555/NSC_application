@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:nsc/home.dart';
 
-class CataractPage extends StatefulWidget {
-  const CataractPage({super.key});
+AppTheme currentTheme = AppTheme(theme);
+
+class GlaucomaPage extends StatefulWidget {
+  const GlaucomaPage({super.key});
 
   @override
-  _CataractPageState createState() => _CataractPageState();
+  GlaucomaPageState createState() => GlaucomaPageState();
 }
 
-class _CataractPageState extends State<CataractPage> {
+class GlaucomaPageState extends State<GlaucomaPage> {
   late Future<String> _textFromFile;
 
   @override
@@ -28,7 +30,7 @@ class _CataractPageState extends State<CataractPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cataract Page'),
+        title: const Text('Glaucoma'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -54,9 +56,38 @@ class _CataractPageState extends State<CataractPage> {
                 }
               },
             ),
+            const SizedBox(
+              height: 25,
+            ),
+            buildInkWellWithImageAndText("assets/images/glaucoma_1.jpg"),
+            const SizedBox(
+              height: 25,
+            ),
+            buildInkWellWithImageAndText("assets/images/glaucoma_2.jpg"),
+            const SizedBox(
+              height: 25,
+            ),
+            buildInkWellWithImageAndText("assets/images/glaucoma_3.jpg"),
           ],
         ),
       ),
     );
   }
+}
+
+Widget buildInkWellWithImageAndText(String imagePath) {
+  return InkWell(
+    splashColor: currentTheme.color_1,
+    child: Material(
+      color: currentTheme.color_2,
+      borderRadius: BorderRadius.circular(15),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Ink.image(
+        image: ExactAssetImage(imagePath),
+        height: 250,
+        width: 178,
+        fit: BoxFit.cover,
+      ),
+    ),
+  );
 }

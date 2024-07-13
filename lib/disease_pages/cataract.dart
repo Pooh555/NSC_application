@@ -29,7 +29,7 @@ class _CataractPageState extends State<CataractPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cataract Page'),
+        title: const Text('Cataract'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),

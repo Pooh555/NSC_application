@@ -29,7 +29,7 @@ class FeedbackPageState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hospital Page'),
+        title: const Text('Feedback'),
       ),
       body: ListView(
         children: [
