@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nsc/home.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:nsc/home.dart';
 
 _launchURLInBrowser() async {
   final url = Uri.parse('https://forms.gle/EkZFwbob37mirj698');
@@ -16,25 +16,28 @@ _launchURLInBrowser() async {
 }
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({super.key, required String title});
+  const FeedbackPage({super.key, required this.title});
+  final String title;
 
   @override
   FeedbackPageState createState() => FeedbackPageState();
 }
 
 class FeedbackPageState extends State<FeedbackPage> {
+  // Placeholder for your AppTheme class
   AppTheme currentTheme = AppTheme(theme);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Feedback'),
+        title: Text(widget.title),
       ),
       body: ListView(
         children: [
+          const SizedBox(height: 50),
           Text(
-            'Please give us any advice via this link https://forms.gle/EkZFwbob37mirj698',
+            'We appreciate every suggestion you provide.\nYou can provide us suggestions via this link\nhttps://forms.gle/EkZFwbob37mirj698',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
@@ -46,7 +49,7 @@ class FeedbackPageState extends State<FeedbackPage> {
           MaterialButton(
             onPressed: _launchURLInBrowser,
             child: Text(
-              'คลิ๊กที่นี่เพื่อเปิดลิงค์ ("Click here to open URL")',
+              "Click here to open URL",
               style: TextStyle(
                 fontSize: 16.5,
                 color: currentTheme.textColor_1,
