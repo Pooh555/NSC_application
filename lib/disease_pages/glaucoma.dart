@@ -19,7 +19,7 @@ class _CataractPageState extends State<CataractPage> {
   }
 
   Future<String> _loadTextFromFile() async {
-    return await rootBundle.loadString('assets/text/cataract.txt');
+    return await rootBundle.loadString('assets/text/glaucoma.txt');
   }
 
   @override
