@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nsc/chatbot.dart';
 import 'package:nsc/disease_pages/cataract.dart';
+import 'package:nsc/disease_pages/conjunctivitis.dart';
+import 'package:nsc/disease_pages/glaucoma.dart';
 import 'package:nsc/home.dart';
 
 class DiseasesPage extends StatelessWidget {
@@ -18,40 +19,44 @@ class DiseasesPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                  child: ListView(
-                children: [
-                  const SizedBox(
-                    height: widgetGap,
-                  ),
-                  Container(
-                    child: buildBuildWithPageNavigation(
-                        'assets/images/cataract.jpg',
-                        'Cataract',
-                        const CataractPage()),
-                  ),
-                  const SizedBox(
-                    height: widgetGap,
-                  ),
-                  Container(
-                    child: buildBuildWithPageNavigation(
-                        'assets/images/conjunctivitis.jpg',
-                        'Conjunctivitis',
-                        const CataractPage()),
-                  ),
-                  const SizedBox(
-                    height: widgetGap,
-                  ),
-                  Container(
-                    child: buildBuildWithPageNavigation(
-                        'assets/images/glaucoma.jpg',
-                        'glaucoma',
-                        const CataractPage()),
-                  ),
-                  const SizedBox(
-                    height: widgetGap,
-                  ),
-                ],
-              ))
+                child: ListView(
+                  children: [
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/cataract.jpg',
+                          'Cataract',
+                          const CataractPage()),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/conjunctivitis.jpg',
+                          'Conjunctivitis',
+                          const ConjunctivitisPage()),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/glaucoma.jpg',
+                          'Glaucoma',
+                          const GlaucomaPage()),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ],
@@ -61,6 +66,7 @@ class DiseasesPage extends StatelessWidget {
 
   Widget buildInkWellWithImageAndText(
       String imagePath, String title, VoidCallback onTap) {
+    AppTheme currentTheme = AppTheme(theme); // Move initialization here
     return InkWell(
       splashColor: currentTheme.color_1,
       onTap: onTap,
@@ -89,23 +95,14 @@ class DiseasesPage extends StatelessWidget {
     );
   }
 
-  Widget buildBuildWithPageNavigation(
-      String imagePath, String displayText, pageRoute) {
-    return Builder(
-      builder: (context) => InkWell(
-        splashColor: currentTheme.color_1,
-        onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    pageRoute)), // Navigation inside build method
-        child: Center(
-          child: buildInkWellWithImageAndText(
-            imagePath,
-            displayText,
-            () => {}, // Empty callback as navigation happens on tap
-          ),
-        ),
+  Widget buildBuildWithPageNavigation(BuildContext context, String imagePath,
+      String displayText, Widget pageRoute) {
+    return buildInkWellWithImageAndText(
+      imagePath,
+      displayText,
+      () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => pageRoute),
       ),
     );
   }

@@ -1,54 +1,22 @@
-import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:nsc/home.dart';
+import 'package:http/http.dart' as http;
+
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
-import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
+class ScanRoute extends StatefulWidget {
+  const ScanRoute({super.key, required this.title});
 
-Future<void> main() async {
-  // Ensure that plugin services are initialized so that `availableCameras()`
-  // can be called before `runApp()`
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Obtain a list of the available cameras on the device.
-  final cameras = await availableCameras();
-
-  // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras.first;
-
-  runApp(MyApp(camera: firstCamera));
-}
-
-class MyApp extends StatelessWidget {
-  final CameraDescription camera;
-
-  const MyApp({super.key, required this.camera});
+  final String title;
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ScanPage(
-        camera: camera,
-      ),
-    );
-  }
+  ScanRouteState createState() => ScanRouteState();
 }
 
-// A screen that allows users to take a picture using a given camera.
-class ScanPage extends StatefulWidget {
-  final CameraDescription camera;
-
-  const ScanPage({super.key, required this.camera});
-
-  @override
-  ScanPageState createState() => ScanPageState();
-}
-
-class ScanPageState extends State<ScanPage> {
-  late CameraController _controller;
-  late Future<void> _initializeControllerFuture;
-
+class ScanRouteState extends State<ScanRoute> {
+  AppTheme currentTheme = AppTheme(theme);
   File? selectedImage;
   String message = "";
   bool uploading = false;
@@ -67,7 +35,7 @@ class ScanPageState extends State<ScanPage> {
 
     final request = http.MultipartRequest(
       "POST",
-      Uri.parse("https://2644-110-164-80-250.ngrok-free.app/upload"),
+      Uri.parse("https://equal-swine-wildly.ngrok-free.app/upload"),
     );
 
     request.fields['Collect'] = collect;
@@ -107,118 +75,181 @@ class ScanPageState extends State<ScanPage> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    // To display the current output from the Camera,
-    // create a CameraController.
-    _controller = CameraController(
-      // Get a specific camera from the list of available cameras.
-      widget.camera,
-      // Define the resolution to use.
-      ResolutionPreset.ultraHigh,
-    );
-
-    // Initialize the controller. This returns a Future.
-    _initializeControllerFuture = _controller.initialize();
+  Future getImage() async {
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        selectedImage = File(pickedImage.path);
+        setState(() {});
+      } else {
+        //print("No image picked.");
+      }
+    } catch (e) {
+      //print("Error picking image: $e");
+    }
   }
 
-  @override
-  void dispose() {
-    // Dispose of the controller when the widget is disposed.
-    _controller.dispose();
-    super.dispose();
+  Future getImagefromcam() async {
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (pickedImage != null) {
+        selectedImage = File(pickedImage.path);
+        setState(() {});
+      } else {
+        //print("No image picked.");
+      }
+    } catch (e) {
+      //print("Error picking image: $e");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Scan Your Eye')),
-      body: Stack(
-        children: <Widget>[
-          FutureBuilder<void>(
-            future: _initializeControllerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                // If the Future is complete, display the preview.
-                return CameraPreview(_controller);
-              } else {
-                // Otherwise, display a loading indicator.
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: currentTheme.textColor_1,
+        ),
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            fontSize: 30,
+            color: currentTheme.textColor_1,
+            fontWeight: FontWeight.bold,
           ),
-        ],
+        ),
       ),
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: 45.0),
-        child: SizedBox(
-          width: 100.0, // Adjust the width as needed
-          height: 100.0, // Adjust the height as needed
-          child: FloatingActionButton(
-            onPressed: () async {
-              try {
-                await _initializeControllerFuture;
-                final image = await _controller.takePicture();
-                setState(() {
-                  selectedImage = File(image.path); // Update selectedImage here
-                });
-                if (!context.mounted) return;
-                await Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => DisplayPictureScreen(
-                      imagePath: image.path,
-                    ),
-                  ),
-                );
-              } catch (e) {
-                // print('Error taking picture: $e');
-              }
-            },
-            shape: const CircleBorder(),
-            child: const Center(
-              child: Icon(
-                Icons.photo_camera_outlined,
-                size: 60,
-              ),
+      body: Stack(children: [
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/wallpaper/abstract.2.png"),
+              fit: BoxFit.cover,
             ),
           ),
         ),
+        SingleChildScrollView(
+          padding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).size.height / 3),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                selectedImage == null
+                    ? Text(
+                        "Please select or take a photo to upload",
+                        style: TextStyle(
+                          color: currentTheme.textColor_1,
+                        ),
+                      )
+                    : Image.file(selectedImage!),
+                const SizedBox(height: 20),
+                uploading
+                    ? const CircularProgressIndicator()
+                    : ElevatedButton.icon(
+                        onPressed: () {
+                          String collect;
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text('Privacy Policy'),
+                              content: const Text(
+                                  'Do you agree that developer will collect your eye image for future AI model improvement?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    collect = '1';
+                                    uploadImage(collect);
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Agree'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    collect = '0';
+                                    uploadImage(collect);
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Disagree'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.cloud_upload),
+                        label: const Text("Upload Image"),
+                      ),
+                const SizedBox(height: 20),
+                Text(
+                  message,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: currentTheme.textColor_1,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                /*
+                if (message == 'cataract' ||
+                    message == 'cataract' ||
+                    message == 'conjunctivitis')
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      if (message == 'cataract') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const CataractRoute(title: 'Cataract'),
+                          ),
+                        );
+                      }
+                      if (message == 'glaucoma') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const GlaucomaRoute(title: 'Glaucoma'),
+                          ),
+                        );
+                      }
+                      if (message == 'conjunctivitis') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ConjunctivitisRoute(
+                                title: 'Conjunctivitis'),
+                          ),
+                        );
+                      }
+                    },
+                    icon: const Icon(Icons.arrow_forward),
+                    label: const Text("About your disease"),
+                  ),
+                  */
+              ],
+            ),
+          ),
+        ),
+      ]),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: getImage,
+            tooltip: "Select Image",
+            child: const Icon(Icons.photo),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            onPressed: getImagefromcam,
+            tooltip: "Take a Photo",
+            child: const Icon(Icons.camera_alt),
+          ),
+        ],
       ),
-
-      floatingActionButtonLocation: FloatingActionButtonLocation
-          .centerFloat, // Adjust the location as needed
-    );
-  }
-
-  Widget buildOptionWidget() {
-    return Stack(
-      children: [
-        Positioned(
-          child: FloatingActionButton(
-            onPressed: () {},
-          ),
-        ),
-        Positioned(
-          child: FloatingActionButton(
-            onPressed: () {},
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// A widget that displays the picture taken by the user.
-class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
-
-  const DisplayPictureScreen({super.key, required this.imagePath});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Image.file(File(imagePath)),
     );
   }
 }

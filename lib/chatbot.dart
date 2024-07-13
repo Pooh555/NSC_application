@@ -18,6 +18,7 @@ class ChatBotPage extends StatefulWidget {
 
 // Define the State class for ChatBotPage
 class ChatBotPageState extends State<ChatBotPage> {
+  AppTheme currentTheme = AppTheme(theme);
   // Declare necessary variables
   List<Content> history = []; // List to store chat history
   late final GenerativeModel _model; // Instance of GenerativeModel

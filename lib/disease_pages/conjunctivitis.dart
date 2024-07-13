@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:nsc/home.dart';
 
-class CataractPage extends StatefulWidget {
-  const CataractPage({super.key});
+class ConjunctivitisPage extends StatefulWidget {
+  const ConjunctivitisPage({super.key});
 
   @override
-  _CataractPageState createState() => _CataractPageState();
+  ConjunctivitisPageState createState() => ConjunctivitisPageState();
 }
 
-class _CataractPageState extends State<CataractPage> {
+class ConjunctivitisPageState extends State<ConjunctivitisPage> {
   AppTheme currentTheme = AppTheme(theme);
   late Future<String> _textFromFile;
 
@@ -20,7 +20,7 @@ class _CataractPageState extends State<CataractPage> {
   }
 
   Future<String> _loadTextFromFile() async {
-    return await rootBundle.loadString('assets/text/cataract.txt');
+    return await rootBundle.loadString('assets/text/conjunctivitis.txt');
   }
 
   @override
@@ -29,7 +29,7 @@ class _CataractPageState extends State<CataractPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cataract'),
+        title: const Text('Conjunctivitis'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -58,15 +58,15 @@ class _CataractPageState extends State<CataractPage> {
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/cataract_1.jpg"),
+            buildInkWellWithImageAndText("assets/images/conjunctivitis_1.jpg"),
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/cataract_2.png"),
+            buildInkWellWithImageAndText("assets/images/conjunctivitis_2.jpg"),
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/cataract_3.jpg"),
+            buildInkWellWithImageAndText("assets/images/conjunctivitis_3.jpg"),
           ],
         ),
       ),

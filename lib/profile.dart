@@ -2,10 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nsc/home.dart';
 
-AppTheme currentTheme = AppTheme(theme);
-
 class ProfilePage extends StatelessWidget {
-  ProfilePage({Key? key});
+  ProfilePage({super.key});
 
   final user = FirebaseAuth.instance.currentUser!;
 
@@ -15,6 +13,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppTheme currentTheme = AppTheme(theme);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Log out page'), actions: [
         IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))

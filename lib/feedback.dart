@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nsc/chatbot.dart';
+import 'package:nsc/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 _launchURLInBrowser() async {
@@ -23,11 +23,13 @@ class FeedbackPage extends StatefulWidget {
 }
 
 class FeedbackPageState extends State<FeedbackPage> {
+  AppTheme currentTheme = AppTheme(theme);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hospital Page'),
+        title: const Text('Feedback'),
       ),
       body: ListView(
         children: [
