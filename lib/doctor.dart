@@ -9,12 +9,7 @@ class DoctorPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Doctor Page'),
       ),
-      body: const Center(
-        child: Text(
-          'This is the Doctor page',
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
+      body: const Center(),
     );
   }
 }

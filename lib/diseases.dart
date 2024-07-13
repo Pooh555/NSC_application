@@ -11,7 +11,7 @@ class DiseasesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('What the hell is this?')),
+      appBar: AppBar(title: const Text('Eye diseases')),
       body: Stack(
         children: [
           Column(
@@ -25,7 +25,7 @@ class DiseasesPage extends StatelessWidget {
                   ),
                   Container(
                     child: buildBuildWithPageNavigation(
-                        'assets/images/image_1.jpg',
+                        'assets/images/cataract.jpg',
                         'Cataract',
                         const CataractPage()),
                   ),
@@ -34,7 +34,7 @@ class DiseasesPage extends StatelessWidget {
                   ),
                   Container(
                     child: buildBuildWithPageNavigation(
-                        'assets/images/image_2.jpg',
+                        'assets/images/conjunctivitis.jpg',
                         'Conjunctivitis',
                         const CataractPage()),
                   ),
@@ -43,27 +43,12 @@ class DiseasesPage extends StatelessWidget {
                   ),
                   Container(
                     child: buildBuildWithPageNavigation(
-                        'assets/images/image_3.jpg',
+                        'assets/images/glaucoma.jpg',
                         'glaucoma',
                         const CataractPage()),
                   ),
                   const SizedBox(
                     height: widgetGap,
-                  ),
-                  Container(
-                    child: buildBuildWithPageNavigation(
-                        'assets/images/image_4.jpg',
-                        'Pooh555',
-                        const CataractPage()),
-                  ),
-                  const SizedBox(
-                    height: widgetGap,
-                  ),
-                  Container(
-                    child: buildBuildWithPageNavigation(
-                        'assets/images/image_5.jpg',
-                        'TPB_99',
-                        const CataractPage()),
                   ),
                 ],
               ))

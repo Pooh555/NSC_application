@@ -1,19 +1,52 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:nsc/home.dart';
+
+AppTheme currentTheme = AppTheme(theme);
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({Key? key});
+
+  final user = FirebaseAuth.instance.currentUser!;
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile Page'),
-      ),
-      body: const Center(
-        child: Text(
-          'This is the profile page',
-          style: TextStyle(fontSize: 24),
-        ),
+      appBar: AppBar(title: const Text('Log out page'), actions: [
+        IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
+      ]),
+      body: ListView(
+        children: [
+          const SizedBox(height: 300),
+          Center(
+            child: Text(
+              "LOGGED IN AS: ${user.email!}\nClick the button here to log out\nor click the botton at the \ntop right corner of your screen",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                color: currentTheme.textColor_1,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            width: 100,
+            height: 100,
+            child: IconButton(
+              onPressed: signUserOut,
+              iconSize: 120,
+              icon: Icon(
+                Icons.logout,
+                color: currentTheme.textColor_1,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
