@@ -9,6 +9,7 @@ import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
 import 'package:nsc/hospital.dart';
 import 'package:nsc/scanoption.dart';
+import 'package:nsc/scan.dart';
 import 'profile.dart';
 
 // List of images for ScanEye widget
@@ -351,9 +352,12 @@ class _MyHomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  builder: (context) => const ScanRoute(title: 'Scan Your Eye'),
+                  /*
                   builder: (context) => ScanOptionPage(
                     camera: widget.camera,
-                  ), // Replace with your target page
+                  ), 
+                  */
                 ),
               );
             },
