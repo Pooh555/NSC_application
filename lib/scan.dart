@@ -6,8 +6,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 
-AppTheme currentTheme = AppTheme(theme);
-
 class ScanRoute extends StatefulWidget {
   const ScanRoute({super.key, required this.title});
 
@@ -18,6 +16,7 @@ class ScanRoute extends StatefulWidget {
 }
 
 class ScanRouteState extends State<ScanRoute> {
+  AppTheme currentTheme = AppTheme(theme);
   File? selectedImage;
   String message = "";
   bool uploading = false;

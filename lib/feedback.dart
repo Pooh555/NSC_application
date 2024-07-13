@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nsc/home.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-AppTheme currentTheme = AppTheme(theme);
-
 _launchURLInBrowser() async {
   final url = Uri.parse('https://forms.gle/EkZFwbob37mirj698');
   if (await canLaunchUrl(url)) {
@@ -25,6 +23,8 @@ class FeedbackPage extends StatefulWidget {
 }
 
 class FeedbackPageState extends State<FeedbackPage> {
+  AppTheme currentTheme = AppTheme(theme);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

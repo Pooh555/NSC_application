@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:nsc/home.dart';
 
-class CataractPage extends StatefulWidget {
-  const CataractPage({super.key});
+class ConjunctivitisPage extends StatefulWidget {
+  const ConjunctivitisPage({super.key});
 
   @override
-  _CataractPageState createState() => _CataractPageState();
+  ConjunctivitisPageState createState() => ConjunctivitisPageState();
 }
 
-class _CataractPageState extends State<CataractPage> {
+class ConjunctivitisPageState extends State<ConjunctivitisPage> {
+  AppTheme currentTheme = AppTheme(theme);
   late Future<String> _textFromFile;
 
   @override
@@ -24,9 +25,11 @@ class _CataractPageState extends State<CataractPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppTheme currentTheme = AppTheme(theme);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cataract Page'),
+        title: const Text('Conjunctivitis Page'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -45,14 +48,43 @@ class _CataractPageState extends State<CataractPage> {
                       snapshot.data ?? '',
                       useFontFamily,
                       fontSize_4,
-                      AppTheme.textColor_2,
-                      0.5,
+                      currentTheme.textColor_1,
+                      0.2,
                     ),
                   );
                 }
               },
             ),
+            const SizedBox(
+              height: 25,
+            ),
+            buildInkWellWithImageAndText("assets/images/conjunctivitis_1.jpg"),
+            const SizedBox(
+              height: 25,
+            ),
+            buildInkWellWithImageAndText("assets/images/conjunctivitis_2.jpg"),
+            const SizedBox(
+              height: 25,
+            ),
+            buildInkWellWithImageAndText("assets/images/conjunctivitis_3.jpg"),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildInkWellWithImageAndText(String imagePath) {
+    return InkWell(
+      splashColor: currentTheme.color_1,
+      child: Material(
+        color: currentTheme.color_2,
+        borderRadius: BorderRadius.circular(15),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Ink.image(
+          image: ExactAssetImage(imagePath),
+          height: 250,
+          width: 178,
+          fit: BoxFit.cover,
         ),
       ),
     );

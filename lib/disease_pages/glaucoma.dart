@@ -24,6 +24,8 @@ class _CataractPageState extends State<CataractPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppTheme currentTheme = AppTheme(theme);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cataract Page'),
@@ -45,8 +47,8 @@ class _CataractPageState extends State<CataractPage> {
                       snapshot.data ?? '',
                       useFontFamily,
                       fontSize_4,
-                      AppTheme.textColor_2,
-                      0.5,
+                      currentTheme.textColor_1,
+                      0.2,
                     ),
                   );
                 }

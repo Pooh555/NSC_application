@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nsc/chatbot.dart';
 import 'package:nsc/disease_pages/cataract.dart';
+import 'package:nsc/disease_pages/conjunctivitis.dart';
 import 'package:nsc/home.dart';
 
 class DiseasesPage extends StatelessWidget {
@@ -38,7 +38,7 @@ class DiseasesPage extends StatelessWidget {
                           context,
                           'assets/images/conjunctivitis.jpg',
                           'Conjunctivitis',
-                          const CataractPage()),
+                          const ConjunctivitisPage()),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -65,6 +65,7 @@ class DiseasesPage extends StatelessWidget {
 
   Widget buildInkWellWithImageAndText(
       String imagePath, String title, VoidCallback onTap) {
+    AppTheme currentTheme = AppTheme(theme); // Move initialization here
     return InkWell(
       splashColor: currentTheme.color_1,
       onTap: onTap,
