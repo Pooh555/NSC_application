@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'dart:io';
 
 class ScanRoute extends StatefulWidget {
-  const ScanRoute({Key? key, required this.title}) : super(key: key);
+  const ScanRoute({super.key, required this.title});
 
   final String title;
 

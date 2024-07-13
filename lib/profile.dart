@@ -5,7 +5,7 @@ import 'package:nsc/home.dart';
 AppTheme currentTheme = AppTheme(theme);
 
 class ProfilePage extends StatelessWidget {
-  ProfilePage({Key? key});
+  ProfilePage({super.key});
 
   final user = FirebaseAuth.instance.currentUser!;
 
