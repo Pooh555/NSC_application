@@ -352,7 +352,7 @@ class _MyHomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ScanRoute(title: 'Scan Your Eye'),
+                  builder: (context) => const ScanRoute(),
                   /*
                   builder: (context) => ScanOptionPage(
                     camera: widget.camera,
@@ -396,7 +396,7 @@ class _MyHomePageState extends State<HomePage> {
 
 // List of page routes for each image
   late final List<Widget> imageRoutes = [
-    const ScanRoute(title: "Scan Your Eye"),
+    const ScanRoute(),
     const DiseasesPage(),
     const DoctorPage(),
     const HospitalPage(),

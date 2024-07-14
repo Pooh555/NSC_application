@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nsc/chatbot.dart';
-import 'package:nsc/disease_pages/glaucoma.dart';
 import 'package:nsc/home.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:path/path.dart';
-
 double width = 0;
 
 class ScanRoute extends StatefulWidget {
-  const ScanRoute({super.key, required this.title});
-
-  final String title;
+  const ScanRoute({super.key});
 
   @override
   ScanRouteState createState() => ScanRouteState();
@@ -120,13 +114,8 @@ class ScanRouteState extends State<ScanRoute> {
         iconTheme: IconThemeData(
           color: currentTheme.textColor_1,
         ),
-        title: Text(
-          widget.title,
-          style: TextStyle(
-            fontSize: 30,
-            color: currentTheme.textColor_1,
-            fontWeight: FontWeight.bold,
-          ),
+        title: const Text(
+          "Scan Your Eye",
         ),
       ),
       body: Stack(children: [
@@ -188,7 +177,7 @@ class ScanRouteState extends State<ScanRoute> {
                               'Upload Image',
                               useFontFamily,
                               fontSize_4,
-                              currentTheme.color_1,
+                              AppTheme.textColor_3,
                               0.4),
                         ),
                         style: ElevatedButton.styleFrom(
