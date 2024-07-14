@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:nsc/components/my_button.dart';
 import 'package:nsc/components/my_textfield.dart';
 import 'package:nsc/components/square_tile.dart';
+import 'package:nsc/disclaimer.dart';
 import 'auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const RegisterPage({super.key, required this.onTap});
+  const RegisterPage({Key? key, required this.onTap}) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -16,7 +17,6 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -24,26 +24,34 @@ class _RegisterPageState extends State<RegisterPage> {
   void signUserUp() async {
     //show loading sign
     showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-    //try to create user
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
 
     try {
       if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
-        Navigator.pop(context);
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        Navigator.pop(context); // Close loading dialog
+
+        // Navigate to DisclaimerPage on successful registration
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const DisclaimerPage()),
+        );
       } else {
         //show error
         showErrorMessage("Passwords don't match.");
+        Navigator.pop(context); // Close loading dialog
       }
-      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
+      Navigator.pop(context); // Close loading dialog
       //showErrorMessage
       showErrorMessage(e.code);
     }
@@ -55,10 +63,11 @@ class _RegisterPageState extends State<RegisterPage> {
       builder: (context) {
         return AlertDialog(
           title: Center(
-              child: Text(
-            message,
-            style: const TextStyle(color: Colors.black87),
-          )),
+            child: Text(
+              message,
+              style: const TextStyle(color: Colors.black87),
+            ),
+          ),
         );
       },
     );
@@ -163,14 +172,17 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     // google button
                     SquareTile(
-                        onTap: () => AuthService().signInWithGoogle(),
-                        imagePath: 'assets/images/google.png'),
+                      onTap: () => AuthService().signInWithGoogle(),
+                      imagePath: 'assets/images/google.png',
+                    ),
 
                     const SizedBox(width: 25),
 
                     // apple button
                     SquareTile(
-                        onTap: () => {}, imagePath: 'assets/images/apple.png')
+                      onTap: () => {},
+                      imagePath: 'assets/images/apple.png',
+                    )
                   ],
                 ),
 

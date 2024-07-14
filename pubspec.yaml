@@ -114,6 +114,7 @@ flutter:
      - assets/text/astigmatism.txt
      - assets/text/cataract.txt
      - assets/text/conjunctivitis.txt
+     - assets/text/disclaimer.txt
      - assets/text/glaucoma.txt
      - assets/text/lazyeye.txt
      - assets/text/chatbotwarning.txt
