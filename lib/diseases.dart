@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nsc/disease_pages/astigmatism.dart';
 import 'package:nsc/disease_pages/cataract.dart';
 import 'package:nsc/disease_pages/conjunctivitis.dart';
 import 'package:nsc/disease_pages/glaucoma.dart';
+import 'package:nsc/disease_pages/lazyeye.dart';
 import 'package:nsc/home.dart';
 
 class DiseasesPage extends StatelessWidget {
@@ -50,6 +52,26 @@ class DiseasesPage extends StatelessWidget {
                           'assets/images/glaucoma.jpg',
                           'Glaucoma',
                           const GlaucomaPage()),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/lazyeye.jpg',
+                          'Lazy Eye',
+                          const LazyEyePage()),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/astigmatism.jpg',
+                          'Astigmatism',
+                          const AstigmatismPage()),
                     ),
                     const SizedBox(
                       height: widgetGap,

@@ -8,10 +8,10 @@ class GlaucomaPage extends StatefulWidget {
   const GlaucomaPage({super.key});
 
   @override
-  GlaucomaPageState createState() => GlaucomaPageState();
+  _GlaucomaPageState createState() => _GlaucomaPageState();
 }
 
-class GlaucomaPageState extends State<GlaucomaPage> {
+class _GlaucomaPageState extends State<GlaucomaPage> {
   late Future<String> _textFromFile;
 
   @override

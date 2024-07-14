@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:nsc/home.dart';
 
-class ConjunctivitisPage extends StatefulWidget {
-  const ConjunctivitisPage({super.key});
+class AstigmatismPage extends StatefulWidget {
+  const AstigmatismPage({super.key});
 
   @override
-  _ConjunctivitisPageState createState() => _ConjunctivitisPageState();
+  _AstigmatismPageState createState() => _AstigmatismPageState();
 }
 
-class _ConjunctivitisPageState extends State<ConjunctivitisPage> {
+class _AstigmatismPageState extends State<AstigmatismPage> {
   AppTheme currentTheme = AppTheme(theme);
   late Future<String> _textFromFile;
 
@@ -20,7 +20,7 @@ class _ConjunctivitisPageState extends State<ConjunctivitisPage> {
   }
 
   Future<String> _loadTextFromFile() async {
-    return await rootBundle.loadString('assets/text/conjunctivitis.txt');
+    return await rootBundle.loadString('assets/text/astigmatism.txt');
   }
 
   @override
@@ -29,7 +29,7 @@ class _ConjunctivitisPageState extends State<ConjunctivitisPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Conjunctivitis'),
+        title: const Text('Astigmatism'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -58,15 +58,15 @@ class _ConjunctivitisPageState extends State<ConjunctivitisPage> {
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/conjunctivitis_1.jpg"),
+            buildInkWellWithImageAndText("assets/images/astigmatism_1.jpg"),
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/conjunctivitis_2.jpg"),
+            buildInkWellWithImageAndText("assets/images/astigmatism_2.jpg"),
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/conjunctivitis_3.jpg"),
+            buildInkWellWithImageAndText("assets/images/astigmatism_3.jpg"),
           ],
         ),
       ),
