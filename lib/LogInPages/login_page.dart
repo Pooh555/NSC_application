@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           textAlign: TextAlign.center,
-                          'Or continue with\nThese features below are still in experimental phase\nIt may not work properly.\nPlease log in via email.',
+                          'Or continue with\nThese features below are still in\nexperimental phase.\nIt may not work properly.\nPlease log in via email.',
                           style: TextStyle(color: Colors.grey[700]),
                         ),
                       ),
