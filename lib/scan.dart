@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nsc/chatbot.dart';
+import 'package:nsc/disease_pages/glaucoma.dart';
 import 'package:nsc/home.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:path/path.dart';
 
 double width = 0;
 
@@ -174,8 +178,23 @@ class ScanRouteState extends State<ScanRoute> {
                             ),
                           );
                         },
-                        icon: const Icon(Icons.cloud_upload),
-                        label: const Text("Upload Image"),
+                        icon: Icon(
+                          Icons.cloud_upload,
+                          size: 35,
+                          color: AppTheme.textColor_3,
+                        ),
+                        label: RichText(
+                          text: buildTextWithShadow(
+                              'Upload Image',
+                              useFontFamily,
+                              fontSize_4,
+                              currentTheme.color_1,
+                              0.4),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: currentTheme
+                              .color_3, // Use the button color from widget
+                        ),
                       ),
                 const SizedBox(height: 20),
                 Text(
@@ -242,8 +261,10 @@ class ScanRouteState extends State<ScanRoute> {
                 tooltip: "Select Image",
                 backgroundColor: currentTheme.color_3,
                 heroTag: "btn1",
-                child: const Icon(Icons.photo,
-                    size: 35), // Ensure different hero tags for different FABs
+                child: Icon(Icons.photo,
+                    size: 35,
+                    color: AppTheme
+                        .textColor_3), // Ensure different hero tags for different FABs
               ),
             ),
           ),
@@ -257,8 +278,10 @@ class ScanRouteState extends State<ScanRoute> {
                 tooltip: "Take a Photo",
                 backgroundColor: currentTheme.color_3,
                 heroTag: "btn2",
-                child: const Icon(Icons.camera_alt,
-                    size: 35), // Ensure different hero tags for different FABs
+                child: Icon(Icons.camera_alt,
+                    size: 35,
+                    color: AppTheme
+                        .textColor_3), // Ensure different hero tags for different FABs
               ),
             ),
           ),
