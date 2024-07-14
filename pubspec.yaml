@@ -106,6 +106,7 @@ flutter:
      - assets/text/cataract.txt
      - assets/text/conjunctivitis.txt
      - assets/text/glaucoma.txt
+     - assets/text/chatbotwarning.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
