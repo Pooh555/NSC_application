@@ -29,6 +29,16 @@ class DiseasesPage extends StatelessWidget {
                     Container(
                       child: buildBuildWithPageNavigation(
                           context,
+                          'assets/images/astigmatism.jpg',
+                          'Astigmatism',
+                          const AstigmatismPage()),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
                           'assets/images/cataract.jpg',
                           'Cataract',
                           const CataractPage()),
@@ -62,16 +72,6 @@ class DiseasesPage extends StatelessWidget {
                           'assets/images/lazyeye.jpg',
                           'Lazy Eye',
                           const LazyEyePage()),
-                    ),
-                    const SizedBox(
-                      height: widgetGap,
-                    ),
-                    Container(
-                      child: buildBuildWithPageNavigation(
-                          context,
-                          'assets/images/astigmatism.jpg',
-                          'Astigmatism',
-                          const AstigmatismPage()),
                     ),
                     const SizedBox(
                       height: widgetGap,
