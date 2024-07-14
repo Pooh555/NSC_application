@@ -6,10 +6,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 
-class ScanRoute extends StatefulWidget {
-  const ScanRoute({super.key, required this.title});
+double width = 0;
 
-  final String title;
+class ScanRoute extends StatefulWidget {
+  const ScanRoute({super.key});
 
   @override
   ScanRouteState createState() => ScanRouteState();
@@ -107,29 +107,18 @@ class ScanRouteState extends State<ScanRoute> {
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: currentTheme.textColor_1,
         ),
-        title: Text(
-          widget.title,
-          style: TextStyle(
-            fontSize: 30,
-            color: currentTheme.textColor_1,
-            fontWeight: FontWeight.bold,
-          ),
+        title: const Text(
+          "Scan Your Eye",
         ),
       ),
       body: Stack(children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/wallpaper/abstract.2.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
         SingleChildScrollView(
           padding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).size.height / 3),
@@ -178,8 +167,23 @@ class ScanRouteState extends State<ScanRoute> {
                             ),
                           );
                         },
-                        icon: const Icon(Icons.cloud_upload),
-                        label: const Text("Upload Image"),
+                        icon: Icon(
+                          Icons.cloud_upload,
+                          size: 35,
+                          color: AppTheme.textColor_3,
+                        ),
+                        label: RichText(
+                          text: buildTextWithShadow(
+                              'Upload Image',
+                              useFontFamily,
+                              fontSize_4,
+                              AppTheme.textColor_3,
+                              0.4),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: currentTheme
+                              .color_3, // Use the button color from widget
+                        ),
                       ),
                 const SizedBox(height: 20),
                 Text(
@@ -190,7 +194,6 @@ class ScanRouteState extends State<ScanRoute> {
                     fontSize: 20,
                   ),
                 ),
-                const SizedBox(height: 20),
                 /*
                 if (message == 'cataract' ||
                     message == 'cataract' ||
@@ -234,19 +237,42 @@ class ScanRouteState extends State<ScanRoute> {
           ),
         ),
       ]),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FloatingActionButton(
-            onPressed: getImage,
-            tooltip: "Select Image",
-            child: const Icon(Icons.photo),
+          Padding(
+            padding: const EdgeInsets.only(left: 30.0),
+            child: SizedBox(
+              width: 75,
+              height: 75,
+              child: FloatingActionButton(
+                onPressed: getImage,
+                tooltip: "Select Image",
+                backgroundColor: currentTheme.color_3,
+                heroTag: "btn1",
+                child: Icon(Icons.photo,
+                    size: 35,
+                    color: AppTheme
+                        .textColor_3), // Ensure different hero tags for different FABs
+              ),
+            ),
           ),
-          const SizedBox(height: 10),
-          FloatingActionButton(
-            onPressed: getImagefromcam,
-            tooltip: "Take a Photo",
-            child: const Icon(Icons.camera_alt),
+          Padding(
+            padding: EdgeInsets.only(left: width - 185),
+            child: SizedBox(
+              width: 75,
+              height: 75,
+              child: FloatingActionButton(
+                onPressed: getImagefromcam,
+                tooltip: "Take a Photo",
+                backgroundColor: currentTheme.color_3,
+                heroTag: "btn2",
+                child: Icon(Icons.camera_alt,
+                    size: 35,
+                    color: AppTheme
+                        .textColor_3), // Ensure different hero tags for different FABs
+              ),
+            ),
           ),
         ],
       ),
