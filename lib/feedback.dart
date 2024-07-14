@@ -37,7 +37,7 @@ class FeedbackPageState extends State<FeedbackPage> {
         children: [
           const SizedBox(height: 50),
           Text(
-            'We appreciate every suggestion you provide.\nYou can provide us suggestions via this link\nhttps://forms.gle/EkZFwbob37mirj698',
+            'We appreciate every suggestion you provide.\nYou can provide us suggestions via this link\n\nhttps://forms.gle/EkZFwbob37mirj698',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
