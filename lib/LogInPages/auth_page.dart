@@ -20,7 +20,7 @@ class AuthPage extends StatelessWidget {
           if (snapshot.data?.emailVerified == true) {
             return HomePage(camera: camera);
           }
-          return Verificationscreen();
+          return const Verificationscreen();
         } else {
           return const LoginOrRegisterPage();
         }

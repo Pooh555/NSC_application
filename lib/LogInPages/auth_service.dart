@@ -9,7 +9,7 @@ class AuthService {
     try {
       await _auth.currentUser?.sendEmailVerification();
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
