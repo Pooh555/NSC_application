@@ -281,7 +281,7 @@ class ChatBotPageState extends State<ChatBotPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChatBotWarningPage(theme: theme),
+                  builder: (context) => const ChatBotUsageWarningPage(),
                 ),
               );
             },

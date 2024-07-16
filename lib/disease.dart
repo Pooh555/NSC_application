@@ -2,14 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:nsc/home.dart';
 
-class ConjunctivitisPage extends StatefulWidget {
-  const ConjunctivitisPage({super.key});
+class DiseasePage extends StatefulWidget {
+  const DiseasePage(
+      {super.key,
+      required this.title,
+      required this.infoPath,
+      required this.imagePath_1,
+      required this.imagePath_2,
+      required this.imagePath_3});
+
+  final String title;
+  final String infoPath;
+  final String imagePath_1;
+  final String imagePath_2;
+  final String imagePath_3;
 
   @override
-  ConjunctivitisPageState createState() => ConjunctivitisPageState();
+  _DiseasePageState createState() => _DiseasePageState();
 }
 
-class ConjunctivitisPageState extends State<ConjunctivitisPage> {
+class _DiseasePageState extends State<DiseasePage> {
   AppTheme currentTheme = AppTheme(theme);
   late Future<String> _textFromFile;
 
@@ -20,7 +32,7 @@ class ConjunctivitisPageState extends State<ConjunctivitisPage> {
   }
 
   Future<String> _loadTextFromFile() async {
-    return await rootBundle.loadString('assets/text/conjunctivitis.txt');
+    return await rootBundle.loadString(widget.infoPath);
   }
 
   @override
@@ -29,7 +41,7 @@ class ConjunctivitisPageState extends State<ConjunctivitisPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Conjunctivitis'),
+        title: Text(widget.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -58,15 +70,15 @@ class ConjunctivitisPageState extends State<ConjunctivitisPage> {
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/conjunctivitis_1.jpg"),
+            buildInkWellWithImageAndText(widget.imagePath_1),
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/conjunctivitis_2.jpg"),
+            buildInkWellWithImageAndText(widget.imagePath_2),
             const SizedBox(
               height: 25,
             ),
-            buildInkWellWithImageAndText("assets/images/conjunctivitis_3.jpg"),
+            buildInkWellWithImageAndText(widget.imagePath_3),
           ],
         ),
       ),

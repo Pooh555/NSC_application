@@ -49,6 +49,11 @@ dependencies:
   http: ^1.2.1
   provider: ^6.0.0
   google_maps_flutter: ^2.1.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  image_path: "assets/images/app_icon.png"
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +80,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/config.json
+     - assets/images/app_icon.png
      - assets/images/profile.jpg
      - assets/images/image_1.jpg
      - assets/images/image_2.jpg
@@ -82,6 +88,14 @@ flutter:
      - assets/images/image_4.jpg
      - assets/images/image_5.jpg
      - assets/images/chatbot.jpg
+     - assets/images/AMD.jpg
+     - assets/images/AMD_1.jpg
+     - assets/images/AMD_2.jpg
+     - assets/images/AMD_3.png
+     - assets/images/astigmatism.jpg
+     - assets/images/astigmatism_1.jpg
+     - assets/images/astigmatism_2.jpg
+     - assets/images/astigmatism_3.jpg
      - assets/images/cataract.jpg
      - assets/images/cataract_1.jpg
      - assets/images/cataract_2.png
@@ -94,12 +108,21 @@ flutter:
      - assets/images/glaucoma_2.jpg
      - assets/images/glaucoma_3.jpg
      - assets/images/glaucoma.jpg
+     - assets/images/lazyeye.jpg
+     - assets/images/lazyeye_1.jpg
+     - assets/images/lazyeye_2.jpg
+     - assets/images/lazyeye_3.jpg
      - assets/images/feedbackQR.jpg
      - assets/images/apple.png
      - assets/images/google.png
+     - assets/text/AMD.txt
+     - assets/text/astigmatism.txt
      - assets/text/cataract.txt
      - assets/text/conjunctivitis.txt
+     - assets/text/disclaimer.txt
      - assets/text/glaucoma.txt
+     - assets/text/lazyeye.txt
+     - assets/text/chatbotwarning.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

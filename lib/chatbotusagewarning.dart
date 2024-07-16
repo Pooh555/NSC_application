@@ -1,26 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:nsc/chatbot.dart';
 import 'package:nsc/home.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
-class ChatBotWarningPage extends StatelessWidget {
-  const ChatBotWarningPage({super.key, required String theme});
+class ChatBotUsageWarningPage extends StatefulWidget {
+  const ChatBotUsageWarningPage({super.key});
+
+  @override
+  _ChatBotUsageWarningPage createState() => _ChatBotUsageWarningPage();
+}
+
+class _ChatBotUsageWarningPage extends State<ChatBotUsageWarningPage> {
+  AppTheme currentTheme = AppTheme(theme);
+  late Future<String> _textFromFile;
+
+  @override
+  void initState() {
+    super.initState();
+    _textFromFile = _loadTextFromFile();
+  }
+
+  Future<String> _loadTextFromFile() async {
+    return await rootBundle.loadString('assets/text/chatbotwarning.txt');
+  }
 
   @override
   Widget build(BuildContext context) {
+    AppTheme currentTheme = AppTheme(theme);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chatbot usage precautious'),
+        title: const Text('Chatbot Usage Cautious'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: RichText(
-          textAlign: TextAlign.left,
-          text: buildTextWithShadow(
-              'Gemini may display inaccurate info, including about people, so double-check its responses. Find out more at https://support.google.com/gemini/answer/13594961?visit_id=638547562061438594-2589289274&p=privacy_help&rd=1\n\nIf you are concern about your health, please contact medical professionals ',
-              useFontFamily,
-              fontSize_3,
-              currentTheme.textColor_1,
-              0.2),
+        padding: const EdgeInsets.all(15.0),
+        child: ListView(
+          children: [
+            FutureBuilder<String>(
+              future: _textFromFile,
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  return RichText(
+                    text: buildTextWithShadow(
+                      snapshot.data ?? '',
+                      useFontFamily,
+                      fontSize_4,
+                      currentTheme.textColor_1,
+                      0.2,
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
         ),
       ),
     );

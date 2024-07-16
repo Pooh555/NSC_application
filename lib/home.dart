@@ -120,6 +120,8 @@ class _MyHomePageState extends State<HomePage> {
     });
   }
 
+  Language currentLanguage = Language("english");
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -178,22 +180,22 @@ class _MyHomePageState extends State<HomePage> {
                           child: buildRowWidget(
                               0.0,
                               'assets/images/image_2.jpg',
-                              'Know\nThe\nDisease',
+                              currentLanguage.homePageText_9,
                               const DiseasesPage(),
                               20.0,
                               'assets/images/image_3.jpg',
-                              'Contact\nThe\nDoctor',
+                              currentLanguage.homePageText_10,
                               const DoctorPage())),
                       Padding(
                           padding: const EdgeInsets.only(top: 18),
                           child: buildRowWidget(
                               0.0,
                               'assets/images/image_4.jpg',
-                              'Contact\nHospital',
+                              currentLanguage.homePageText_11,
                               const HospitalPage(),
                               20.0,
                               'assets/images/image_5.jpg',
-                              'Contact\nAnd\nFeedback',
+                              currentLanguage.homePageText_12,
                               const FeedbackPage(
                                 title: 'This is a feedback page',
                               ))),
@@ -373,8 +375,8 @@ class _MyHomePageState extends State<HomePage> {
                 child: Center(
                   child: RichText(
                     textAlign: TextAlign.center,
-                    text: buildTextWithShadow('Scan Your Eye', useFontFamily,
-                        fontSize_2, AppTheme.textColor_2, 0.5),
+                    text: buildTextWithShadow(currentLanguage.homePageText_8,
+                        useFontFamily, fontSize_2, AppTheme.textColor_2, 0.5),
                   ),
                 ),
               ),
@@ -518,7 +520,7 @@ class _MyHomePageState extends State<HomePage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        text: "Take care\n",
+        text: '${currentLanguage.homePageText_1}\n',
         style: TextStyle(
           fontFamily: fontFamily,
           fontWeight: FontWeight.w600,
@@ -528,7 +530,7 @@ class _MyHomePageState extends State<HomePage> {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: 'of your vision',
+            text: currentLanguage.homePageText_2,
             style: TextStyle(
               fontFamily: fontFamily,
               fontWeight: FontWeight.w100,
