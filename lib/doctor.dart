@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nsc/chatbot.dart';
 import 'package:nsc/home.dart';
 
 class DoctorPage extends StatelessWidget {
@@ -15,11 +14,11 @@ class DoctorPage extends StatelessWidget {
       ),
       body: Center(
         child: RichText(
-          textAlign: TextAlign.left,
+          textAlign: TextAlign.center,
           text: buildTextWithShadow(
-              'This feature is still being developed.\nWe apologize for the inconvenience.\n:()',
+              'This feature is still being developed.\nWe apologize for the inconvenience.\n:(',
               useFontFamily,
-              fontSize_4,
+              fontSize_3,
               currentTheme.textColor_1,
               0.2),
         ),

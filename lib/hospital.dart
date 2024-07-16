@@ -1,35 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
-class HospitalPage extends StatefulWidget {
-  const HospitalPage({super.key});
-
-  @override
-  _HospitalPageState createState() => _HospitalPageState();
-}
-
-class _HospitalPageState extends State<HospitalPage> {
-  late GoogleMapController mapController;
-
-  final LatLng _center = const LatLng(37.7749, -122.4194);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
+class HospitalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hospital Page'),
+    return FlutterMap(
+      options: const MapOptions(
+        initialCenter: LatLng(13.7563, 100.5018),
+        initialZoom: 15.0,
       ),
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 11.0,
+      children: [
+        TileLayer(
+          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          userAgentPackageName: 'com.example.app',
         ),
-      ),
+      ],
     );
   }
 }

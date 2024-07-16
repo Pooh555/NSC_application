@@ -192,7 +192,7 @@ class _MyHomePageState extends State<HomePage> {
                               0.0,
                               'assets/images/image_4.jpg',
                               currentLanguage.homePageText_11,
-                              const HospitalPage(),
+                              HospitalPage(),
                               20.0,
                               'assets/images/image_5.jpg',
                               currentLanguage.homePageText_12,
@@ -401,7 +401,7 @@ class _MyHomePageState extends State<HomePage> {
     const ScanRoute(),
     DiseasesPage(),
     DoctorPage(),
-    const HospitalPage(),
+    HospitalPage(),
     const FeedbackPage(
       title: 'This is a feedback page',
     ),
