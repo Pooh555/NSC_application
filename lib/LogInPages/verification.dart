@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nsc/LogInPages/auth_page.dart';
 import 'package:nsc/LogInPages/auth_service.dart';
+import 'package:nsc/home.dart';
 
 class Verificationscreen extends StatelessWidget {
   const Verificationscreen({super.key});
@@ -29,13 +30,13 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  AppTheme currentTheme = AppTheme(theme);
   late final CameraDescription camera;
   final _auth = AuthService();
   late Timer timer;
   void initstate() {
     super.initState();
     _auth.sendEmailVerificationLink();
-    timer = Timer.periodic(const Duration(seconds: 5), (timer) {});
     FirebaseAuth.instance.currentUser?.reload();
     if (FirebaseAuth.instance.currentUser!.emailVerified == true) {
       timer.cancel();
