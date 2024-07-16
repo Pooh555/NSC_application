@@ -100,6 +100,10 @@ flutter:
      - assets/images/BCD_1.jpg
      - assets/images/BCD_2.jpg
      - assets/images/BCD_3.jpg
+     - assets/images/blepharitis.jpg
+     - assets/images/blepharitis_1.jpg
+     - assets/images/blepharitis_2.jpg
+     - assets/images/blepharitis_3.jpg
      - assets/images/cataract.jpg
      - assets/images/cataract_1.jpg
      - assets/images/cataract_2.png
@@ -122,6 +126,7 @@ flutter:
      - assets/text/AMD.txt
      - assets/text/astigmatism.txt
      - assets/text/BCD.txt
+     - assets/text/blepharitis.txt
      - assets/text/cataract.txt
      - assets/text/conjunctivitis.txt
      - assets/text/disclaimer.txt

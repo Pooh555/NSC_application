@@ -73,6 +73,22 @@ class DiseasesPage extends StatelessWidget {
                     Container(
                       child: buildBuildWithPageNavigation(
                           context,
+                          'assets/images/blepharitis.jpg',
+                          'Blepharitis',
+                          const DiseasePage(
+                              title: 'Blepharitis',
+                              infoPath: 'assets/text/blepharitis.txt',
+                              imagePath_1: 'assets/images/blepharitis_1.jpg',
+                              imagePath_2: 'assets/images/blepharitis_2.jpg',
+                              imagePath_3: 'assets/images/blepharitis_3.jpg'),
+                          "Caused by bacteria on your eyelids |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
                           'assets/images/cataract.jpg',
                           'Cataract',
                           const DiseasePage(
@@ -177,7 +193,7 @@ class DiseasesPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
                     child: RichText(
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
                       text: buildTextWithShadow(description, useFontFamily,
                           fontSize_4, AppTheme.textColor_2, 0.5),
                     ),

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nsc/LogInPages/auth_page.dart';
 import 'package:nsc/LogInPages/auth_service.dart';
+import 'package:nsc/LogInPages/login_page.dart';
 import 'package:nsc/home.dart';
 
 class Verificationscreen extends StatelessWidget {
@@ -46,11 +47,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   Future<void> checkEmailVerified() async {
     await FirebaseAuth.instance.currentUser?.reload();
-    if (FirebaseAuth.instance.currentUser!.emailVerified) {
+    if (FirebaseAuth.instance.currentUser!.emailVerified == true) {
       timer.cancel();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => AuthPage(camera: camera)),
+        MaterialPageRoute(builder: (context) => LoginPage(onTap: togglePages)),
       );
     }
   }
@@ -59,6 +60,15 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   void dispose() {
     timer.cancel();
     super.dispose();
+  }
+
+  bool showLoginPage = true;
+
+  //between login&register
+  void togglePages() {
+    setState(() {
+      showLoginPage = !showLoginPage;
+    });
   }
 
   @override
@@ -86,6 +96,16 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 child: const Text('Resend Verification Email'),
               ),
               const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LoginPage(onTap: togglePages)),
+                  );
+                },
+                child: const Text('Back to Authentication page'),
+              ),
             ],
           ),
         ),

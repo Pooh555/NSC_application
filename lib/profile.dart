@@ -95,6 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
+          /*
           const SizedBox(height: 20),
           Center(
             child: Column(
@@ -115,6 +116,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
+          */
           const SizedBox(height: 20),
           SizedBox(
             width: 100,
