@@ -183,6 +183,38 @@ class DiseasesPage extends StatelessWidget {
                           "An abnormal visual development early in life |"),
                     ),
                     const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/uveitis.jpg',
+                          'Uveitis',
+                          const DiseasePage(
+                              title: 'Uveitis',
+                              infoPath: 'assets/text/uveitis.txt',
+                              imagePath_1: 'assets/images/uveitis_1.jpg',
+                              imagePath_2: 'assets/images/uveitis_2.jpg',
+                              imagePath_3: 'assets/images/uveitis_3.jpg'),
+                          "The inflammation usually happens an infection occurs. |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/VD.jpg',
+                          'Vitreous Detachment',
+                          const DiseasePage(
+                              title: 'Vitreous Detachment',
+                              infoPath: 'assets/text/VD.txt',
+                              imagePath_1: 'assets/images/VD_1.jpg',
+                              imagePath_2: 'assets/images/VD_2.jpg',
+                              imagePath_3: 'assets/images/VD_3.jpg'),
+                          "The vitreous is the gel-like fluid that fills your eye. |"),
+                    ),
+                    const SizedBox(
                       height: widgetGap + 75,
                     ),
                   ],

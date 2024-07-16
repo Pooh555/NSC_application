@@ -130,6 +130,14 @@ flutter:
      - assets/images/lazyeye_1.jpg
      - assets/images/lazyeye_2.jpg
      - assets/images/lazyeye_3.jpg
+     - assets/images/uveitis.jpg
+     - assets/images/uveitis_1.jpg
+     - assets/images/uveitis_2.jpg
+     - assets/images/uveitis_3.jpg
+     - assets/images/VD.jpg
+     - assets/images/VD_1.jpg
+     - assets/images/VD_2.jpg
+     - assets/images/VD_3.jpg
      - assets/images/feedbackQR.jpg
      - assets/images/apple.png
      - assets/images/google.png
@@ -144,6 +152,8 @@ flutter:
      - assets/text/disclaimer.txt
      - assets/text/glaucoma.txt
      - assets/text/lazyeye.txt
+     - assets/text/uveitis.txt
+     - assets/text/VD.txt
      - assets/text/chatbotwarning.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
