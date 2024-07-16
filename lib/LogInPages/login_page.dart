@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'Welcome back you\'ve been missed!\nYou may need to restart the app after you sign in for the first time.\nOr continue with dev email:\nusrname: ncopterpaul@gmail.com\npwd: 12345678',
+                    'Welcome back you\'ve been missed!\nYou may need to restart the app after you sign in for the first time.\nOr continue with dev email:\nusername: copterpaul@gmail.com\npwd: 12345678',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[700],
