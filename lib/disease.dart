@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:nsc/chatbot.dart';
 import 'package:nsc/home.dart';
 
 class DiseasePage extends StatefulWidget {
@@ -43,43 +44,126 @@ class _DiseasePageState extends State<DiseasePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ListView(
-          children: [
-            FutureBuilder<String>(
-              future: _textFromFile,
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return RichText(
-                    text: buildTextWithShadow(
-                      snapshot.data ?? '',
-                      useFontFamily,
-                      fontSize_4,
-                      currentTheme.textColor_1,
-                      0.2,
-                    ),
-                  );
-                }
-              },
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: ListView(
+              children: [
+                FutureBuilder<String>(
+                  future: _textFromFile,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      return RichText(
+                        text: buildTextWithShadow(
+                          snapshot.data ?? '',
+                          useFontFamily,
+                          fontSize_4,
+                          currentTheme.textColor_1,
+                          0.2,
+                        ),
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                buildInkWellWithImageAndText(widget.imagePath_1),
+                const SizedBox(
+                  height: 25,
+                ),
+                buildInkWellWithImageAndText(widget.imagePath_2),
+                const SizedBox(
+                  height: 25,
+                ),
+                buildInkWellWithImageAndText(widget.imagePath_3),
+                const SizedBox(
+                  height: 75,
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 25,
+          ),
+          buildChatBotWidget(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildChatBotWidget() {
+    return Stack(
+      children: [
+        Positioned(
+          bottom: 30,
+          right: 20, // Adjusted from 15 to 20
+          child: buildChatBotWidget_2(60.0, 300.0),
+        ),
+        Positioned(
+          bottom: 10,
+          right: 20, // Adjusted from 10 to 20
+          child: buildChatBotWidget_1(50.0, 'assets/images/chatbot.jpg'),
+        ),
+      ],
+    );
+  }
+
+  // Build a ChatBot widget that user can interact with
+  Widget buildChatBotWidget_1(double radius, String chatbotPath) {
+    return Builder(
+      // Wrap GestureDetector with Builder (to prevent exception error)
+      builder: (context) => GestureDetector(
+        onTap: () {
+          // Navigate to ProfilePage
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatBotPage(
+                theme: theme,
+              ),
             ),
-            buildInkWellWithImageAndText(widget.imagePath_1),
-            const SizedBox(
-              height: 25,
+          );
+        },
+        // User's profile picture
+        child: CircleAvatar(
+          radius: radius, // Icon size
+          backgroundImage: ExactAssetImage(chatbotPath), // Profile image path
+        ),
+      ),
+    );
+  }
+
+  Widget buildChatBotWidget_2(double height, double width) {
+    return Builder(
+      builder: (context) => SizedBox(
+        width: width,
+        height: height,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: FloatingActionButton(
+            backgroundColor: currentTheme.color_3,
+            onPressed: () {
+              // Navigate to ChatBotPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChatBotPage(theme: theme),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 85),
+              child: RichText(
+                textAlign: TextAlign.left,
+                text: buildTextWithShadow('Ask our chatbot anything...',
+                    useFontFamily, fontSize_4, AppTheme.textColor_3, 0.2),
+              ),
             ),
-            buildInkWellWithImageAndText(widget.imagePath_2),
-            const SizedBox(
-              height: 25,
-            ),
-            buildInkWellWithImageAndText(widget.imagePath_3),
-          ],
+          ),
         ),
       ),
     );

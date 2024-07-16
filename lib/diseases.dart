@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nsc/chatbot.dart';
 import 'package:nsc/disease.dart';
 import 'package:nsc/home.dart';
 
 class DiseasesPage extends StatelessWidget {
-  const DiseasesPage({super.key});
+  DiseasesPage({super.key});
 
+  AppTheme currentTheme = AppTheme(theme);
   static const double widgetGap = 32;
 
   @override
@@ -73,6 +75,22 @@ class DiseasesPage extends StatelessWidget {
                     Container(
                       child: buildBuildWithPageNavigation(
                           context,
+                          'assets/images/blepharitis.jpg',
+                          'Blepharitis',
+                          const DiseasePage(
+                              title: 'Blepharitis',
+                              infoPath: 'assets/text/blepharitis.txt',
+                              imagePath_1: 'assets/images/blepharitis_1.jpg',
+                              imagePath_2: 'assets/images/blepharitis_2.jpg',
+                              imagePath_3: 'assets/images/blepharitis_3.jpg'),
+                          "Caused by bacteria on your eyelids |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
                           'assets/images/cataract.jpg',
                           'Cataract',
                           const DiseasePage(
@@ -133,14 +151,89 @@ class DiseasesPage extends StatelessWidget {
                           "An abnormal visual development early in life |"),
                     ),
                     const SizedBox(
-                      height: widgetGap,
+                      height: widgetGap + 75,
                     ),
                   ],
                 ),
               )
             ],
           ),
+          buildChatBotWidget(),
         ],
+      ),
+    );
+  }
+
+  Widget buildChatBotWidget() {
+    return Stack(
+      children: [
+        Positioned(
+          bottom: 30,
+          right: 20, // Adjusted from 15 to 20
+          child: buildChatBotWidget_2(60.0, 300.0),
+        ),
+        Positioned(
+          bottom: 10,
+          right: 20, // Adjusted from 10 to 20
+          child: buildChatBotWidget_1(50.0, 'assets/images/chatbot.jpg'),
+        ),
+      ],
+    );
+  }
+
+  // Build a ChatBot widget that user can interact with
+  Widget buildChatBotWidget_1(double radius, String chatbotPath) {
+    return Builder(
+      // Wrap GestureDetector with Builder (to prevent exception error)
+      builder: (context) => GestureDetector(
+        onTap: () {
+          // Navigate to ProfilePage
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatBotPage(
+                theme: theme,
+              ),
+            ),
+          );
+        },
+        // User's profile picture
+        child: CircleAvatar(
+          radius: radius, // Icon size
+          backgroundImage: ExactAssetImage(chatbotPath), // Profile image path
+        ),
+      ),
+    );
+  }
+
+  Widget buildChatBotWidget_2(double height, double width) {
+    return Builder(
+      builder: (context) => SizedBox(
+        width: width,
+        height: height,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: FloatingActionButton(
+            backgroundColor: currentTheme.color_3,
+            onPressed: () {
+              // Navigate to ChatBotPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChatBotPage(theme: theme),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 85),
+              child: RichText(
+                textAlign: TextAlign.left,
+                text: buildTextWithShadow('Ask our chatbot anything...',
+                    useFontFamily, fontSize_4, AppTheme.textColor_3, 0.2),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -177,7 +270,7 @@ class DiseasesPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
                     child: RichText(
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
                       text: buildTextWithShadow(description, useFontFamily,
                           fontSize_4, AppTheme.textColor_2, 0.5),
                     ),
