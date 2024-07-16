@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nsc/LogInPages/auth_page.dart';
 import 'package:nsc/LogInPages/auth_service.dart';
 import 'package:nsc/LogInPages/login_page.dart';
 import 'package:nsc/home.dart';

@@ -44,48 +44,53 @@ class _DiseasePageState extends State<DiseasePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ListView(
-          children: [
-            FutureBuilder<String>(
-              future: _textFromFile,
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return RichText(
-                    text: buildTextWithShadow(
-                      snapshot.data ?? '',
-                      useFontFamily,
-                      fontSize_4,
-                      currentTheme.textColor_1,
-                      0.2,
-                    ),
-                  );
-                }
-              },
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: ListView(
+              children: [
+                FutureBuilder<String>(
+                  future: _textFromFile,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      return RichText(
+                        text: buildTextWithShadow(
+                          snapshot.data ?? '',
+                          useFontFamily,
+                          fontSize_4,
+                          currentTheme.textColor_1,
+                          0.2,
+                        ),
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                buildInkWellWithImageAndText(widget.imagePath_1),
+                const SizedBox(
+                  height: 25,
+                ),
+                buildInkWellWithImageAndText(widget.imagePath_2),
+                const SizedBox(
+                  height: 25,
+                ),
+                buildInkWellWithImageAndText(widget.imagePath_3),
+                const SizedBox(
+                  height: 75,
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 25,
-            ),
-            buildInkWellWithImageAndText(widget.imagePath_1),
-            const SizedBox(
-              height: 25,
-            ),
-            buildInkWellWithImageAndText(widget.imagePath_2),
-            const SizedBox(
-              height: 25,
-            ),
-            buildInkWellWithImageAndText(widget.imagePath_3),
-            const SizedBox(
-              height: 25,
-            ),
-            buildChatBotWidget(),
-          ],
-        ),
+          ),
+          buildChatBotWidget(),
+        ],
       ),
     );
   }

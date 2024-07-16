@@ -151,7 +151,7 @@ class DiseasesPage extends StatelessWidget {
                           "An abnormal visual development early in life |"),
                     ),
                     const SizedBox(
-                      height: widgetGap,
+                      height: widgetGap + 75,
                     ),
                   ],
                 ),
