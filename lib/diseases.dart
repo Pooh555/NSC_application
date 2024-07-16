@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nsc/disease.dart';
-import 'package:nsc/disease_pages/cataract.dart';
-import 'package:nsc/disease_pages/conjunctivitis.dart';
-import 'package:nsc/disease_pages/glaucoma.dart';
-import 'package:nsc/disease_pages/lazyeye.dart';
 import 'package:nsc/home.dart';
 
 class DiseasesPage extends StatelessWidget {
@@ -46,7 +42,12 @@ class DiseasesPage extends StatelessWidget {
                           context,
                           'assets/images/cataract.jpg',
                           'Cataract',
-                          const CataractPage()),
+                          const DiseasePage(
+                              title: 'Cataract',
+                              infoPath: 'assets/text/cataract.txt',
+                              imagePath_1: 'assets/images/cataract_1.jpg',
+                              imagePath_2: 'assets/images/cataract_2.png',
+                              imagePath_3: 'assets/images/cataract_3.jpg')),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -56,7 +57,13 @@ class DiseasesPage extends StatelessWidget {
                           context,
                           'assets/images/conjunctivitis.jpg',
                           'Conjunctivitis',
-                          const ConjunctivitisPage()),
+                          const DiseasePage(
+                              title: 'Astigmatism',
+                              infoPath: 'assets/text/conjunctivitis.txt',
+                              imagePath_1: 'assets/images/conjunctivitis_1.jpg',
+                              imagePath_2: 'assets/images/conjunctivitis_2.jpg',
+                              imagePath_3:
+                                  'assets/images/conjunctivitis_3.jpg')),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -66,7 +73,12 @@ class DiseasesPage extends StatelessWidget {
                           context,
                           'assets/images/glaucoma.jpg',
                           'Glaucoma',
-                          const GlaucomaPage()),
+                          const DiseasePage(
+                              title: 'Glaucoma',
+                              infoPath: 'assets/text/glaucoma.txt',
+                              imagePath_1: 'assets/images/glaucoma_1.jpg',
+                              imagePath_2: 'assets/images/glaucoma_2.jpg',
+                              imagePath_3: 'assets/images/glaucoma_3.jpg')),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -76,7 +88,12 @@ class DiseasesPage extends StatelessWidget {
                           context,
                           'assets/images/lazyeye.jpg',
                           'Lazy Eye',
-                          const LazyEyePage()),
+                          const DiseasePage(
+                              title: 'Lazy Eye',
+                              infoPath: 'assets/text/lazyeye.txt',
+                              imagePath_1: 'assets/images/lazyeye_1.jpg',
+                              imagePath_2: 'assets/images/lazyeye_2.jpg',
+                              imagePath_3: 'assets/images/lazyeye_3.jpg')),
                     ),
                     const SizedBox(
                       height: widgetGap,
