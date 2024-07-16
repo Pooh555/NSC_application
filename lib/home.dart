@@ -185,7 +185,7 @@ class _MyHomePageState extends State<HomePage> {
                               20.0,
                               'assets/images/image_3.jpg',
                               currentLanguage.homePageText_10,
-                              const DoctorPage())),
+                              DoctorPage())),
                       Padding(
                           padding: const EdgeInsets.only(top: 18),
                           child: buildRowWidget(
@@ -400,7 +400,7 @@ class _MyHomePageState extends State<HomePage> {
   late final List<Widget> imageRoutes = [
     const ScanRoute(),
     DiseasesPage(),
-    const DoctorPage(),
+    DoctorPage(),
     const HospitalPage(),
     const FeedbackPage(
       title: 'This is a feedback page',
