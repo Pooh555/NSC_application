@@ -32,7 +32,8 @@ class DiseasesPage extends StatelessWidget {
                               infoPath: 'assets/text/AMD.txt',
                               imagePath_1: 'assets/images/AMD_1.jpg',
                               imagePath_2: 'assets/images/AMD_2.jpg',
-                              imagePath_3: 'assets/images/AMD_3.png')),
+                              imagePath_3: 'assets/images/AMD_3.png'),
+                          "AMD damages the macular, and causes blurry vision |"),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -47,7 +48,8 @@ class DiseasesPage extends StatelessWidget {
                               infoPath: 'assets/text/astigmatism.txt',
                               imagePath_1: 'assets/images/astigmatism_1.jpg',
                               imagePath_2: 'assets/images/astigmatism_2.jpg',
-                              imagePath_3: 'assets/images/astigmatism_3.jpg')),
+                              imagePath_3: 'assets/images/astigmatism_3.jpg'),
+                          "A common imperfection in the curvature of the eye |"),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -62,7 +64,8 @@ class DiseasesPage extends StatelessWidget {
                               infoPath: 'assets/text/cataract.txt',
                               imagePath_1: 'assets/images/cataract_1.jpg',
                               imagePath_2: 'assets/images/cataract_2.png',
-                              imagePath_3: 'assets/images/cataract_3.jpg')),
+                              imagePath_3: 'assets/images/cataract_3.jpg'),
+                          "A cloudy area in the lens of your eye |"),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -78,7 +81,8 @@ class DiseasesPage extends StatelessWidget {
                               imagePath_1: 'assets/images/conjunctivitis_1.jpg',
                               imagePath_2: 'assets/images/conjunctivitis_2.jpg',
                               imagePath_3:
-                                  'assets/images/conjunctivitis_3.jpg')),
+                                  'assets/images/conjunctivitis_3.jpg'),
+                          "An inflammation or infection of the transparent membrane |"),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -93,7 +97,8 @@ class DiseasesPage extends StatelessWidget {
                               infoPath: 'assets/text/glaucoma.txt',
                               imagePath_1: 'assets/images/glaucoma_1.jpg',
                               imagePath_2: 'assets/images/glaucoma_2.jpg',
-                              imagePath_3: 'assets/images/glaucoma_3.jpg')),
+                              imagePath_3: 'assets/images/glaucoma_3.jpg'),
+                          "Caused by a damage in your optic nerve |"),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -108,7 +113,8 @@ class DiseasesPage extends StatelessWidget {
                               infoPath: 'assets/text/lazyeye.txt',
                               imagePath_1: 'assets/images/lazyeye_1.jpg',
                               imagePath_2: 'assets/images/lazyeye_2.jpg',
-                              imagePath_3: 'assets/images/lazyeye_3.jpg')),
+                              imagePath_3: 'assets/images/lazyeye_3.jpg'),
+                          "An abnormal visual development early in life |"),
                     ),
                     const SizedBox(
                       height: widgetGap,
@@ -124,7 +130,7 @@ class DiseasesPage extends StatelessWidget {
   }
 
   Widget buildInkWellWithImageAndText(
-      String imagePath, String title, VoidCallback onTap) {
+      String imagePath, String title, VoidCallback onTap, String description) {
     AppTheme currentTheme = AppTheme(theme); // Move initialization here
     return InkWell(
       splashColor: currentTheme.color_1,
@@ -140,13 +146,28 @@ class DiseasesPage extends StatelessWidget {
           fit: BoxFit.cover,
           child: Align(
             alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 5.0, left: 15.0),
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: buildTextWithShadow(title, useFontFamily, fontSize_2,
-                    AppTheme.textColor_2, 0.5),
-              ),
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: buildTextWithShadow(title, useFontFamily, fontSize_2,
+                        AppTheme.textColor_2, 0.5),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: buildTextWithShadow(description, useFontFamily,
+                          fontSize_4, AppTheme.textColor_2, 0.5),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
         ),
@@ -155,14 +176,14 @@ class DiseasesPage extends StatelessWidget {
   }
 
   Widget buildBuildWithPageNavigation(BuildContext context, String imagePath,
-      String displayText, Widget pageRoute) {
+      String displayText, Widget pageRoute, String description) {
     return buildInkWellWithImageAndText(
-      imagePath,
-      displayText,
-      () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => pageRoute),
-      ),
-    );
+        imagePath,
+        displayText,
+        () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => pageRoute),
+            ),
+        description);
   }
 }
