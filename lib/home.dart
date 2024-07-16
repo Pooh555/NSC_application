@@ -181,7 +181,7 @@ class _MyHomePageState extends State<HomePage> {
                               0.0,
                               'assets/images/image_2.jpg',
                               currentLanguage.homePageText_9,
-                              const DiseasesPage(),
+                              DiseasesPage(),
                               20.0,
                               'assets/images/image_3.jpg',
                               currentLanguage.homePageText_10,
@@ -399,7 +399,7 @@ class _MyHomePageState extends State<HomePage> {
 // List of page routes for each image
   late final List<Widget> imageRoutes = [
     const ScanRoute(),
-    const DiseasesPage(),
+    DiseasesPage(),
     const DoctorPage(),
     const HospitalPage(),
     const FeedbackPage(
