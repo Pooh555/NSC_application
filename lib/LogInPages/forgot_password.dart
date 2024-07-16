@@ -4,7 +4,7 @@ import 'package:nsc/LogInPages/login_page.dart';
 import 'package:nsc/components/my_textfield.dart';
 
 class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
+  const ForgotPassword({super.key});
 
   @override
   _ForgotPasswordState createState() => _ForgotPasswordState();
