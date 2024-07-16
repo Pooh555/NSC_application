@@ -34,15 +34,31 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   late final CameraDescription camera;
   final _auth = AuthService();
   late Timer timer;
-  void initstate() {
+
+  @override
+  void initState() {
     super.initState();
     _auth.sendEmailVerificationLink();
-    FirebaseAuth.instance.currentUser?.reload();
-    if (FirebaseAuth.instance.currentUser!.emailVerified == true) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      checkEmailVerified();
+    });
+  }
+
+  Future<void> checkEmailVerified() async {
+    await FirebaseAuth.instance.currentUser?.reload();
+    if (FirebaseAuth.instance.currentUser!.emailVerified) {
       timer.cancel();
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => AuthPage(camera: camera)));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => AuthPage(camera: camera)),
+      );
     }
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   @override
