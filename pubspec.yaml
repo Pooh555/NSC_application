@@ -106,6 +106,14 @@ flutter:
      - assets/images/blepharitis_1.jpg
      - assets/images/blepharitis_2.jpg
      - assets/images/blepharitis_3.jpg
+     - assets/images/blepharospasm.jpg
+     - assets/images/blepharospasm_1.jpg
+     - assets/images/blepharospasm_2.jpg
+     - assets/images/blepharospasm_3.jpg
+     - assets/images/CRVO.png
+     - assets/images/CRVO_1.jpg
+     - assets/images/CRVO_2.jpg
+     - assets/images/CRVO_3.jpg
      - assets/images/cataract.jpg
      - assets/images/cataract_1.jpg
      - assets/images/cataract_2.png
@@ -122,6 +130,14 @@ flutter:
      - assets/images/lazyeye_1.jpg
      - assets/images/lazyeye_2.jpg
      - assets/images/lazyeye_3.jpg
+     - assets/images/uveitis.jpg
+     - assets/images/uveitis_1.jpg
+     - assets/images/uveitis_2.jpg
+     - assets/images/uveitis_3.jpg
+     - assets/images/VD.jpg
+     - assets/images/VD_1.jpg
+     - assets/images/VD_2.jpg
+     - assets/images/VD_3.jpg
      - assets/images/feedbackQR.jpg
      - assets/images/apple.png
      - assets/images/google.png
@@ -129,11 +145,15 @@ flutter:
      - assets/text/astigmatism.txt
      - assets/text/BCD.txt
      - assets/text/blepharitis.txt
+     - assets/text/blepharospasm.txt
+     - assets/text/CRVO.txt
      - assets/text/cataract.txt
      - assets/text/conjunctivitis.txt
      - assets/text/disclaimer.txt
      - assets/text/glaucoma.txt
      - assets/text/lazyeye.txt
+     - assets/text/uveitis.txt
+     - assets/text/VD.txt
      - assets/text/chatbotwarning.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see

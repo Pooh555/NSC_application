@@ -91,6 +91,38 @@ class DiseasesPage extends StatelessWidget {
                     Container(
                       child: buildBuildWithPageNavigation(
                           context,
+                          'assets/images/blepharospasm.jpg',
+                          'Blepharospasm',
+                          const DiseasePage(
+                              title: 'Blepharospasm',
+                              infoPath: 'assets/text/blepharospasm.txt',
+                              imagePath_1: 'assets/images/blepharospasm_1.jpg',
+                              imagePath_2: 'assets/images/blepharospasm_2.jpg',
+                              imagePath_3: 'assets/images/blepharospasm_3.jpg'),
+                          "Uncontrolled eyelid movements, like twitching |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/CRVO.png',
+                          'CRVO',
+                          const DiseasePage(
+                              title: 'Central Retinal Vein Occlusion (CRVO)',
+                              infoPath: 'assets/text/CRVO.txt',
+                              imagePath_1: 'assets/images/CRVO_1.jpg',
+                              imagePath_2: 'assets/images/CRVO_2.jpg',
+                              imagePath_3: 'assets/images/CRVO_3.jpg'),
+                          "An eye condition that affects the retina |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
                           'assets/images/cataract.jpg',
                           'Cataract',
                           const DiseasePage(
@@ -149,6 +181,38 @@ class DiseasesPage extends StatelessWidget {
                               imagePath_2: 'assets/images/lazyeye_2.jpg',
                               imagePath_3: 'assets/images/lazyeye_3.jpg'),
                           "An abnormal visual development early in life |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/uveitis.jpg',
+                          'Uveitis',
+                          const DiseasePage(
+                              title: 'Uveitis',
+                              infoPath: 'assets/text/uveitis.txt',
+                              imagePath_1: 'assets/images/uveitis_1.jpg',
+                              imagePath_2: 'assets/images/uveitis_2.jpg',
+                              imagePath_3: 'assets/images/uveitis_3.jpg'),
+                          "The inflammation usually happens an infection occurs. |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
+                          'assets/images/VD.jpg',
+                          'Vitreous Detachment',
+                          const DiseasePage(
+                              title: 'Vitreous Detachment',
+                              infoPath: 'assets/text/VD.txt',
+                              imagePath_1: 'assets/images/VD_1.jpg',
+                              imagePath_2: 'assets/images/VD_2.jpg',
+                              imagePath_3: 'assets/images/VD_3.jpg'),
+                          "The vitreous is the gel-like fluid that fills your eye. |"),
                     ),
                     const SizedBox(
                       height: widgetGap + 75,
