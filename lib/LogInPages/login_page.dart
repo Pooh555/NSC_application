@@ -76,11 +76,15 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 10),
 
                 // welcome back, you've been missed!
-                Text(
-                  'Welcome back you\'ve been missed!',
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 16,
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    'Welcome back you\'ve been missed!\nYou may need to restart the app after you sign in for the first time.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 16,
+                    ),
                   ),
                 ),
 
@@ -129,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                const SizedBox(height: 15),
 
                 // sign in button
                 MyButton(
@@ -137,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: signUserIn,
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 10),
 
                 // or continue with
                 Padding(
@@ -168,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
 
                 // google + apple sign in buttons
                 Row(
