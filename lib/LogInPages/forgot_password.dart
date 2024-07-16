@@ -36,7 +36,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               const Text("Enter email to send you a password reset email"),
               const SizedBox(height: 20),
               MyTextField(
-                controller: _email, // Use TextEditingController instance
+                controller: _email,
                 hintText: "Enter your email",
                 obscureText: false,
               ),
