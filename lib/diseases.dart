@@ -25,6 +25,21 @@ class DiseasesPage extends StatelessWidget {
                     Container(
                       child: buildBuildWithPageNavigation(
                           context,
+                          'assets/images/AMD.jpg',
+                          'AMD',
+                          const DiseasePage(
+                              title: 'Age-related Macular Degeneration (AMD)',
+                              infoPath: 'assets/text/AMD.txt',
+                              imagePath_1: 'assets/images/AMD_1.jpg',
+                              imagePath_2: 'assets/images/AMD_2.jpg',
+                              imagePath_3: 'assets/images/AMD_3.png')),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
                           'assets/images/astigmatism.jpg',
                           'Astigmatism',
                           const DiseasePage(

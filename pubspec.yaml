@@ -88,6 +88,10 @@ flutter:
      - assets/images/image_4.jpg
      - assets/images/image_5.jpg
      - assets/images/chatbot.jpg
+     - assets/images/AMD.jpg
+     - assets/images/AMD_1.jpg
+     - assets/images/AMD_2.jpg
+     - assets/images/AMD_3.png
      - assets/images/astigmatism.jpg
      - assets/images/astigmatism_1.jpg
      - assets/images/astigmatism_2.jpg
@@ -111,6 +115,7 @@ flutter:
      - assets/images/feedbackQR.jpg
      - assets/images/apple.png
      - assets/images/google.png
+     - assets/text/AMD.txt
      - assets/text/astigmatism.txt
      - assets/text/cataract.txt
      - assets/text/conjunctivitis.txt
