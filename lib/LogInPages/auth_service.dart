@@ -13,6 +13,14 @@ class AuthService {
     }
   }
 
+  Future<void> sendPasswordResetLink(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      //print(e.toString());
+    }
+  }
+
   signInWithGoogle() async {
     final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
     final GoogleSignInAuthentication gAuth = await gUser!.authentication;
