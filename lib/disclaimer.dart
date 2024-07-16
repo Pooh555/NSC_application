@@ -25,8 +25,6 @@ class _DisclaimerPageState extends State<DisclaimerPage> {
 
   @override
   Widget build(BuildContext context) {
-    AppTheme currentTheme = AppTheme(theme);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Disclaimer'),

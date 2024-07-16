@@ -57,6 +57,22 @@ class DiseasesPage extends StatelessWidget {
                     Container(
                       child: buildBuildWithPageNavigation(
                           context,
+                          'assets/images/BCD.png',
+                          'BCD',
+                          const DiseasePage(
+                              title: 'Bietti\'s Crystalline Dystrophy',
+                              infoPath: 'assets/text/BCD.txt',
+                              imagePath_1: 'assets/images/BCD_1.jpg',
+                              imagePath_2: 'assets/images/BCD_2.jpg',
+                              imagePath_3: 'assets/images/BCD_3.jpg'),
+                          "A rare genetic disease where crystals build up in your cornea  |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
                           'assets/images/cataract.jpg',
                           'Cataract',
                           const DiseasePage(
