@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nsc/LogInPages/auth_service.dart';
 import 'package:nsc/LogInPages/login_page.dart';
 import 'package:nsc/components/my_textfield.dart';
-import 'package:nsc/home.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -12,13 +11,12 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
-  AppTheme currentTheme = AppTheme(theme);
   final _auth = AuthService();
   final TextEditingController _email = TextEditingController();
 
   bool showLoginPage = true;
 
-  //between login&register
+  // Toggle between login & register pages
   void togglePages() {
     setState(() {
       showLoginPage = !showLoginPage;
@@ -38,7 +36,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               const Text("Enter email to send you a password reset email"),
               const SizedBox(height: 20),
               MyTextField(
-                controller: _email.text,
+                controller: _email, // Use TextEditingController instance
                 hintText: "Enter your email",
                 obscureText: false,
               ),
@@ -47,14 +45,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 onPressed: () async {
                   await _auth.sendPasswordResetLink(_email.text);
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text(
-                          "An email for password reset has been sent to your email.")));
+                    content: Text(
+                        "An email for password reset has been sent to your email."),
+                  ));
                   Navigator.pop(context);
                 },
                 child: const Text('Send Reset Email'),
               ),
               ElevatedButton(
-                onPressed: () async {
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(

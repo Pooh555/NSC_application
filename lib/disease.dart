@@ -84,7 +84,7 @@ class _DiseasePageState extends State<DiseasePage> {
                 ),
                 buildInkWellWithImageAndText(widget.imagePath_3),
                 const SizedBox(
-                  height: 75,
+                  height: 100,
                 ),
               ],
             ),
