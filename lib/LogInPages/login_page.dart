@@ -69,15 +69,11 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 30),
-
                 // logo
-                const Icon(
-                  Icons.lock,
-                  size: 50,
-                ),
+                Image.asset("assets/images/app_icon.png",
+                    width: 150.0, height: 150.0),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 10),
 
                 // welcome back, you've been missed!
                 Text(
