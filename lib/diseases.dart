@@ -107,6 +107,22 @@ class DiseasesPage extends StatelessWidget {
                     Container(
                       child: buildBuildWithPageNavigation(
                           context,
+                          'assets/images/CRVO.png',
+                          'CRVO',
+                          const DiseasePage(
+                              title: 'Central Retinal Vein Occlusion (CRVO)',
+                              infoPath: 'assets/text/CRVO.txt',
+                              imagePath_1: 'assets/images/CRVO_1.jpg',
+                              imagePath_2: 'assets/images/CRVO_2.jpg',
+                              imagePath_3: 'assets/images/CRVO_3.jpg'),
+                          "An eye condition that affects the retina |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
                           'assets/images/cataract.jpg',
                           'Cataract',
                           const DiseasePage(

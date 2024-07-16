@@ -110,6 +110,10 @@ flutter:
      - assets/images/blepharospasm_1.jpg
      - assets/images/blepharospasm_2.jpg
      - assets/images/blepharospasm_3.jpg
+     - assets/images/CRVO.png
+     - assets/images/CRVO_1.jpg
+     - assets/images/CRVO_2.jpg
+     - assets/images/CRVO_3.jpg
      - assets/images/cataract.jpg
      - assets/images/cataract_1.jpg
      - assets/images/cataract_2.png
@@ -134,6 +138,7 @@ flutter:
      - assets/text/BCD.txt
      - assets/text/blepharitis.txt
      - assets/text/blepharospasm.txt
+     - assets/text/CRVO.txt
      - assets/text/cataract.txt
      - assets/text/conjunctivitis.txt
      - assets/text/disclaimer.txt
