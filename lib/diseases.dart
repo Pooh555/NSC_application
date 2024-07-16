@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nsc/disease_pages/astigmatism.dart';
+import 'package:nsc/disease.dart';
 import 'package:nsc/disease_pages/cataract.dart';
 import 'package:nsc/disease_pages/conjunctivitis.dart';
 import 'package:nsc/disease_pages/glaucoma.dart';
@@ -31,7 +31,12 @@ class DiseasesPage extends StatelessWidget {
                           context,
                           'assets/images/astigmatism.jpg',
                           'Astigmatism',
-                          const AstigmatismPage()),
+                          const DiseasePage(
+                              title: 'Astigmatism',
+                              infoPath: 'assets/text/astigmatism.txt',
+                              imagePath_1: 'assets/images/astigmatism_1.jpg',
+                              imagePath_2: 'assets/images/astigmatism_2.jpg',
+                              imagePath_3: 'assets/images/astigmatism_3.jpg')),
                     ),
                     const SizedBox(
                       height: widgetGap,
