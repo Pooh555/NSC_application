@@ -73,13 +73,13 @@ class _LoginPageState extends State<LoginPage> {
                 Image.asset("assets/images/app_icon.png",
                     width: 150.0, height: 150.0),
 
-                const SizedBox(height: 10),
+                // const SizedBox(height: 10),
 
                 // welcome back, you've been missed!
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'Welcome back you\'ve been missed!\nYou may need to restart the app after you sign in for the first time.',
+                    'Welcome back you\'ve been missed!\nYou may need to restart the app after you sign in for the first time.\nOr continue with dev email:\nusername: copterpaul@gmail.com\npwd: 12345678',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[700],
@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                // const SizedBox(height: 25),
 
                 // username textfield
                 MyTextField(
@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: false,
                 ),
 
-                const SizedBox(height: 10),
+                // const SizedBox(height: 10),
 
                 // password textfield
                 MyTextField(
@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
 
                 // not a member? register now
                 Row(
