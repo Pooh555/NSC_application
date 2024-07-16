@@ -58,7 +58,7 @@ class DiseasesPage extends StatelessWidget {
                           'assets/images/conjunctivitis.jpg',
                           'Conjunctivitis',
                           const DiseasePage(
-                              title: 'Astigmatism',
+                              title: 'Conjunctivitis',
                               infoPath: 'assets/text/conjunctivitis.txt',
                               imagePath_1: 'assets/images/conjunctivitis_1.jpg',
                               imagePath_2: 'assets/images/conjunctivitis_2.jpg',
