@@ -91,6 +91,22 @@ class DiseasesPage extends StatelessWidget {
                     Container(
                       child: buildBuildWithPageNavigation(
                           context,
+                          'assets/images/blepharospasm.jpg',
+                          'Blepharospasm',
+                          const DiseasePage(
+                              title: 'Blepharospasm',
+                              infoPath: 'assets/text/blepharospasm.txt',
+                              imagePath_1: 'assets/images/blepharospasm_1.jpg',
+                              imagePath_2: 'assets/images/blepharospasm_2.jpg',
+                              imagePath_3: 'assets/images/blepharospasm_3.jpg'),
+                          "Uncontrolled eyelid movements, like twitching |"),
+                    ),
+                    const SizedBox(
+                      height: widgetGap,
+                    ),
+                    Container(
+                      child: buildBuildWithPageNavigation(
+                          context,
                           'assets/images/cataract.jpg',
                           'Cataract',
                           const DiseasePage(
