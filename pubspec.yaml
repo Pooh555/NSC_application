@@ -96,6 +96,10 @@ flutter:
      - assets/images/astigmatism_1.jpg
      - assets/images/astigmatism_2.jpg
      - assets/images/astigmatism_3.jpg
+     - assets/images/BCD.png
+     - assets/images/BCD_1.jpg
+     - assets/images/BCD_2.jpg
+     - assets/images/BCD_3.jpg
      - assets/images/cataract.jpg
      - assets/images/cataract_1.jpg
      - assets/images/cataract_2.png
@@ -117,6 +121,7 @@ flutter:
      - assets/images/google.png
      - assets/text/AMD.txt
      - assets/text/astigmatism.txt
+     - assets/text/BCD.txt
      - assets/text/cataract.txt
      - assets/text/conjunctivitis.txt
      - assets/text/disclaimer.txt
