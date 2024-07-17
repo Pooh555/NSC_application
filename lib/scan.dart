@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nsc/disease.dart';
 import 'package:nsc/home.dart';
 import 'package:http/http.dart' as http;
 
@@ -194,36 +195,53 @@ class ScanRouteState extends State<ScanRoute> {
                     fontSize: 20,
                   ),
                 ),
-                /*
-                if (message == 'cataract' ||
-                    message == 'cataract' ||
-                    message == 'conjunctivitis')
+                if (message == 'immature cataract(ต้อกระจกระยะเริ่มต้น)' ||
+                    message == 'mature cataract(ต้อกระจกระยะรุนแรง)' ||
+                    message == 'glaucoma(ต้อหิน)' ||
+                    message == 'conjunctivitis(ตาแดง)')
                   ElevatedButton.icon(
                     onPressed: () {
-                      if (message == 'cataract') {
+                      if (message ==
+                              'immature cataract(ต้อกระจกระยะเริ่มต้น)' ||
+                          message == 'mature cataract(ต้อกระจกระยะรุนแรง)') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const CataractRoute(title: 'Cataract'),
+                            builder: (context) => const DiseasePage(
+                                title: 'Cataract',
+                                infoPath: 'assets/text/cataract.txt',
+                                imagePath_1: 'assets/images/cataract_1.jpg',
+                                imagePath_2: 'assets/images/cataract_2.png',
+                                imagePath_3: 'assets/images/cataract_3.jpg'),
                           ),
                         );
                       }
-                      if (message == 'glaucoma') {
+                      if (message == 'glaucoma(ต้อหิน)') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const GlaucomaRoute(title: 'Glaucoma'),
+                            builder: (context) => const DiseasePage(
+                                title: 'Glaucoma',
+                                infoPath: 'assets/text/glaucoma.txt',
+                                imagePath_1: 'assets/images/glaucoma_1.jpg',
+                                imagePath_2: 'assets/images/glaucoma_2.jpg',
+                                imagePath_3: 'assets/images/glaucoma_3.jpg'),
                           ),
                         );
                       }
-                      if (message == 'conjunctivitis') {
+                      if (message == 'conjunctivitis(ตาแดง)') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ConjunctivitisRoute(
-                                title: 'Conjunctivitis'),
+                            builder: (context) => const DiseasePage(
+                                title: 'Conjunctivitis',
+                                infoPath: 'assets/text/conjunctivitis.txt',
+                                imagePath_1:
+                                    'assets/images/conjunctivitis_1.jpg',
+                                imagePath_2:
+                                    'assets/images/conjunctivitis_2.jpg',
+                                imagePath_3:
+                                    'assets/images/conjunctivitis_3.jpg'),
                           ),
                         );
                       }
@@ -231,7 +249,6 @@ class ScanRouteState extends State<ScanRoute> {
                     icon: const Icon(Icons.arrow_forward),
                     label: const Text("About your disease"),
                   ),
-                  */
               ],
             ),
           ),
