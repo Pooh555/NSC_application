@@ -195,12 +195,15 @@ class ScanRouteState extends State<ScanRoute> {
                     fontSize: 20,
                   ),
                 ),
-                if (message == 'cataract(ต้อกระจก)' ||
+                if (message == 'immature cataract(ต้อกระจกระยะเริ่มต้น)' ||
+                    message == 'mature cataract(ต้อกระจกระยะรุนแรง)' ||
                     message == 'glaucoma(ต้อหิน)' ||
                     message == 'conjunctivitis(ตาแดง)')
                   ElevatedButton.icon(
                     onPressed: () {
-                      if (message == 'cataract(ต้อกระจก)') {
+                      if (message ==
+                              'immature cataract(ต้อกระจกระยะเริ่มต้น)' ||
+                          message == 'mature cataract(ต้อกระจกระยะรุนแรง)') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
