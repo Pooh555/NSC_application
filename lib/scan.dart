@@ -218,11 +218,11 @@ class ScanRouteState extends State<ScanRoute> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => const DiseasePage(
-                                title: 'Lazy Eye',
-                                infoPath: 'assets/text/lazyeye.txt',
-                                imagePath_1: 'assets/images/lazyeye_1.jpg',
-                                imagePath_2: 'assets/images/lazyeye_2.jpg',
-                                imagePath_3: 'assets/images/lazyeye_3.jpg'),
+                                title: 'Glaucoma',
+                                infoPath: 'assets/text/glaucoma.txt',
+                                imagePath_1: 'assets/images/glaucoma_1.jpg',
+                                imagePath_2: 'assets/images/glaucoma_2.jpg',
+                                imagePath_3: 'assets/images/glaucoma_3.jpg'),
                           ),
                         );
                       }
