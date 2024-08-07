@@ -59,18 +59,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Language currentLanguage = Language(currentLanguageStr);
   final user = FirebaseAuth.instance.currentUser!;
-  String language = "english";
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
-  }
-
-  void toggleLanguage() {
-    setState(() {
-      language = language == "english" ? "thai" : "english";
-    });
   }
 
   @override
