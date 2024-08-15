@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nsc/LogInPages/auth_service.dart';
@@ -31,7 +30,6 @@ class EmailVerificationScreen extends StatefulWidget {
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   AppTheme currentTheme = AppTheme(theme);
-  late final CameraDescription camera;
   final _auth = AuthService();
   late Timer timer;
 
@@ -112,3 +110,4 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     );
   }
 }
+

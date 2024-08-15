@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:nsc/LogInPages/login_page.dart';
-
 import 'register_page.dart';
 
 class LoginOrRegisterPage extends StatefulWidget {
-  const LoginOrRegisterPage({super.key});
+   const LoginOrRegisterPage({super.key});
 
   @override
   State<LoginOrRegisterPage> createState() => _LoginOrRegisterPageState();
 }
 
 class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
-  //initialwithLoginPage
+  // Initial with LoginPage
   bool showLoginPage = true;
 
-  //between login&register
+  // Toggle between login & register
   void togglePages() {
     setState(() {
       showLoginPage = !showLoginPage;

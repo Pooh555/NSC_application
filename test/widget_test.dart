@@ -6,22 +6,13 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:camera/camera.dart'; // Import the camera package
 
 import 'package:nsc/home.dart';
 
 void main() {
-  // Mocking the CameraDescription
-  const mockCamera = CameraDescription(
-    name: 'mockCamera',
-    lensDirection: CameraLensDirection.back,
-    sensorOrientation: 0,
-  );
-
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester
-        .pumpWidget(const HomePage(camera: mockCamera)); // Pass the mock camera
+    await tester.pumpWidget(const HomePage()); // Pass the mock camera
 
     // Verify that our initial UI is as expected.
     expect(find.text('Take a picture'),

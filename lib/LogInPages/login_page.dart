@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 // logo
                 Image.asset("assets/images/app_icon.png",
-                    width: 150.0, height: 150.0),
+                    width: 140.0, height: 140.0),
 
                 // const SizedBox(height: 10),
 
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 // const SizedBox(height: 10),
-
+                const SizedBox(height: 10),
                 // password textfield
                 MyTextField(
                   controller: passwordController,
