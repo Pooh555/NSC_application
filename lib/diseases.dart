@@ -3,11 +3,22 @@ import 'package:nsc/chatbot.dart';
 import 'package:nsc/disease.dart';
 import 'package:nsc/home.dart';
 
-class DiseasesPage extends StatelessWidget {
-  DiseasesPage({super.key});
+class DiseasesPage extends StatefulWidget {
+  const DiseasesPage({super.key});
+  
+  @override
+  _DiseasesPageState createState() => _DiseasesPageState();
+}
 
-  AppTheme currentTheme = AppTheme(theme);
+class _DiseasesPageState extends State<DiseasesPage> {
+  late AppTheme currentTheme;
   static const double widgetGap = 32;
+
+  @override
+  void initState() {
+    super.initState();
+    currentTheme = AppTheme(theme);
+  }
 
   @override
   Widget build(BuildContext context) {

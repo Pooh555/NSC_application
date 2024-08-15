@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:nsc/components/my_button.dart';
 import 'package:nsc/home.dart';
 
 class DisclaimerPage extends StatefulWidget {
+
   const DisclaimerPage({super.key});
 
   @override
@@ -10,7 +12,6 @@ class DisclaimerPage extends StatefulWidget {
 }
 
 class _DisclaimerPageState extends State<DisclaimerPage> {
-  AppTheme currentTheme = AppTheme(theme);
   late Future<String> _textFromFile;
 
   @override
@@ -31,28 +32,42 @@ class _DisclaimerPageState extends State<DisclaimerPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: ListView(children: [
-          FutureBuilder<String>(
-            future: _textFromFile,
-            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else {
-                return RichText(
-                  text: buildTextWithShadow(
-                    snapshot.data ?? '',
-                    useFontFamily,
-                    fontSize_4,
-                    AppTheme.textColor_3,
-                    0.2,
-                  ),
-                );
-              }
-            },
-          ),
-        ]),
+        child: FutureBuilder<String>(
+          future: _textFromFile,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return const Center(child: Text('Error loading disclaimer.'));
+            } else if (snapshot.hasData) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text(
+                      snapshot.data!,
+                      style:
+                          const TextStyle(fontSize: 16, color: Colors.black87),
+                    ),
+                    const SizedBox(height: 20),
+                    MyButton(
+                      text: "Sign In",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute( 
+                              builder: (context) =>
+                                  const HomePage(),
+                        ));
+                      },
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return const Center(child: Text('No disclaimer text found.'));
+            }
+          },
+        ),
       ),
     );
   }

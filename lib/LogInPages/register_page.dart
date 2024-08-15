@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nsc/components/my_button.dart';
@@ -8,8 +9,10 @@ import 'auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const RegisterPage({super.key, required this.onTap});
 
+  
+  const RegisterPage({super.key, required this.onTap});
+  
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
@@ -19,10 +22,13 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _ageController = TextEditingController();
 
-  // sign user in method
+  // sign user up method
   void signUserUp() async {
-    //show loading sign
+    // Show loading indicator
     showDialog(
       context: context,
       builder: (context) {
@@ -34,26 +40,56 @@ class _RegisterPageState extends State<RegisterPage> {
 
     try {
       if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
+          
         );
+
+        // Add user details
+        try {
+          await addUserDetails(
+            _firstNameController.text.trim(),
+            _lastNameController.text.trim(),
+            emailController.text.trim(),
+            int.parse(_ageController.text.trim()),
+          );
+        } catch (e) {
+          Navigator.pop(context); // Close loading dialog
+          showErrorMessage("Failed to add user details: $e");
+          return;
+        }
+
         Navigator.pop(context); // Close loading dialog
 
         // Navigate to DisclaimerPage on successful registration
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const DisclaimerPage()),
-        );
+          MaterialPageRoute(builder: (context) => const DisclaimerPage(),
+        ));
       } else {
-        //show error
+        // Show error
         showErrorMessage("Passwords don't match.");
         Navigator.pop(context); // Close loading dialog
       }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context); // Close loading dialog
-      //showErrorMessage
-      showErrorMessage(e.code);
+      // Show error message
+      showErrorMessage(e.message ?? "An error occurred.");
+    }
+  }
+    Future<void> addUserDetails(String firstName, String lastName, String email, int age) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').add({
+        'firstname': firstName,
+        'lastname': lastName,
+        'email': email,
+        'age': age,
+      });
+      print("User added to Firestore: $firstName, $lastName, $email, $age");
+    } catch (e) {
+      print("Failed to add user to Firestore: $e");
+      rethrow; // rethrow the error to be caught in signUserUp method
     }
   }
 
@@ -84,8 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // logo
-                Image.asset("assets/images/app_icon.png",
-                    width: 150.0, height: 150.0),
+                Image.asset("assets/images/app_icon.png", width: 150.0, height: 150.0),
 
                 // welcome back, you've been missed!
                 Text(
@@ -95,17 +130,38 @@ class _RegisterPageState extends State<RegisterPage> {
                     fontSize: 16,
                   ),
                 ),
-
                 const SizedBox(height: 25),
 
-                // username textfield
+                // firstname textfield
+                MyTextField(
+                  controller: _firstNameController,
+                  hintText: 'First Name',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: _lastNameController,
+                  hintText: 'Last Name',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: _ageController,
+                  hintText: 'Age',
+                  obscureText: false,
+                  keyboardType: TextInputType.number, // Added for numeric input
+                ),
+                const SizedBox(height: 20),
+
+                // email textfield
                 MyTextField(
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
+                  keyboardType: TextInputType.emailAddress, // Added for email input
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
 
                 // password textfield
                 MyTextField(
@@ -113,7 +169,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: 'Password',
                   obscureText: true,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 MyTextField(
                   controller: confirmPasswordController,
                   hintText: 'Confirm Password',
@@ -174,9 +230,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     // apple button
                     SquareTile(
-                      onTap: () => {},
+                      onTap: () => {}, // Add functionality if needed
                       imagePath: 'assets/images/apple.png',
-                    )
+                    ),
                   ],
                 ),
 
@@ -202,7 +258,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

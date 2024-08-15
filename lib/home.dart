@@ -1,14 +1,16 @@
 import 'dart:async';
-
-import 'package:camera/camera.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+// Import the carousel_slider package with an alias to avoid conflicts
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
 import 'package:nsc/feedback.dart';
 import 'package:nsc/hospital.dart';
+import 'package:nsc/localization/LocaleProvider.dart';
+import 'package:nsc/localization/app_localizations.dart';
 import 'package:nsc/scan.dart';
+import 'package:provider/provider.dart';
 import 'profile.dart';
 
 // List of images for ScanEye widget
@@ -71,15 +73,13 @@ class AppTheme {
 }
 
 class HomePage extends StatefulWidget {
-  final CameraDescription camera;
-
-  const HomePage({super.key, required this.camera});
+  const HomePage({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   // Initialize theme
   late AppTheme currentTheme;
 
@@ -95,6 +95,12 @@ class _MyHomePageState extends State<HomePage> {
 
   // Timer to change image every 3 seconds
   late Timer _timer;
+
+  void _changeLanguage(String languageCode) {
+    Locale locale = Locale(languageCode);
+    Provider.of<LocaleProvider>(context, listen: false).setLocale(locale);
+    setState(() {});
+  }
 
   void _startTimer() {
     _timer = Timer.periodic(
@@ -145,54 +151,106 @@ class _MyHomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Align(
-                      alignment: Alignment.topLeft,
-                    ),
                     buildProfileWidget('assets/images/profile.jpg', 45.0),
-                    // SwitchTheme button position
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20, left: 220),
-                        child: buildSwitchThemeButton(),
-                      ),
+                    Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 20, left: 190),
+                                child: buildSwitchThemeButton(),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 190),
+                          child: DropdownButton<String>(
+                            value: Localizations.localeOf(context).languageCode,
+                            items: [
+                              DropdownMenuItem(
+                                  value: 'en',
+                                  child: RichText(
+                                      text: const TextSpan(
+                                          text: 'English',
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 95, 95, 95))))),
+                              DropdownMenuItem(
+                                  value: 'th',
+                                  child: RichText(
+                                      text: const TextSpan(
+                                          text: 'ไทย',
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 95, 95, 95))))),
+                            ],
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                _changeLanguage(newValue);
+                              }
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
+
                 // The rest of the Homepage
                 Expanded(
                   // Use ListView for scrollable page
                   child: ListView(
                     children: [
                       Container(
-                        child: buildWelcomeText(useFontFamily),
+                        child: buildWelcomeText(
+                            useFontFamily,
+                            AppLocalizations.of(context)
+                                    ?.translate('WelcomeText_1') ??
+                                'Take Care',
+                            AppLocalizations.of(context)
+                                    ?.translate('WelcomeText_2') ??
+                                'of your visoin'),
                       ),
                       buildMainWidget(),
                       const SizedBox(
                         height: 5,
                       ),
-                      buildScanWidget(),
+                      buildScanWidget(
+                          AppLocalizations.of(context)?.translate('ScanHome') ??
+                              'Scan your Eye'),
                       Padding(
                           padding: const EdgeInsets.only(top: 18),
                           child: buildRowWidget(
                               0.0,
                               'assets/images/image_2.jpg',
-                              "Know\nThe\nDisease",
-                              DiseasesPage(),
+                              AppLocalizations.of(context)
+                                      ?.translate('DiseaseHome') ??
+                                  'Know your disease',
+                              const DiseasesPage(),
                               20.0,
                               'assets/images/image_3.jpg',
-                              "Contact\nThe\nDoctor",
-                              DoctorPage())),
+                              AppLocalizations.of(context)
+                                      ?.translate('DoctorHome') ??
+                                  'Contact Doctor',
+                              const DoctorPage())),
                       Padding(
                           padding: const EdgeInsets.only(top: 18),
                           child: buildRowWidget(
                               0.0,
                               'assets/images/image_4.jpg',
-                              "Contact\nHospital",
+                              AppLocalizations.of(context)
+                                      ?.translate('HospitalHome') ??
+                                  'Contact Hospital',
                               const HospitalPage(),
                               20.0,
                               'assets/images/image_5.jpg',
-                              "Contact\nand\nFeedback",
+                              AppLocalizations.of(context)
+                                      ?.translate('ContactHome') ??
+                                  'Contact And Feedback',
                               const FeedbackPage(
                                 title: 'This is a feedback page',
                               ))),
@@ -201,7 +259,9 @@ class _MyHomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            buildChatBotWidget(),
+            buildChatBotWidget(
+                AppLocalizations.of(context)?.translate('ChatBotHome') ??
+                    'Ask our chatbot anything...'),
           ],
         ),
       ),
@@ -234,13 +294,13 @@ class _MyHomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildChatBotWidget() {
+  Widget buildChatBotWidget(String displayText) {
     return Stack(
       children: [
         Positioned(
           bottom: 30,
           right: 20, // Adjusted from 15 to 20
-          child: buildChatBotWidget_2(60.0, 300.0),
+          child: buildChatBotWidget_2(60.0, 300.0, displayText),
         ),
         Positioned(
           bottom: 10,
@@ -276,11 +336,11 @@ class _MyHomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildChatBotWidget_2(double height, double width) {
+  Widget buildChatBotWidget_2(double height, double width, String displayText) {
     return Builder(
       builder: (context) => SizedBox(
-        width: width,
         height: height,
+        width: width,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: FloatingActionButton(
@@ -298,8 +358,8 @@ class _MyHomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(right: 85),
               child: RichText(
                 textAlign: TextAlign.left,
-                text: buildTextWithShadow('Ask our chatbot anything...',
-                    useFontFamily, fontSize_4, AppTheme.textColor_3, 0.2),
+                text: buildTextWithShadow(displayText, useFontFamily,
+                    fontSize_4, AppTheme.textColor_3, 0.2),
               ),
             ),
           ),
@@ -339,7 +399,7 @@ class _MyHomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildScanWidget() {
+  Widget buildScanWidget(String displayText) {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Align(
@@ -372,7 +432,7 @@ class _MyHomePageState extends State<HomePage> {
                 child: Center(
                   child: RichText(
                     textAlign: TextAlign.center,
-                    text: buildTextWithShadow("Scan Your Eye", useFontFamily,
+                    text: buildTextWithShadow(displayText, useFontFamily,
                         fontSize_2, AppTheme.textColor_2, 0.5),
                   ),
                 ),
@@ -384,27 +444,34 @@ class _MyHomePageState extends State<HomePage> {
     );
   }
 
-  // List of titles for each image
-  final List<String> imageTitles = [
-    'Scan Your Eye',
-    'Know The Disease',
-    'Contact The Doctor',
-    'Contact Hospital',
-    'Contact And Feedback',
-  ];
-
 // List of page routes for each image
   late final List<Widget> imageRoutes = [
     const ScanRoute(),
-    DiseasesPage(),
-    DoctorPage(),
-    HospitalPage(),
+    const DiseasesPage(),
+    const DoctorPage(),
+    const HospitalPage(),
     const FeedbackPage(
       title: 'This is a feedback page',
     ),
   ];
 
   Widget buildMainWidget() {
+    // List of titles for each image
+    List<String> imageTitles = [
+      AppLocalizations.of(context)?.translate('ScanHomeNoNL') ??
+          'Scan your Eye',
+      AppLocalizations.of(context)?.translate('DiseaseHomeNoNL') ??
+          'Know your disease',
+      AppLocalizations.of(context)?.translate('DoctorHomeNoNL') ??
+          'Contact The Doctor',
+      AppLocalizations.of(context)?.translate('HospitalHomeNoNL') ??
+          'Contact Hospital',
+      AppLocalizations.of(context)?.translate('ContactHomeNoNL') ??
+          'Contact And Feedback',
+      AppLocalizations.of(context)?.translate('ChatBotHomeNoNL') ??
+          'Ask our chat bot anything...',
+    ];
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: CarouselSlider.builder(
@@ -513,11 +580,12 @@ class _MyHomePageState extends State<HomePage> {
   }
 
   // Build welcome text
-  Widget buildWelcomeText(String fontFamily) {
+  Widget buildWelcomeText(
+      String fontFamily, String languageState_1, String languageState_2) {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        text: '${"Take Care"}\n',
+        text: languageState_1,
         style: TextStyle(
           fontFamily: fontFamily,
           fontWeight: FontWeight.w600,
@@ -527,7 +595,7 @@ class _MyHomePageState extends State<HomePage> {
         ),
         children: <TextSpan>[
           TextSpan(
-            text: "of your vision",
+            text: languageState_2,
             style: TextStyle(
               fontFamily: fontFamily,
               fontWeight: FontWeight.w100,
