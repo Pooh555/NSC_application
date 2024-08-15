@@ -22,10 +22,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<List<String>> getDocId() async {
     try {
-      final snapshot = await FirebaseFirestore.instance.collection('users').get();
+      final snapshot =
+          await FirebaseFirestore.instance.collection('users').get();
       return snapshot.docs.map((document) => document.id).toList();
     } catch (e) {
-      print("Error getting document IDs: $e");
+      // print("Error getting document IDs: $e");
       return [];
     }
   }
@@ -36,7 +37,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile Page'),
@@ -71,7 +71,8 @@ class _ProfilePageState extends State<ProfilePage> {
               icon: const Icon(Icons.logout),
               label: const Text("Log Out"),
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                 backgroundColor: AppTheme.textColor_2,
                 foregroundColor: Colors.black,
               ),
@@ -99,8 +100,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           elevation: 2,
                           margin: EdgeInsets.zero,
                           child: ListTile(
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                            leading: const Icon(Icons.person, color: Colors.blueAccent),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8.0),
+                            leading: const Icon(Icons.person,
+                                color: Colors.blueAccent),
                             title: GetUserName(
                               documentId: docIDs[index],
                               email: user.email!,

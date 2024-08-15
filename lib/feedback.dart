@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nsc/home.dart';
 import 'package:nsc/localization/app_localizations.dart';
-import 'package:nsc/localization/LocaleProvider.dart';
+import 'package:nsc/localization/locale_provider.dart';
 import 'package:provider/provider.dart';
 
 _launchURLInBrowser() async {
@@ -18,9 +18,7 @@ _launchURLInBrowser() async {
 }
 
 class FeedbackPage extends StatefulWidget {
-  final String title;
-
-  const FeedbackPage({super.key, required this.title});
+  const FeedbackPage({super.key});
 
   @override
   FeedbackPageState createState() => FeedbackPageState();
@@ -31,16 +29,13 @@ class FeedbackPageState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Consumer<LocaleProvider>(
       builder: (context, localeProvider, child) {
-        final locale = localeProvider.locale;
-        // Debugging locale change
-        print('Current locale in FeedbackPage: $locale');
-
-        // Ensure AppTheme is updated dynamically if needed
         final appTheme = AppTheme(theme);
-
         return Scaffold(
           appBar: AppBar(
-            title: Text(widget.title),
+            title: Text(
+              AppLocalizations.of(context)?.translate('FeedbackPageTitle') ??
+                  'Feedback Page',
+            ),
           ),
           body: ListView(
             children: [

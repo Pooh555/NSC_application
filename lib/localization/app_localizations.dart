@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
-
 class AppLocalizations {
   final Locale locale;
 
@@ -17,22 +16,24 @@ class AppLocalizations {
   Future<void> load() async {
     try {
       // Load the JSON file
-      String jsonString = await rootBundle.loadString('lib/l10n/${locale.languageCode}.json');
+      String jsonString =
+          await rootBundle.loadString('lib/l10n/${locale.languageCode}.json');
       Map<String, dynamic> jsonMap = json.decode(jsonString);
 
       // Map JSON to a Map<String, String>
-      _localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
+      _localizedStrings =
+          jsonMap.map((key, value) => MapEntry(key, value.toString()));
     } catch (e) {
       // Handle the error, e.g., log it or provide a fallback
-      print('Error loading localization file: $e');
+      // print('Error loading localization file: $e');
     }
   }
 
   String translate(String key) {
-    return _localizedStrings?[key] ?? key; // Fallback to key if translation not found
+    return _localizedStrings?[key] ??
+        key; // Fallback to key if translation not found
   }
 }
-
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationsDelegate();

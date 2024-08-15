@@ -4,7 +4,7 @@ import 'package:nsc/disease.dart';
 import 'package:nsc/home.dart';
 
 class DiseasesPage extends StatefulWidget {
-  const DiseasesPage({super.key});
+  DiseasesPage({super.key});
   
   @override
   _DiseasesPageState createState() => _DiseasesPageState();

@@ -10,9 +10,8 @@ import 'auth_service.dart';
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
 
-  
   const RegisterPage({super.key, required this.onTap});
-  
+
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
@@ -40,10 +39,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
     try {
       if (passwordController.text == confirmPasswordController.text) {
-        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
-          
         );
 
         // Add user details
@@ -64,9 +63,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
         // Navigate to DisclaimerPage on successful registration
         Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const DisclaimerPage(),
-        ));
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DisclaimerPage(),
+            ));
       } else {
         // Show error
         showErrorMessage("Passwords don't match.");
@@ -78,7 +78,9 @@ class _RegisterPageState extends State<RegisterPage> {
       showErrorMessage(e.message ?? "An error occurred.");
     }
   }
-    Future<void> addUserDetails(String firstName, String lastName, String email, int age) async {
+
+  Future<void> addUserDetails(
+      String firstName, String lastName, String email, int age) async {
     try {
       await FirebaseFirestore.instance.collection('users').add({
         'firstname': firstName,
@@ -86,9 +88,9 @@ class _RegisterPageState extends State<RegisterPage> {
         'email': email,
         'age': age,
       });
-      print("User added to Firestore: $firstName, $lastName, $email, $age");
+      // print("User added to Firestore: $firstName, $lastName, $email, $age");
     } catch (e) {
-      print("Failed to add user to Firestore: $e");
+      // print("Failed to add user to Firestore: $e");
       rethrow; // rethrow the error to be caught in signUserUp method
     }
   }
@@ -120,7 +122,8 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // logo
-                Image.asset("assets/images/app_icon.png", width: 150.0, height: 150.0),
+                Image.asset("assets/images/app_icon.png",
+                    width: 150.0, height: 150.0),
 
                 // welcome back, you've been missed!
                 Text(
@@ -158,7 +161,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
-                  keyboardType: TextInputType.emailAddress, // Added for email input
+                  keyboardType:
+                      TextInputType.emailAddress, // Added for email input
                 ),
 
                 const SizedBox(height: 20),
