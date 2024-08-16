@@ -47,6 +47,15 @@ class _HospitalPageState extends State<HospitalPage> {
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   userAgentPackageName: 'com.example.app',
                 ),
+                MarkerLayer(
+                  markers: [
+                    Marker(
+                      point: _currentPosition!,
+                      child: const Icon(Icons.star, color: Colors.red),
+                    ),
+                    // Add more markers for hospitals here
+                  ],
+                ),
               ],
             ),
     );
