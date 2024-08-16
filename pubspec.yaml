@@ -160,6 +160,18 @@ flutter:
      - assets/text/lazyeye.txt
      - assets/text/uveitis.txt
      - assets/text/VD.txt
+     - assets/text/AMDTH.txt
+     - assets/text/astigmatismTH.txt
+     - assets/text/BCDTH.txt
+     - assets/text/blepharitisTH.txt
+     - assets/text/blepharospasmTH.txt
+     - assets/text/CRVOTH.txt
+     - assets/text/cataractTH.txt
+     - assets/text/conjunctivitisTH.txt
+     - assets/text/glaucomaTH.txt
+     - assets/text/lazyeyeTH.txt
+     - assets/text/uveitisTH.txt
+     - assets/text/VDTH.txt
      - assets/text/chatbotwarning.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see

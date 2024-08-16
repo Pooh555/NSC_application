@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/disease.dart';
 import 'package:nsc/home.dart';
+import 'package:nsc/localization/app_localizations.dart';
 import 'package:nsc/localization/locale_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -41,15 +42,20 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/AMD.jpg',
-                            'AMD',
-                            const DiseasePage(
+                            AppLocalizations.of(context)
+                                    ?.translate('AMDTitle') ??
+                                'AMD',
+                            DiseasePage(
                               title: 'Age-related Macular Degeneration (AMD)',
-                              infoPath: 'assets/text/AMD.txt',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('AMD') ??
+                                  'assets/text/AMD.txt',
                               imagePath_1: 'assets/images/AMD_1.jpg',
                               imagePath_2: 'assets/images/AMD_2.jpg',
                               imagePath_3: 'assets/images/AMD_3.png',
                             ),
-                            "AMD damages the macular, and causes blurry vision |",
+                            AppLocalizations.of(context)?.translate('AMDDes') ??
+                                'AMD damages the macular, and causes blurry vision |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -57,15 +63,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/astigmatism.jpg',
-                            'Astigmatism',
-                            const DiseasePage(
-                              title: 'Astigmatism',
-                              infoPath: 'assets/text/astigmatism.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('AstigmatismTitle') ??
+                                'Astigmatism',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('AstigmatismTitle') ??
+                                  'Astigmatism',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('Astigmatism') ??
+                                  'assets/text/astigmatism.txt',
                               imagePath_1: 'assets/images/astigmatism_1.jpg',
                               imagePath_2: 'assets/images/astigmatism_2.jpg',
                               imagePath_3: 'assets/images/astigmatism_3.jpg',
                             ),
-                            "A common imperfection in the curvature of the eye |",
+                            AppLocalizations.of(context)
+                                    ?.translate('AstigmatismDes') ??
+                                'A common imperfection in the curvature of the eye |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -73,15 +87,22 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/BCD.png',
-                            'BCD',
-                            const DiseasePage(
-                              title: 'Bietti\'s Crystalline Dystrophy',
-                              infoPath: 'assets/text/BCD.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('BCDTitle') ??
+                                'BCD',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('BCDTitle') ??
+                                  'BCD',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('BCD') ??
+                                  'assets/text/BCD.txt',
                               imagePath_1: 'assets/images/BCD_1.jpg',
                               imagePath_2: 'assets/images/BCD_2.jpg',
                               imagePath_3: 'assets/images/BCD_3.jpg',
                             ),
-                            "A rare genetic disease where crystals build up in your cornea  |",
+                            AppLocalizations.of(context)?.translate('BCDDes') ??
+                                'A rare genetic disease where crystals build up in your cornea  |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -89,15 +110,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/blepharitis.jpg',
-                            'Blepharitis',
-                            const DiseasePage(
-                              title: 'Blepharitis',
-                              infoPath: 'assets/text/blepharitis.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('BlepharitisTitle') ??
+                                'Blepharitis',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('BlepharitisTitle') ??
+                                  'Blepharitis',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('Blepharitis') ??
+                                  'assets/text/blepharitis.txt',
                               imagePath_1: 'assets/images/blepharitis_1.jpg',
                               imagePath_2: 'assets/images/blepharitis_2.jpg',
                               imagePath_3: 'assets/images/blepharitis_3.jpg',
                             ),
-                            "Caused by bacteria on your eyelids |",
+                            AppLocalizations.of(context)
+                                    ?.translate('BlepharitisDes') ??
+                                'Caused by bacteria on your eyelids |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -105,15 +134,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/blepharospasm.jpg',
-                            'Blepharospasm',
-                            const DiseasePage(
-                              title: 'Blepharospasm',
-                              infoPath: 'assets/text/blepharospasm.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('BlepharospasmTitle') ??
+                                'Blepharospasm',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('BlepharospasmTitle') ??
+                                  'Blepharospasm',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('Blepharospasm') ??
+                                  'assets/text/blepharospasm.txt',
                               imagePath_1: 'assets/images/blepharospasm_1.jpg',
                               imagePath_2: 'assets/images/blepharospasm_2.jpg',
                               imagePath_3: 'assets/images/blepharospasm_3.jpg',
                             ),
-                            "Uncontrolled eyelid movements, like twitching |",
+                            AppLocalizations.of(context)
+                                    ?.translate('BlepharospasmDes') ??
+                                'Uncontrolled eyelid movements, like twitching |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -121,15 +158,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/CRVO.png',
-                            'CRVO',
-                            const DiseasePage(
-                              title: 'Central Retinal Vein Occlusion (CRVO)',
-                              infoPath: 'assets/text/CRVO.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('CRVOTitle') ??
+                                'CRVO',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('CRVOTitle') ??
+                                  'CRVO',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('CRVO') ??
+                                  'assets/text/CRVO.txt',
                               imagePath_1: 'assets/images/CRVO_1.jpg',
                               imagePath_2: 'assets/images/CRVO_2.jpg',
                               imagePath_3: 'assets/images/CRVO_3.jpg',
                             ),
-                            "An eye condition that affects the retina |",
+                            AppLocalizations.of(context)
+                                    ?.translate('CRVODes') ??
+                                'An eye condition that affects the retina |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -137,15 +182,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/cataract.jpg',
-                            'Cataract',
-                            const DiseasePage(
-                              title: 'Cataract',
-                              infoPath: 'assets/text/cataract.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('CataractTitle') ??
+                                'Cataract',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('CataractTitle') ??
+                                  'Cataract',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('Cataract') ??
+                                  'assets/text/cataract.txt',
                               imagePath_1: 'assets/images/cataract_1.jpg',
                               imagePath_2: 'assets/images/cataract_2.png',
                               imagePath_3: 'assets/images/cataract_3.jpg',
                             ),
-                            "A cloudy area in the lens of your eye |",
+                            AppLocalizations.of(context)
+                                    ?.translate('CataractDes') ??
+                                'A cloudy area in the lens of your eye |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -153,15 +206,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/conjunctivitis.jpg',
-                            'Conjunctivitis',
-                            const DiseasePage(
-                              title: 'Conjunctivitis',
-                              infoPath: 'assets/text/conjunctivitis.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('ConjunctivitisTitle') ??
+                                'Conjunctivitis',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('ConjunctivitisTitle') ??
+                                  'Conjunctivitis',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('Conjunctivitis') ??
+                                  'assets/text/conjunctivits.txt',
                               imagePath_1: 'assets/images/conjunctivitis_1.jpg',
                               imagePath_2: 'assets/images/conjunctivitis_2.jpg',
                               imagePath_3: 'assets/images/conjunctivitis_3.jpg',
                             ),
-                            "An inflammation or infection of the transparent membrane |",
+                            AppLocalizations.of(context)
+                                    ?.translate('ConjunctivitisDes') ??
+                                'An inflammation or infection of the transparent membrane |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -169,15 +230,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/glaucoma.jpg',
-                            'Glaucoma',
-                            const DiseasePage(
-                              title: 'Glaucoma',
-                              infoPath: 'assets/text/glaucoma.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('GlaucomaTitle') ??
+                                'Glaucoma',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('GlaucomaTitle') ??
+                                  'Glaucoma',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('Glaucoma') ??
+                                  'assets/text/glaucoma.txt',
                               imagePath_1: 'assets/images/glaucoma_1.jpg',
                               imagePath_2: 'assets/images/glaucoma_2.jpg',
                               imagePath_3: 'assets/images/glaucoma_3.jpg',
                             ),
-                            "Caused by damage to your optic nerve |",
+                            AppLocalizations.of(context)
+                                    ?.translate('GlaucomaDes') ??
+                                'Caused by damage to your optic nerve |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -185,15 +254,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/lazyeye.jpg',
-                            'Lazy Eye',
-                            const DiseasePage(
-                              title: 'Lazy Eye',
-                              infoPath: 'assets/text/lazyeye.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('LazyEyeTitle') ??
+                                'Lazy Eye',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('LazyEyeTitle') ??
+                                  'Lazy Eye',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('LazyEye') ??
+                                  'assets/text/lazyeye.txt',
                               imagePath_1: 'assets/images/lazyeye_1.jpg',
                               imagePath_2: 'assets/images/lazyeye_2.jpg',
                               imagePath_3: 'assets/images/lazyeye_3.jpg',
                             ),
-                            "An abnormal visual development early in life |",
+                            AppLocalizations.of(context)
+                                    ?.translate('LazyEyeDes') ??
+                                'An abnormal visual development early in life |',
                           ),
                         ),
                         const SizedBox(height: widgetGap),
@@ -201,15 +278,23 @@ class _DiseasesPageState extends State<DiseasesPage> {
                           child: buildBuildWithPageNavigation(
                             context,
                             'assets/images/uveitis.jpg',
-                            'Uveitis',
-                            const DiseasePage(
-                              title: 'Uveitis',
-                              infoPath: 'assets/text/uveitis.txt',
+                            AppLocalizations.of(context)
+                                    ?.translate('UveitisTitle') ??
+                                'Uveitis',
+                            DiseasePage(
+                              title: AppLocalizations.of(context)
+                                      ?.translate('UveitisTitle') ??
+                                  'Uveitis',
+                              infoPath: AppLocalizations.of(context)
+                                      ?.translate('Uveitis') ??
+                                  'assets/text/uveitis.txt',
                               imagePath_1: 'assets/images/uveitis_1.jpg',
                               imagePath_2: 'assets/images/uveitis_2.jpg',
                               imagePath_3: 'assets/images/uveitis_3.jpg',
                             ),
-                            "The inflammation usually happens when an infection occurs. |",
+                            AppLocalizations.of(context)
+                                    ?.translate('UveitisDes') ??
+                                'The inflammation usually happens when an infection occurs. |',
                           ),
                         ),
                         const SizedBox(height: widgetGap + 75),
@@ -218,7 +303,9 @@ class _DiseasesPageState extends State<DiseasesPage> {
                   ),
                 ],
               ),
-              buildChatBotWidget(),
+              buildChatBotWidget(
+                  AppLocalizations.of(context)?.translate('ChatBotHome') ??
+                      'Ask our chatbot anything...'),
             ],
           ),
         );
@@ -226,13 +313,13 @@ class _DiseasesPageState extends State<DiseasesPage> {
     );
   }
 
-  Widget buildChatBotWidget() {
+  Widget buildChatBotWidget(String displayText) {
     return Stack(
       children: [
         Positioned(
           bottom: 30,
           right: 20, // Adjusted from 15 to 20
-          child: buildChatBotWidget_2(60.0, 300.0),
+          child: buildChatBotWidget_2(60.0, 300.0, displayText),
         ),
         Positioned(
           bottom: 10,
@@ -268,11 +355,11 @@ class _DiseasesPageState extends State<DiseasesPage> {
     );
   }
 
-  Widget buildChatBotWidget_2(double height, double width) {
+  Widget buildChatBotWidget_2(double height, double width, String displayText) {
     return Builder(
       builder: (context) => SizedBox(
-        width: width,
         height: height,
+        width: width,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: FloatingActionButton(
@@ -290,13 +377,8 @@ class _DiseasesPageState extends State<DiseasesPage> {
               padding: const EdgeInsets.only(right: 85),
               child: RichText(
                 textAlign: TextAlign.left,
-                text: buildTextWithShadow(
-                  'Ask our chatbot anything...',
-                  useFontFamily,
-                  fontSize_4,
-                  AppTheme.textColor_3,
-                  0.2,
-                ),
+                text: buildTextWithShadow(displayText, useFontFamily,
+                    fontSize_4, AppTheme.textColor_3, 0.2),
               ),
             ),
           ),

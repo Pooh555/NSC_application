@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/home.dart';
+import 'package:nsc/localization/app_localizations.dart';
 
 class DiseasePage extends StatefulWidget {
   const DiseasePage(
@@ -89,19 +90,21 @@ class _DiseasePageState extends State<DiseasePage> {
               ],
             ),
           ),
-          buildChatBotWidget(),
+          buildChatBotWidget(
+              AppLocalizations.of(context)?.translate('ChatBotHome') ??
+                  'Ask our chatbot anything...'),
         ],
       ),
     );
   }
 
-  Widget buildChatBotWidget() {
+  Widget buildChatBotWidget(String displayText) {
     return Stack(
       children: [
         Positioned(
           bottom: 30,
           right: 20, // Adjusted from 15 to 20
-          child: buildChatBotWidget_2(60.0, 300.0),
+          child: buildChatBotWidget_2(60.0, 300.0, displayText),
         ),
         Positioned(
           bottom: 10,
@@ -137,11 +140,11 @@ class _DiseasePageState extends State<DiseasePage> {
     );
   }
 
-  Widget buildChatBotWidget_2(double height, double width) {
+  Widget buildChatBotWidget_2(double height, double width, String displayText) {
     return Builder(
       builder: (context) => SizedBox(
-        width: width,
         height: height,
+        width: width,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: FloatingActionButton(
@@ -159,8 +162,8 @@ class _DiseasePageState extends State<DiseasePage> {
               padding: const EdgeInsets.only(right: 85),
               child: RichText(
                 textAlign: TextAlign.left,
-                text: buildTextWithShadow('Ask our chatbot anything...',
-                    useFontFamily, fontSize_4, AppTheme.textColor_3, 0.2),
+                text: buildTextWithShadow(displayText, useFontFamily,
+                    fontSize_4, AppTheme.textColor_3, 0.2),
               ),
             ),
           ),

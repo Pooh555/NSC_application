@@ -177,8 +177,8 @@ class ScanRouteState extends State<ScanRoute> {
                                           Navigator.pop(context);
                                         },
                                         child: Text(AppLocalizations.of(context)
-                                                ?.translate('Agree') ??
-                                            "Agree"),
+                                                ?.translate('Disagree') ??
+                                            "Disagree"),
                                       ),
                                     ],
                                   ),
@@ -227,15 +227,17 @@ class ScanRouteState extends State<ScanRoute> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const DiseasePage(
-                                      title: 'Cataract',
-                                      infoPath: 'assets/text/cataract.txt',
-                                      imagePath_1:
-                                          'assets/images/cataract_1.jpg',
-                                      imagePath_2:
-                                          'assets/images/cataract_2.png',
-                                      imagePath_3:
-                                          'assets/images/cataract_3.jpg'),
+                                  builder: (context) => DiseasePage(
+                                    title: AppLocalizations.of(context)
+                                            ?.translate('CRVOTitle') ??
+                                        'CRVO',
+                                    infoPath: AppLocalizations.of(context)
+                                            ?.translate('CRVO') ??
+                                        'assets/text/CRVO.txt',
+                                    imagePath_1: 'assets/images/CRVO_1.jpg',
+                                    imagePath_2: 'assets/images/CRVO_2.jpg',
+                                    imagePath_3: 'assets/images/CRVO_3.jpg',
+                                  ),
                                 ),
                               );
                             }
@@ -243,15 +245,17 @@ class ScanRouteState extends State<ScanRoute> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const DiseasePage(
-                                      title: 'Glaucoma',
-                                      infoPath: 'assets/text/glaucoma.txt',
-                                      imagePath_1:
-                                          'assets/images/glaucoma_1.jpg',
-                                      imagePath_2:
-                                          'assets/images/glaucoma_2.jpg',
-                                      imagePath_3:
-                                          'assets/images/glaucoma_3.jpg'),
+                                  builder: (context) => DiseasePage(
+                                    title: AppLocalizations.of(context)
+                                            ?.translate('GlaucomaTitle') ??
+                                        'Glaucoma',
+                                    infoPath: AppLocalizations.of(context)
+                                            ?.translate('Glaucoma') ??
+                                        'assets/text/glaucoma.txt',
+                                    imagePath_1: 'assets/images/glaucoma_1.jpg',
+                                    imagePath_2: 'assets/images/glaucoma_2.jpg',
+                                    imagePath_3: 'assets/images/glaucoma_3.jpg',
+                                  ),
                                 ),
                               );
                             }
@@ -259,22 +263,31 @@ class ScanRouteState extends State<ScanRoute> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const DiseasePage(
-                                      title: 'Conjunctivitis',
-                                      infoPath:
-                                          'assets/text/conjunctivitis.txt',
-                                      imagePath_1:
-                                          'assets/images/conjunctivitis_1.jpg',
-                                      imagePath_2:
-                                          'assets/images/conjunctivitis_2.jpg',
-                                      imagePath_3:
-                                          'assets/images/conjunctivitis_3.jpg'),
+                                  builder: (context) => DiseasePage(
+                                    title: AppLocalizations.of(context)
+                                            ?.translate(
+                                                'ConjunctivitisTitle') ??
+                                        'Conjunctivitis',
+                                    infoPath: AppLocalizations.of(context)
+                                            ?.translate('Conjunctivitis') ??
+                                        'assets/text/conjunctivits.txt',
+                                    imagePath_1:
+                                        'assets/images/conjunctivitis_1.jpg',
+                                    imagePath_2:
+                                        'assets/images/conjunctivitis_2.jpg',
+                                    imagePath_3:
+                                        'assets/images/conjunctivitis_3.jpg',
+                                  ),
                                 ),
                               );
                             }
                           },
                           icon: const Icon(Icons.arrow_forward),
-                          label: const Text("About your disease"),
+                          label: Text(
+                            AppLocalizations.of(context)
+                                    ?.translate('AboutYourDisease') ??
+                                'About your disease',
+                          ),
                         ),
                     ],
                   ),
