@@ -2,6 +2,7 @@ import 'dart:async';
 // Import the carousel_slider package with an alias to avoid conflicts
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:nsc/chatbot.dart';
 import 'package:nsc/diseases.dart';
 import 'package:nsc/doctor.dart';
@@ -132,6 +133,16 @@ class _HomePageState extends State<HomePage> {
       builder: (context, localeProvider, child) {
         final locale = localeProvider.locale;
         return MaterialApp(
+          localizationsDelegates: const [
+            AppLocalizationsDelegate(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en', ''),
+            Locale('th', ''),
+          ],
           locale: locale, // Add this line to ensure localization
           title: 'home', // Homepage title
           theme: ThemeData(
@@ -145,6 +156,7 @@ class _HomePageState extends State<HomePage> {
               toolbarHeight: 50,
             ),
           ),
+
           home: Scaffold(
             body: Stack(
               children: [
@@ -244,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                   AppLocalizations.of(context)
                                           ?.translate('DoctorHome') ??
                                       'Contact Doctor',
-                                  DoctorPage())),
+                                  const DoctorPage())),
                           Padding(
                             padding: const EdgeInsets.only(top: 18),
                             child: buildRowWidget(
@@ -457,10 +469,10 @@ class _HomePageState extends State<HomePage> {
 // List of page routes for each image
   late final List<Widget> imageRoutes = [
     const ScanRoute(),
-    DiseasesPage(),
-    DoctorPage(),
+    const DiseasesPage(),
+    const DoctorPage(),
     const HospitalPage(),
-    FeedbackPage()
+    const FeedbackPage()
   ];
 
   Widget buildMainWidget() {

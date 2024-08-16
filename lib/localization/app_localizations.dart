@@ -15,17 +15,14 @@ class AppLocalizations {
 
   Future<void> load() async {
     try {
-      // Load the JSON file
+      print('Loading localization for ${locale.languageCode}');
       String jsonString =
           await rootBundle.loadString('lib/l10n/${locale.languageCode}.json');
       Map<String, dynamic> jsonMap = json.decode(jsonString);
-
-      // Map JSON to a Map<String, String>
       _localizedStrings =
           jsonMap.map((key, value) => MapEntry(key, value.toString()));
     } catch (e) {
-      // Handle the error, e.g., log it or provide a fallback
-      // print('Error loading localization file: $e');
+      print('Error loading localization file: $e');
     }
   }
 

@@ -29,11 +29,12 @@ class FeedbackPageState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Consumer<LocaleProvider>(
       builder: (context, localeProvider, child) {
-        final appTheme = AppTheme(theme);
+        final appTheme =
+            AppTheme(theme); // Ensure 'theme' is properly initialized
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              AppLocalizations.of(context)?.translate('FeedbackPageTitle') ??
+              AppLocalizations.of(context)?.translate('FeedbackTitle') ??
                   'Feedback Page',
             ),
           ),
