@@ -13,6 +13,16 @@
   "HospitalHomeNoNL": "Contact Hospital",
   "ContactHomeNoNL": "Contact And Feedback",
   "ChatBotHomeNoNL": "Ask our chatbot anything...",
+  "FeedbackTitle": "Feedback Page",
   "Feedback": "We appreciate every suggestion you provide.\nYou can provide us suggestions via this link\n\nhttps://forms.gle/EkZFwbob37mirj698",
-  "Doctor": "This feature is still\nbeing developed.\nWe apologize for the inconvinience.\n:("
+  "ClickHere": "Click here to open URL",
+  "ScanTitle": "Scan Your Eye",
+  "PrivacyPolicy": "Privacy Policy",
+  "Upload": "Please select or take a photo to upload",
+  "Warning": "Do you agree that developer will collect your eye image for future AI model improvement?",
+  "Agree": "Agree",
+  "Disagree": "Disagree",
+  "UploadImage": "Upload Image",
+  "Doctor": "This feature is still\nbeing developed.\nWe apologize for the inconvinience.\n:(",
+  "AMD": "/assets/text/AMD.txt"
 }
